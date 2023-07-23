@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Movies Explorer",
+  "name": "Сервис, в котором можно найти фильмы по запросу и сохранить в личном кабинете.",
   "icons": [
     {
       "src": "favicon.ico",
