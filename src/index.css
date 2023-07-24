@@ -1,14 +1,26 @@
 /** Fonts **/
+
 @import url(./vendor/fonts/fonts.css);
 
 /** Normalize **/
+
 @import url(./vendor/normalize.css);
 
 /** Variables **/
+
 @import url(./vendor/variables/variables.css);
 
 /** Root **/
+
 @import url(./blocks/root/root.css);
+
+/** List **/
+
+@import url(./blocks/list/list.css);
+
+/** Link **/
+
+@import url(./blocks/link/link.css);
 
 h1 {
   font-size: 40px;

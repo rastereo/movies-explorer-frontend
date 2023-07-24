@@ -1,0 +1,15 @@
+.link {
+  text-decoration: none;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  transition: opacity linear var(--time-transition);
+}
+
+.link_active {
+  font-weight: 500;
+}
+
+.link:hover {
+  opacity: .7;
+}

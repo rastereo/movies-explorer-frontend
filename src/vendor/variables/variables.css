@@ -1,3 +1,15 @@
 :root {
   --text-color: #000;
+
+  --body-background-color: #fafafa;
+
+  --white: #fff;
+  --blue: #3456f3;
+  --grey: #f4f4f4;
+
+  --header-account-box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+
+  --time-transition: .5s;
+
+  --side-padding: 70px;
 }

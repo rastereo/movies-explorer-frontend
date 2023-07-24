@@ -1,0 +1,9 @@
+.header__account {
+  display: flex;
+  gap: 0 7px;
+  align-items: center;
+  border-radius: 40px;
+  background-color: var(--white);
+  box-shadow: var(--header-account-box-shadow);
+  padding: 3px 3px 3px 11px;
+}
