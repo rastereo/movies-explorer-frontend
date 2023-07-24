@@ -1,0 +1,10 @@
+/** Navigation **/
+
+@import url(../../blocks/navigation/navigation.css);
+@import url(../../blocks/navigation/_state/navigation_state_logged.css);
+@import url(../../blocks/navigation/__menu/navigation__menu.css);
+@import url(../../blocks/navigation/__menu/_state/navigation__menu_state_logged.css);
+@import url(../../blocks/navigation/__login/navigation__login.css);
+@import url(../../blocks/navigation/__item/_position/navigation__item_position_right.css);
+@import url(../../blocks/navigation/__account/navigation__account.css);
+@import url(../../blocks/navigation/__figure/navigation__figure.css);

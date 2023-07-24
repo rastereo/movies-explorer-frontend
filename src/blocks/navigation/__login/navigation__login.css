@@ -1,4 +1,4 @@
-.header__login {
+.navigation__login {
   color: var(--white);
   background-color: var(--blue);
   padding: 8px 20px;
@@ -6,6 +6,6 @@
   transition: opacity linear var(--time-transition);
 }
 
-.header__login:hover {
+.navigation__login:hover {
   opacity: .8;
 }

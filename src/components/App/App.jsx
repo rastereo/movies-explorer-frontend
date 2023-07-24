@@ -1,10 +1,13 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 import Main from '../Main';
 import Header from '../Header/Header';
 
+/**
+ * Корневой компонент приложения.
+ * @returns {React.ReactElement} <App />
+ */
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -16,7 +19,7 @@ function App() {
       />
       <Routes>
         <Route
-          path="/"
+          index
           element={<Main />}
         />
         <Route

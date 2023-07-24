@@ -6,6 +6,9 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/recommended",
     "airbnb"
   ],
   "parserOptions": {
@@ -16,6 +19,7 @@
     "react"
   ],
   "rules": {
+    "react/react-in-jsx-scope": 0,
     "react/jsx-filename-extension": [
       1,
       {
