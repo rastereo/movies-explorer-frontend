@@ -1,5 +1,5 @@
 .about-project {
-  padding: 0 var(--side-padding) 110px;
+  padding: 110px var(--side-padding) 110px;
 
   grid-area: about-project;
 }

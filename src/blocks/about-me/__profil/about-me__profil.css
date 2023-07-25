@@ -1,0 +1,5 @@
+.about-me__profil {
+  display: flex;
+  justify-content: space-between;
+  padding: 66px 0 0;
+}

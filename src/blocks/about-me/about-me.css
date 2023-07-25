@@ -1,0 +1,5 @@
+.about-me {
+  padding: 110px var(--side-padding) 100px;
+
+  grid-area: about-me;
+}

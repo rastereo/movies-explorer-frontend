@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './NavTab.css';
 
 /**
- * Компонент с навигацией по странице «О проекте»..
+ * Компонент с навигацией по странице «О проекте».
  * @param {object} props
  * @returns {React.ReactElement} <Promo />
  */
