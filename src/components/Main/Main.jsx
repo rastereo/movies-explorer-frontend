@@ -1,5 +1,6 @@
-import NavTab from './NavTab/NavTab';
+import './Main.css';
 import Promo from './Promo/Promo';
+import AboutProject from './AboutProject/AboutProject';
 
 /**
  * Компонент страницы «О проекте». Он будет содержать только презентационные
@@ -8,9 +9,9 @@ import Promo from './Promo/Promo';
  */
 function Main() {
   return (
-    <main>
+    <main className="main">
       <Promo />
-      <NavTab title="О проекте" />
+      <AboutProject />
     </main>
   );
 }

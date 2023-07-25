@@ -4,4 +4,6 @@
   background-repeat: no-repeat;
   background-position: right 70px bottom 60px;
   padding: 50px var(--side-padding) 406px;
+
+  grid-area: promo;
 }

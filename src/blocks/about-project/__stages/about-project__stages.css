@@ -1,0 +1,5 @@
+.about-project__stages {
+  display: flex;
+  gap: 40px;
+  padding: 70px 0 110px;
+}
