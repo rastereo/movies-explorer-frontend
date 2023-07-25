@@ -1,0 +1,5 @@
+.portfolio {
+  padding: 0 var(--side-padding) 125px;
+
+  grid-area: portfolio;
+}

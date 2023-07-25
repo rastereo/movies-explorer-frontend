@@ -1,0 +1,11 @@
+.portfolio__link {
+  display: block;
+  font-size: 30px;
+  line-height: 1.66;
+  letter-spacing: -1.2px;
+  border-bottom: 1px solid var(--regular-grey);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}

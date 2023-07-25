@@ -1,0 +1,8 @@
+.nav-tab_size_small {
+  color: var(--dark-grey);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.11;
+  border: none;
+  padding: 0;
+}
