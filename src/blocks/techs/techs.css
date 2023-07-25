@@ -1,0 +1,6 @@
+.techs {
+  background-color: var(--techs-background-color);
+  padding: 0 var(--side-padding) 100px;
+
+  grid-area: techs;
+}
