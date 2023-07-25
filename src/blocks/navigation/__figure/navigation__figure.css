@@ -2,7 +2,7 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background-color: var(--grey);
+  background-color: var(--light-grey);
   background-image: url(../../../images/account-icon.svg);
   background-repeat: no-repeat;
   background-position: center;

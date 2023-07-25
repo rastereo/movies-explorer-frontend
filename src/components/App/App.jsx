@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import Main from '../Main';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 /**
  * Корневой компонент приложения.
@@ -43,13 +44,13 @@ function App() {
         <Route
           path="/signin"
           element={
-            <h1>Страницы авторизации</h1>
+            <h1>Авторизация</h1>
           }
         />
         <Route
           path="/signup"
           element={
-            <h1>Страницы регистрации</h1>
+            <h1>Регистрация</h1>
           }
         />
         <Route
@@ -59,6 +60,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </>
   );
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -7,7 +6,7 @@ import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
 /**
- * Компонент, который отрисовывает шапку сайта на страницу
+ * Компонент, который отрисовывает шапку сайта на страницу.
  * @param {object} props
  * @returns {React.ReactElement} <Header />
  */

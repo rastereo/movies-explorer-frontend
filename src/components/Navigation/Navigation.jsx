@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -15,8 +14,8 @@ function Navigation(props) {
   /**
    * Функция для настройки классa link_active, применяемого в зависимости
    * от активного и ожидающего состояния ссылки.
-   * @param {boolean} isActive
-   * @returns {string}
+   * @param {boolean} isActive Состояние ссылке.
+   * @returns {string} Имя класса.
    */
   function checkLinkState(isActive) {
     return isActive ? 'link link_active' : 'link';
