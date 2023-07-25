@@ -1,7 +1,7 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
-import Main from '../Main';
+import Main from '../Main/Main';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
@@ -13,10 +13,13 @@ function App() {
   // eslint-disable-next-line no-unused-vars
   const [isLoggedIn, setLoggedIn] = useState(false);
 
+  const location = useLocation();
+
   return (
     <>
       <Header
         isLoggedIn={isLoggedIn}
+        isMain={location.pathname}
       />
       <Routes>
         <Route

@@ -11,10 +11,10 @@ import Navigation from '../Navigation/Navigation';
  * @returns {React.ReactElement} <Header />
  */
 function Header(props) {
-  const { isLoggedIn } = props;
+  const { isLoggedIn, isMain } = props;
 
   return (
-    <header className="header">
+    <header className={`header ${isMain === '/' && 'header_color_grey'}`}>
       <Link to="/">
         <img
           src={logo}
@@ -33,6 +33,12 @@ Header.propTypes = {
    * не авторизован(false), передается дальше в компонент Navigation.
   */
   isLoggedIn: PropTypes.bool.isRequired,
+  /**
+   * isMain String - возвращает строку location.pathname, представляющий
+   * текущий URL. Если пользователь находится в index, шапка серого цвета,
+   * во всех других роутах шапка белая.
+   */
+  isMain: PropTypes.string.isRequired,
 };
 
 export default Header;

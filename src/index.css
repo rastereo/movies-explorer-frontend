@@ -21,11 +21,3 @@
 /** Link **/
 
 @import url(./blocks/link/link.css);
-
-h1 {
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 52px;
-  letter-spacing: -1.6px;
-}
