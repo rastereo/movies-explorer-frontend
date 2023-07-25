@@ -1,3 +1,4 @@
+import NavTab from './NavTab/NavTab';
 import Promo from './Promo/Promo';
 
 /**
@@ -9,6 +10,7 @@ function Main() {
   return (
     <main>
       <Promo />
+      <NavTab title="О проекте" />
     </main>
   );
 }
