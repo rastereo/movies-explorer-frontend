@@ -1,0 +1,5 @@
+.search-form__container {
+  flex-basis: 100%;
+  max-width: 932px;
+  position: relative;
+}

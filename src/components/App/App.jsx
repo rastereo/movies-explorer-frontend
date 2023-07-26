@@ -1,9 +1,10 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
-import Main from '../Main/Main';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
 
 /**
  * Корневой компонент приложения.
@@ -11,7 +12,7 @@ import Footer from '../Footer/Footer';
  */
 function App() {
   // eslint-disable-next-line no-unused-vars
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
 
   const location = useLocation();
 
@@ -28,9 +29,7 @@ function App() {
         />
         <Route
           path="/movies"
-          element={
-            <h1>Фильмы</h1>
-          }
+          element={<Movies />}
         />
         <Route
           path="/saved-movies"

@@ -21,3 +21,11 @@
 /** Link **/
 
 @import url(./blocks/link/link.css);
+
+/** Logo **/
+
+@import url(./blocks/logo/logo.css);
+
+/** Visually-hidden **/
+
+@import url(./blocks/visually-hidden/visually-hidden.css);

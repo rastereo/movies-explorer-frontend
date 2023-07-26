@@ -1,0 +1,14 @@
+.search-form__input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1.5px solid var(--search-form-border-color);
+  background-color: transparent;
+  border-radius: 50px;
+  padding: 15px 50px 15px 22px;
+  margin: 0;
+}
+
+.search-form__input::placeholder {
+  color: var(--dark-grey);
+  line-height: 1.28;
+}

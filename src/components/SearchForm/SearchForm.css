@@ -1,0 +1,10 @@
+/** Search-form **/
+
+@import url(../../blocks/search-form/search-form.css);
+@import url(../../blocks/search-form/__form/search-form__form.css);
+@import url(../../blocks/search-form/__container/search-form__container.css);
+@import url(../../blocks/search-form/__input/search-form__input.css);
+@import url(../../blocks/search-form/__submit/search-form__submit.css);
+@import url(../../blocks/search-form/__label/search-form__label.css);
+@import url(../../blocks/search-form/__switch/search-form__switch.css);
+@import url(../../blocks/search-form/__slider/search-form__slider.css);
