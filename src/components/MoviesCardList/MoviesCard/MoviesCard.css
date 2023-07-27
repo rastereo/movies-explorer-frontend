@@ -1,0 +1,9 @@
+/** Movies-card **/
+
+@import url(../../../blocks/movies-card/movies-card.css);
+@import url(../../../blocks/movies-card/__info/movies-card__info.css);
+@import url(../../../blocks/movies-card/__name/movies-card__name.css);
+@import url(../../../blocks/movies-card/__duration/movies-card__duration.css);
+@import url(../../../blocks/movies-card/__button/movies-card__button.css);
+@import url(../../../blocks/movies-card/__button/_active/movies-card__button_active.css);
+@import url(../../../blocks/movies-card/__image/movies-card__image.css);

@@ -6,6 +6,8 @@ import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 
+import moviesData from '../../utils/data/moviesData';
+
 /**
  * Корневой компонент приложения.
  * @returns {React.ReactElement} <App />
@@ -29,7 +31,7 @@ function App() {
         />
         <Route
           path="/movies"
-          element={<Movies />}
+          element={<Movies moviesData={moviesData} />}
         />
         <Route
           path="/saved-movies"

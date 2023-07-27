@@ -1,0 +1,6 @@
+.movie-card__image {
+  width: 100%;
+  height: 203px;
+  display: block;
+  object-fit: cover;
+}

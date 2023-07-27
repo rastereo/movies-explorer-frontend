@@ -1,0 +1,9 @@
+.movies-card-list__more-film-button {
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: var(--light-grey);
+  padding: 11px 148px 9px;
+}

@@ -1,0 +1,6 @@
+/** Movies-card-list **/
+
+@import url(../../blocks/movies-card-list/movies-card-list.css);
+@import url(../../blocks/movies-card-list/__list/movies-card-list__list.css);
+@import url(../../blocks/movies-card-list/__more/movies-card-list__more.css);
+@import url(../../blocks/movies-card-list/__more-film-button/movies-card-list__more-film-button.css);

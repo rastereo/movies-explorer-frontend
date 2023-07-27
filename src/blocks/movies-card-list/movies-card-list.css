@@ -1,0 +1,5 @@
+.movies-card-list {
+  padding: 80px var(--side-padding);
+
+  grid-area: movies-card-list;
+}
