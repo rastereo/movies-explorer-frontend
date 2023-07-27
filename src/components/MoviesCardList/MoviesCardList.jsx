@@ -9,9 +9,11 @@ import MoviesCard from './MoviesCard/MoviesCard';
  *
  * @param {Object} props
  * @param {Array} props.moviesData Массив фильмов.
+ * @param {String} props.isMovies Имя роута /movies. Если пользователь находится
+ * в /movies, отображать блок с кнопкой "Ещё"
  * @returns {React.ReactElement} <MoviesCardList />
  */
-function MoviesCardList({ moviesData }) {
+function MoviesCardList({ moviesData, isMovies }) {
   return (
     <section className="movies-card-list">
       <ul className="movies-card-list__list list">
@@ -25,32 +27,33 @@ function MoviesCardList({ moviesData }) {
           </li>
         ))}
       </ul>
-      <div className="movies-card-list__more">
-        <button
-          type="button"
-          className="movies-card-list__more-film-button link"
-        >
-          Ещё
-        </button>
-      </div>
+      {isMovies === '/movies'
+        && (
+          <div className="movies-card-list__more">
+            <button
+              type="button"
+              className="movies-card-list__more-film-button link"
+            >
+              Ещё
+            </button>
+          </div>
+        )}
     </section>
   );
 }
 
 MoviesCardList.propTypes = {
-  /**
-   * moviesData Array - массив фильмов.
-   */
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     nameRU: PropTypes.string,
     duration: PropTypes.string,
     image: PropTypes.string,
     movieId: PropTypes.number,
-  })),
+  })).isRequired,
+  isMovies: PropTypes.string,
 };
 
 MoviesCardList.defaultProps = {
-  moviesData: {},
+  isMovies: '',
 };
 
 export default MoviesCardList;

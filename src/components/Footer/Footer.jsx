@@ -2,7 +2,8 @@ import './Footer.css';
 
 /**
  * Презентационный компонент, который отрисовывает подвал.
- * @returns {React.ReactElement} <Footer />
+ *
+ * @returns {React.ReactElement} Footer
  */
 function Footer() {
   return (

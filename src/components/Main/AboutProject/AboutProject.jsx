@@ -3,7 +3,8 @@ import NavTab from '../NavTab/NavTab';
 
 /**
  * Компонент с описанием дипломного проекта.
- * @returns {React.ReactElement} <AboutProject />
+ *
+ * @returns {React.ReactElement} AboutProject
  */
 function AboutProject() {
   return (

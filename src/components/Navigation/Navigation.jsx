@@ -5,14 +5,15 @@ import './Navigation.css';
 
 /**
  * Компонент, который отвечает за меню навигации на сайте.
- * @param {object} props
- * @returns {React.ReactElement} <Navigation />
+ *
+ * @param {Object} props
+ * @param {Boolean} props.isLoggedIn Состояние, если пользователь авторизован(true) или
+ * не авторизован(false). От этого пропса зависит, какие элементы навигации отображать.
+ * @returns {React.ReactElement} Navigation
  */
-function Navigation(props) {
-  const { isLoggedIn } = props;
-
+function Navigation({ isLoggedIn }) {
   /**
-   * Функция для настройки классa link_active, применяемого в зависимости
+   * Функция для настройки класса link_active, применяемого в зависимости
    * от активного и ожидающего состояния ссылки.
    * @param {boolean} isActive Состояние ссылке.
    * @returns {string} Имя класса.
@@ -82,11 +83,6 @@ function Navigation(props) {
 }
 
 Navigation.propTypes = {
-  /**
-   * isLoggedIn Boolean - Состояние, если пользователь авторизован(true)
-   * или не авторизован(false). От этого пропса зависит, какие элементы
-   * навигации отображать.
-  */
   isLoggedIn: PropTypes.bool.isRequired,
 };
 

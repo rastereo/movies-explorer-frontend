@@ -5,12 +5,14 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 import moviesData from '../../utils/data/moviesData';
 
 /**
  * Корневой компонент приложения.
- * @returns {React.ReactElement} <App />
+ *
+ * @returns {React.ReactElement} App
  */
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -31,13 +33,16 @@ function App() {
         />
         <Route
           path="/movies"
-          element={<Movies moviesData={moviesData} />}
+          element={(
+            <Movies
+              moviesData={moviesData}
+              isMovies={location.pathname}
+            />
+          )}
         />
         <Route
           path="/saved-movies"
-          element={
-            <h1>Сохранённые фильмы</h1>
-          }
+          element={<SavedMovies moviesData={moviesData.slice(0, 3)} />}
         />
         <Route
           path="/profile"

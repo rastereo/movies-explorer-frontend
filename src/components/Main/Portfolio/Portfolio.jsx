@@ -5,7 +5,8 @@ import NavTab from '../NavTab/NavTab';
 
 /**
  * Компонент со ссылками на другие проекты.
- * @returns {React.ReactElement} <Portfolio />
+ *
+ * @returns {React.ReactElement} Portfolio
  */
 function Portfolio() {
   return (

@@ -1,5 +1,5 @@
 .movies-card {
-  width: 364px;
+  width: 100%;
   background: var(--white);
   box-shadow: var(--box-shadow);
 }

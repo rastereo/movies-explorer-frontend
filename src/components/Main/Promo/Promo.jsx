@@ -2,7 +2,8 @@ import './Promo.css';
 
 /**
  * Компонент с вёрсткой баннера страницы «О проекте».
- * @returns {React.ReactElement} <Promo />
+ *
+ * @returns {React.ReactElement} Promo
  */
 function Promo() {
   return (

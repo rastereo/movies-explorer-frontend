@@ -8,30 +8,35 @@ import SearchForm from '../SearchForm/SearchForm';
  * Компонент страницы с поиском по фильмам.
  *
  * @param {Object} props
- * @param {Array} props.moviesData Массив фильмов
+ * @param {Array} props.moviesData Массив фильмов.
+ * @param {string} props.isMovies Имя роута /movies.
  * @returns {React.ReactElement} <Movies />
  */
-function Movies({ moviesData }) {
+function Movies({ moviesData, isMovies }) {
   return (
     <main className="movies">
       <h1 className="visually-hidden">Фильмы</h1>
-      <SearchForm />
-      <MoviesCardList moviesData={moviesData} />
+      <SearchForm name="movies" />
+      <MoviesCardList
+        moviesData={moviesData}
+        isMovies={isMovies}
+      />
     </main>
   );
 }
 
 Movies.propTypes = {
-  /**
-   * moviesData Array - массив фильмов, пропс
-   * передается дальше в MoviesCardList компонент.
-   */
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     nameRU: PropTypes.string,
     duration: PropTypes.string,
     image: PropTypes.string,
     movieId: PropTypes.number,
   })).isRequired,
+  isMovies: PropTypes.string,
+};
+
+Movies.defaultProps = {
+  isMovies: '',
 };
 
 export default Movies;

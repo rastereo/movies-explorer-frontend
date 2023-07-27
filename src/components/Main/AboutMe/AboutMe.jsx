@@ -6,13 +6,14 @@ import studentPhoto from '../../../images/student-photo.jpg';
 
 /**
  * Компонент с информацией о студенте.
- * @returns {React.ReactElement} <Promo />
+ *
+ * @returns {React.ReactElement} Promo
  */
 function AboutMe() {
   return (
     <section className="about-me">
       <NavTab title="Студент" />
-      <article className="about-me__profil">
+      <article className="about-me__profile">
         <div className="about-me__container">
           <h3 className="about-me__name">
             Виталий

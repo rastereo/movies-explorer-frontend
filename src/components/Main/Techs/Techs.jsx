@@ -5,7 +5,8 @@ import NavTab from '../NavTab/NavTab';
 
 /**
  * Компонент с использованными технологиями.
- * @returns {React.ReactElement} <Techs />
+ *
+ * @returns {React.ReactElement} Techs
  */
 function Techs() {
   return (

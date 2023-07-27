@@ -1,11 +1,16 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import PropTypes from 'prop-types';
+
 import './SearchForm.css';
 
 /**
  * Компонент страницы с поиском по фильмам.
- * @returns {React.ReactElement} <SearchForm />
+ *
+ * @param {Object} props
+ * @param {String} props.name Имя формы.
+ * @returns {React.ReactElement} SearchForm
  */
-function SearchForm() {
+function SearchForm({ name }) {
   return (
     <section className="search-form">
       <form
@@ -16,7 +21,7 @@ function SearchForm() {
         <div className="search-form__container">
           <input
             type="text"
-            name="film-name"
+            name={name}
             placeholder="Фильмы"
             className="search-form__input"
           />
@@ -42,5 +47,9 @@ function SearchForm() {
     </section>
   );
 }
+
+SearchForm.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default SearchForm;

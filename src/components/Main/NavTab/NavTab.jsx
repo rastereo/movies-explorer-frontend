@@ -4,12 +4,14 @@ import './NavTab.css';
 
 /**
  * Компонент с навигацией по странице «О проекте».
- * @param {props} props
- * @returns {React.ReactElement} <NavTab />
+ *
+ * @param {Object} props
+ * @param {String} props.title Текст в заголовке
+ * @param {Boolean} props.isSmall Необязательный пропс который добавляет
+ * класс заголовку, делая его меньше, серого цвета и без бордера.
+ * @returns {React.ReactElement} NavTab
  */
-function NavTab(props) {
-  const { title, isSmall } = props;
-
+function NavTab({ title, isSmall }) {
   return (
     <h2 className={`nav-tab ${isSmall && 'nav-tab_size_small'}`}>
       {title}
@@ -18,14 +20,7 @@ function NavTab(props) {
 }
 
 NavTab.propTypes = {
-  /**
-   * title String - Текст в заголовке.
-  */
   title: PropTypes.string.isRequired,
-  /**
-   * isSmall Boolean - Необязательный пропс который добовляет класс
-   * к заголовку, делая его меньше, серого цвета и без бордера.
-   */
   isSmall: PropTypes.bool,
 };
 

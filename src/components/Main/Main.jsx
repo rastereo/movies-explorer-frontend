@@ -8,7 +8,8 @@ import Portfolio from './Portfolio/Portfolio';
 /**
  * Компонент страницы «О проекте». Он будет содержать только презентационные
  * компоненты и в будущем, за исключением шапки навигации.
- * @returns {React.ReactElement} <Main />
+ *
+ * @returns {React.ReactElement} Main
  */
 function Main() {
   return (

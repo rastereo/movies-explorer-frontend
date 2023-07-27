@@ -1,7 +1,7 @@
 /** About-me **/
 
 @import url(../../../blocks/about-me/about-me.css);
-@import url(../../../blocks/about-me/__profil/about-me__profil.css);
+@import url(../../../blocks/about-me/__profile/about-me__profil.css);
 @import url(../../../blocks/about-me/__container/about-me__container.css);
 @import url(../../../blocks/about-me/__name/about-me__name.css);
 @import url(../../../blocks/about-me/__job/about-me__job.css);
