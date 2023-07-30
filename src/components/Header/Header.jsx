@@ -33,7 +33,11 @@ function Header({ isLoggedIn, isMain }) {
 
 Header.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
-  isMain: PropTypes.string.isRequired,
+  isMain: PropTypes.string,
+};
+
+Header.defaultProps = {
+  isMain: '',
 };
 
 export default Header;

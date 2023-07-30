@@ -1,0 +1,7 @@
+.main-form__error {
+  color: var(--red);
+  height: 12px;
+  overflow: hidden;
+  opacity: 0;
+  transition: var(--time-transition);
+}

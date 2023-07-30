@@ -1,0 +1,13 @@
+/** Main-form **/
+
+@import url(../../blocks/main-form/main-form.css);
+@import url(../../blocks/main-form/__title/main-form__title.css);
+@import url(../../blocks/main-form/__label/main-form__label.css);
+@import url(../../blocks/main-form/__input/main-form__input.css);
+@import url(../../blocks/main-form/__input/_type/main-form__input_type_error.css);
+@import url(../../blocks/main-form/__error/main-form__error.css);
+@import url(../../blocks/main-form/__error/_visible/main-form__error_visible.css);
+@import url(../../blocks/main-form/__submit/main-form__submit.css);
+@import url(../../blocks/main-form/__submit/_disabled/main-form__submit_disabled.css);
+@import url(../../blocks/main-form/__description/main-form__description.css);
+@import url(../../blocks/main-form/__link/main-form__link.css);

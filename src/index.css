@@ -13,6 +13,7 @@
 /** Root **/
 
 @import url(./blocks/root/root.css);
+@import url(./blocks/root/_background/root_background_white.css);
 
 /** List **/
 

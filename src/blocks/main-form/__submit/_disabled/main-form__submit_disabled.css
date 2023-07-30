@@ -1,0 +1,9 @@
+.main-form__submit_disabled {
+  color: var(--dark-grey-two);
+  background-color: var(--light-grey-three);
+  cursor: default;
+}
+
+.main-form__submit_disabled:hover {
+  opacity: 1;
+}

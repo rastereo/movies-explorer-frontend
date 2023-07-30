@@ -6,13 +6,20 @@ import './MoviesCard.css';
 /**
  * Компонент одной карточки фильма.
  *
- * @param {object} props Фильм.
- * @param {string} props.name Название фильма ну русском.
- * @param {string} props.duration Продолжительность фильма.
- * @param {string} props.image Ссылка на обложку фильма.
- * @returns {React.ReactElement} <MoviesCardList />
+ * @param {Object} props
+ * @param {String} props.name Название фильма ну русском.
+ * @param {String} props.duration Продолжительность фильма.
+ * @param {String} props.image Ссылка на обложку фильма.
+ * @param {Boolean} props.isDeleteButton Состояние, меняет кнопку
+ * "Сохранить фильм" на "Удалить фильм".
+ * @returns {React.ReactElement} MoviesCardList
  */
-function MoviesCard({ name, duration, image }) {
+function MoviesCard({
+  name,
+  duration,
+  image,
+  isDeleteButton,
+}) {
   const [isSave, setIsSave] = useState(false);
 
   /**
@@ -35,36 +42,43 @@ function MoviesCard({ name, duration, image }) {
             {duration}
           </p>
         </div>
-        <button
-          type="button"
-          aria-label="Сохранить фильм"
-          onClick={handleSaveClick}
-          className={`movie-card__button link ${isSave && 'movie-card__button_active'}`}
-        >
-        </button>
+        {isDeleteButton
+          ? (
+            <button
+              type="button"
+              aria-label="Удалить фильм"
+              className="movies-card__button movies-card__button_icon_delete link"
+            >
+            </button>
+          )
+          : (
+            <button
+              type="button"
+              aria-label="Сохранить фильм"
+              onClick={handleSaveClick}
+              className={`movies-card__button link ${isSave && 'movies-card__button_active'}`}
+            >
+            </button>
+          )}
       </div>
       <img
         src={image}
         alt={`Обложка фильма "${name}"`}
-        className="movie-card__image"
+        className="movies-card__image"
       />
     </article>
   );
 }
 
 MoviesCard.propTypes = {
-  /**
-   * name String - Название фильма ну русском.
-   */
   name: PropTypes.string.isRequired,
-  /**
-   * duration String - Продолжительность фильма.
-   */
   duration: PropTypes.string.isRequired,
-  /**
-   * image String - Ссылка на обложку фильма.
-   */
   image: PropTypes.string.isRequired,
+  isDeleteButton: PropTypes.bool,
+};
+
+MoviesCard.defaultProps = {
+  isDeleteButton: false,
 };
 
 export default MoviesCard;

@@ -19,7 +19,6 @@ function AboutMe() {
             Виталий
           </h3>
           <p className="about-me__job">
-            {/* сделать функцию, которая высчитывает мой возраст */}
             Фронтенд-разработчик, 30 лет
           </p>
           <p className="about-me__presentation">

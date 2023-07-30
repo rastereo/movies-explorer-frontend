@@ -16,7 +16,10 @@ function SavedMovies({ moviesData }) {
     <main className="movies">
       <h1 className="visually-hidden">Сохранённые фильмы</h1>
       <SearchForm name="saved-movies" />
-      <MoviesCardList moviesData={moviesData} />
+      <MoviesCardList
+        moviesData={moviesData}
+        isDeleteButton
+      />
     </main>
   );
 }

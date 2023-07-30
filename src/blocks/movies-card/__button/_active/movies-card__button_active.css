@@ -1,4 +1,4 @@
-.movie-card__button_active {
+.movies-card__button_active {
   background-color: var(--blue);
   background-image: url(../../../../images/save-icon-active.svg);
 }

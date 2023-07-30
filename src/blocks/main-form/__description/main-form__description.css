@@ -1,0 +1,8 @@
+.main-form__description {
+  color: var(--dark-grey);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  padding-top: 16px;
+}

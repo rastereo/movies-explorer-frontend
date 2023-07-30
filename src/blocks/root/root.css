@@ -15,7 +15,7 @@
 
   /* Динамический паддинг необходим, чтобы убрать
   сдвиг сайта при появлении полосы прокрутки. */
-  padding-right: calc(10px - (100vw - 100%));
+  padding-right: calc(15px - (100vw - 100%));
 
   color: var(--text-color);
   background-color: var(--body-background-color);

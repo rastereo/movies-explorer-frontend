@@ -11,9 +11,11 @@ import MoviesCard from './MoviesCard/MoviesCard';
  * @param {Array} props.moviesData Массив фильмов.
  * @param {String} props.isMovies Имя роута /movies. Если пользователь находится
  * в /movies, отображать блок с кнопкой "Ещё"
+ * @param {Boolean} props.isDeleteButton Состояние, меняет кнопку "Сохранить фильм"
+ * на "Удалить фильм", передается дальше в MoviesCard
  * @returns {React.ReactElement} <MoviesCardList />
  */
-function MoviesCardList({ moviesData, isMovies }) {
+function MoviesCardList({ moviesData, isMovies, isDeleteButton }) {
   return (
     <section className="movies-card-list">
       <ul className="movies-card-list__list list">
@@ -23,6 +25,7 @@ function MoviesCardList({ moviesData, isMovies }) {
               name={movie.nameRU}
               duration={movie.duration}
               image={movie.image}
+              isDeleteButton={isDeleteButton}
             />
           </li>
         ))}
@@ -50,10 +53,12 @@ MoviesCardList.propTypes = {
     movieId: PropTypes.number,
   })).isRequired,
   isMovies: PropTypes.string,
+  isDeleteButton: PropTypes.bool,
 };
 
 MoviesCardList.defaultProps = {
   isMovies: '',
+  isDeleteButton: false,
 };
 
 export default MoviesCardList;
