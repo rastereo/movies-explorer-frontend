@@ -15,6 +15,7 @@ function Navigation({ isLoggedIn }) {
   /**
    * Функция для настройки класса link_active, применяемого в зависимости
    * от активного и ожидающего состояния ссылки.
+   *
    * @param {boolean} isActive Состояние ссылке.
    * @returns {string} Имя класса.
    */

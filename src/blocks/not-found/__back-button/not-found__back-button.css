@@ -1,0 +1,6 @@
+.not-found__back-button {
+  color: var(--blue);
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}

@@ -5,6 +5,7 @@
   line-height: 1;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   gap: 0;
+  padding: 17px 0 5px;
 }

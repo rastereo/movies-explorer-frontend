@@ -9,6 +9,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
+import NotFound from '../NotFound/NotFound';
 
 import moviesData from '../../utils/data/moviesData';
 
@@ -88,7 +89,7 @@ function App() {
       <Route
         path="*"
         element={
-          <h1>404</h1>
+          <NotFound />
         }
       />
     </Routes>

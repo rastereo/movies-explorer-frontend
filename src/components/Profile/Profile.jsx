@@ -65,6 +65,9 @@ function Profile() {
             id="profile-name"
             className={`main-form__input main-form__input_type_profile ${errors.name && 'main-form__input_type_error'}`}
           />
+          <span className={`main-form__error ${errors.name && 'main-form__error_visible'}`}>
+            {errors.name}
+          </span>
         </label>
         <label
           htmlFor="profile-email"
@@ -80,6 +83,9 @@ function Profile() {
             id="profile-email"
             className={`main-form__input main-form__input_type_profile ${errors.email && 'main-form__input_type_error'}`}
           />
+          <span className={`main-form__error ${errors.email && 'main-form__error_visible'}`}>
+            {errors.email}
+          </span>
         </label>
       </MainForm>
       <button

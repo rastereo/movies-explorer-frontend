@@ -19,3 +19,7 @@
 @import url(../../blocks/main-form/__description/main-form__description.css);
 @import url(../../blocks/main-form/__link/main-form__link.css);
 @import url(../../blocks/main-form/__logout/main-form__logout.css);
+
+/* * {
+  outline: 2px solid red;
+} */
