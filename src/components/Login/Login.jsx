@@ -7,16 +7,14 @@ import useFormAndValidation from '../../hooks/useFormAndValidation';
 import useChangeBodyBackground from '../../hooks/useChangeBodyBackground';
 
 /**
- * Компонент страницы регистрации.
+ * Компонент страницы авторизации.
  *
- * @returns {React.ReactElement} Register
+ * @returns {React.ReactElement} Login
  */
-function Register() {
-  // Имя пользователя при регистрации
-  const [name, setName] = useState('');
-  // Электронная почта пользователя при регистрации
+function Login() {
+  // Электронная почта пользователя при авторизации.
   const [email, setEmail] = useState('');
-  // Пароль пользователя при регистрации
+  // Пароль пользователя при авторизации.
   const [password, setPassword] = useState('');
 
   const {
@@ -36,9 +34,8 @@ function Register() {
     evt.preventDefault();
 
     // eslint-disable-next-line no-alert
-    alert(name, email);
+    alert(email);
 
-    setName('');
     setEmail('');
     setPassword('');
     resetForm();
@@ -56,36 +53,17 @@ function Register() {
         />
       </Link>
       <h1 className="main-form__title">
-        Добро пожаловать!
+        Рады видеть!
       </h1>
       <MainForm
-        name="register"
-        buttonTitle="Зарегистрироваться"
+        name="login"
+        buttonTitle="Войти"
         isValid={isValid}
+        isLogin
         onSubmit={(evt) => handleSubmit(evt)}
       >
         <label
-          htmlFor="register-name"
-          className="main-form__label"
-        >
-          Имя
-          <input
-            type="text"
-            name="name"
-            minLength="2"
-            maxLength="30"
-            required
-            value={name}
-            onChange={(evt) => handleChangeValue(setName, evt)}
-            id="register-name"
-            className={`main-form__input ${errors.name && 'main-form__input_type_error'}`}
-          />
-          <span className={`main-form__error ${errors.name && 'main-form__error_visible'}`}>
-            {errors.name}
-          </span>
-        </label>
-        <label
-          htmlFor="register-email"
+          htmlFor="login-email"
           className="main-form__label"
         >
           E-mail
@@ -95,7 +73,7 @@ function Register() {
             required
             value={email}
             onChange={(evt) => handleChangeValue(setEmail, evt)}
-            id="register-email"
+            id="login-email"
             className={`main-form__input ${errors.email && 'main-form__input_type_error'}`}
           />
           <span className={`main-form__error ${errors.email && 'main-form__error_visible'}`}>
@@ -103,18 +81,17 @@ function Register() {
           </span>
         </label>
         <label
-          htmlFor="register-password"
+          htmlFor="login-password"
           className="main-form__label"
         >
           Пароль
           <input
             type="password"
             name="password"
-            minLength="8"
             required
             value={password}
             onChange={(evt) => handleChangeValue(setPassword, evt)}
-            id="register-password"
+            id="login-password"
             className={`main-form__input ${errors.password && 'main-form__input_type_error'}`}
           />
           <span className={`main-form__error ${errors.password && 'main-form__error_visible'}`}>
@@ -123,16 +100,16 @@ function Register() {
         </label>
       </MainForm>
       <p className="main-form__description">
-        Уже зарегистрированы?&nbsp;
+        Ещё не зарегистрированы?&nbsp;
         <Link
-          to="/signin"
+          to="/signup"
           className="main-form__link link"
         >
-          Войти
+          Регистрация
         </Link>
       </p>
     </main>
   );
 }
 
-export default Register;
+export default Login;

@@ -7,6 +7,8 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
 
 import moviesData from '../../utils/data/moviesData';
 
@@ -18,7 +20,7 @@ import moviesData from '../../utils/data/moviesData';
 function App() {
   /** Меняет контент, когда пользователь зашел в аккаунт */
   // eslint-disable-next-line no-unused-vars
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
 
   const location = useLocation();
 
@@ -71,22 +73,17 @@ function App() {
             <Header
               isLoggedIn={isLoggedIn}
             />
-            <h1>Аккаунт</h1>
-            <Footer />
+            <Profile />
           </>
         )}
       />
       <Route
         path="/signin"
-        element={
-          <h1>Авторизация</h1>
-        }
+        element={<Login />}
       />
       <Route
         path="/signup"
-        element={
-          <Register />
-        }
+        element={<Register />}
       />
       <Route
         path="*"

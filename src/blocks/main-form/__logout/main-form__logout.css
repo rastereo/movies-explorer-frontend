@@ -1,0 +1,10 @@
+.main-form__logout {
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 500;
+  background-color: inherit;
+  border: none;
+  display: flex;
+  margin: 0 auto;
+  cursor: pointer;
+}

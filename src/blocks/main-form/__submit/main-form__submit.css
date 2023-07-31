@@ -2,6 +2,7 @@
   width: 100%;
   color: var(--white);
   font-weight: 500;
+  line-height: 1;
   background-color: var(--blue);
   border: none;
   border-radius: 3px;

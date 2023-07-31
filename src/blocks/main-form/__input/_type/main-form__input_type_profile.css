@@ -1,0 +1,9 @@
+.main-form__input_type_profile {
+  width: 80%;
+  font-size: 11px;
+  line-height: 1;
+  text-align: right;
+  background-color: inherit;
+  border-radius: 0;
+  padding: 17px 0 16px;
+}

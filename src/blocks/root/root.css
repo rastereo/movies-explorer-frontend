@@ -13,10 +13,11 @@
   max-width: 1280px;
   margin: auto;
 
-  /* Динамический паддинг необходим, чтобы убрать
-  сдвиг сайта при появлении полосы прокрутки. */
-  padding-right: calc(15px - (100vw - 100%));
-
   color: var(--text-color);
   background-color: var(--body-background-color);
+}
+
+html,
+body {
+  scrollbar-gutter: stable;
 }
