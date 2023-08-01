@@ -1,0 +1,10 @@
+.navigation__hamburger {
+  width: 28px;
+  height: 23px;
+  border: none;
+  background-color: inherit;
+  background-image: url(../../../images/hamburger-icon.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+}

@@ -19,6 +19,7 @@ function Register() {
   // Пароль пользователя при регистрации
   const [password, setPassword] = useState('');
 
+  // Хук валидации формы.
   const {
     handleChangeValidation,
     errors,
@@ -26,17 +27,30 @@ function Register() {
     resetForm,
   } = useFormAndValidation();
 
+  /**
+   * Функция добавляет контент из инпута в выбранный стейт.
+   *
+   * @param {ReferenceState} setState Название сэтера состояния.
+   * @param {Event} evt Событие из которого нужно извлечь текст.
+   * @returns {void}
+   */
   function handleChangeValue(setState, evt) {
     setState(evt.target.value);
 
     handleChangeValidation(evt);
   }
 
+  /**
+   * Функция обработчик отправки формы.
+   *
+   * @param {Event} evt Событие submit.
+   * @returns {void}
+   */
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    // eslint-disable-next-line no-alert
-    alert(name, email);
+    // eslint-disable-next-line no-console
+    console.log({ name, email, password });
 
     setName('');
     setEmail('');

@@ -1,6 +1,6 @@
 .search-form__switch {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
   width: 34px;
-  height: 14px
+  height: 15px
 }

@@ -1,7 +1,7 @@
 .navigation__login {
   color: var(--white);
   background-color: var(--blue);
-  padding: 8px 20px;
+  padding: 8px 20px 9px;
   border-radius: 3px;
   transition: opacity linear var(--time-transition);
 }

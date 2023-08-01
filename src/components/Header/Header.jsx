@@ -26,7 +26,32 @@ function Header({ isLoggedIn, isMain }) {
           className="logo"
         />
       </Link>
-      <Navigation isLoggedIn={isLoggedIn} />
+      {isLoggedIn
+        ? (
+          <Navigation />
+        )
+        : (
+          <nav className="navigation">
+            <ul className="navigation__menu list">
+              <li>
+                <Link
+                  to="/signup"
+                  className="link"
+                >
+                  Регистрация
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/signin"
+                  className="navigation__login link"
+                >
+                  Войти
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        )}
     </header>
   );
 }

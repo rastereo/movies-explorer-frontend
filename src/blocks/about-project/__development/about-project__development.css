@@ -4,3 +4,9 @@
   line-height: 1.21;
   margin: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .about-project__development {
+    font-weight: 400;
+  }
+}

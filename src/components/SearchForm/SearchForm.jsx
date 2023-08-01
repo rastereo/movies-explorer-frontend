@@ -22,7 +22,7 @@ function SearchForm({ name }) {
           <input
             type="text"
             name={name}
-            placeholder="Фильмы"
+            placeholder="Фильм"
             className="search-form__input"
           />
           <button

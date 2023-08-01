@@ -1,6 +1,6 @@
 .about-project__number-of-weeks {
   background-color: var(--regular-grey-two);
   margin: 0;
-  padding: 9px 0;
-  margin-bottom: 14px;
+  padding: 9px 0 10px;
+  margin-bottom: 15px;
 }

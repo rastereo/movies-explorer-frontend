@@ -1,7 +1,14 @@
 .about-me__photo {
   display: block;
-  width: 270px;
-  height: 327px;
+  max-width: 270px;
+  max-height: 327px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__photo {
+    max-width: 255px;
+    max-height: 306px;
+  }
 }

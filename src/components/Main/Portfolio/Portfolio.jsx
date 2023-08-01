@@ -21,7 +21,6 @@ function Portfolio() {
             rel="noreferrer"
           >
             Статичный сайт
-            <span>↗</span>
           </Link>
         </li>
         <li>
@@ -32,7 +31,6 @@ function Portfolio() {
             rel="noreferrer"
           >
             Адаптивный сайт
-            <span>↗</span>
           </Link>
         </li>
         <li>
@@ -43,7 +41,6 @@ function Portfolio() {
             rel="noreferrer"
           >
             Одностраничное приложение
-            <span>↗</span>
           </Link>
         </li>
       </ul>

@@ -1,6 +1,12 @@
 .techs {
   background-color: var(--techs-background-color);
-  padding: 100px var(--side-padding) 100px;
+  padding: 100px var(--side-padding) 101px;
 
   grid-area: techs;
+}
+
+@media screen and (max-width: 768px) {
+  .techs {
+    padding: 90px var(--side-padding);
+  }
 }

@@ -1,3 +1,4 @@
 /** Movies **/
 
 @import url(../../blocks/movies/movies.css);
+@import url(../../blocks/movies/_padding/movies_padding_bottom.css);

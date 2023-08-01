@@ -13,7 +13,7 @@ import SearchForm from '../SearchForm/SearchForm';
  */
 function SavedMovies({ moviesData }) {
   return (
-    <main className="movies">
+    <main className="movies movies_padding_bottom">
       <h1 className="visually-hidden">Сохранённые фильмы</h1>
       <SearchForm name="saved-movies" />
       <MoviesCardList

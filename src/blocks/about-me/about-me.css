@@ -1,5 +1,11 @@
 .about-me {
-  padding: 110px var(--side-padding) 100px;
+  padding: 110px var(--side-padding) 101px;
 
   grid-area: about-me;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me {
+    padding: 91px var(--side-padding) 91px;
+  }
 }

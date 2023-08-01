@@ -33,8 +33,8 @@ function Login() {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    // eslint-disable-next-line no-alert
-    alert(email);
+    // eslint-disable-next-line no-console
+    console.log({ email, password });
 
     setEmail('');
     setPassword('');

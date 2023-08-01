@@ -12,14 +12,14 @@ import SearchForm from '../SearchForm/SearchForm';
  * @param {string} props.isMovies Имя роута /movies.
  * @returns {React.ReactElement} <Movies />
  */
-function Movies({ moviesData, isMovies }) {
+function Movies({ moviesData }) {
   return (
     <main className="movies">
       <h1 className="visually-hidden">Фильмы</h1>
       <SearchForm name="movies" />
       <MoviesCardList
         moviesData={moviesData}
-        isMovies={isMovies}
+        isMoreFilms
       />
     </main>
   );
@@ -32,11 +32,6 @@ Movies.propTypes = {
     image: PropTypes.string,
     movieId: PropTypes.number,
   })).isRequired,
-  isMovies: PropTypes.string,
-};
-
-Movies.defaultProps = {
-  isMovies: '',
 };
 
 export default Movies;

@@ -1,0 +1,16 @@
+.navigation__close {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background-color: var(--body-background-color);
+  background-image: url(../../../images/menu-close-icon.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+  z-index: 2;
+}

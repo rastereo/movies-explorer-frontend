@@ -29,7 +29,7 @@ function AboutMe() {
           </p>
           <Link
             to="https://github.com/rastereo"
-            className="about-me__link link"
+            className="about-me__github link"
             target="_blank"
             rel="noreferrer"
           >

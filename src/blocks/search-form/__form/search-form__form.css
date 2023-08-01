@@ -1,8 +1,8 @@
 .search-form__form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 0 60px;
   border-bottom: 1px solid var(--search-form-border-color);
   padding-bottom: 83px;
 }

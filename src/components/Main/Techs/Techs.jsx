@@ -19,12 +19,12 @@ function Techs() {
           которые применили в дипломном проекте.
         </p>
         <ul className="techs__tools list">
-          <li>
+          <li className="techs__tool">
             <Link
               to="https://html.spec.whatwg.org"
-              className="techs__tool link"
               target="_blank"
               rel="noreferrer"
+              className="link"
             >
               HTML
             </Link>
@@ -32,9 +32,9 @@ function Techs() {
           <li className="techs__tool">
             <Link
               to="https://www.w3.org/Style/CSS"
-              className="techs__tool link"
               target="_blank"
               rel="noreferrer"
+              className="link"
             >
               CSS
             </Link>
@@ -42,9 +42,9 @@ function Techs() {
           <li className="techs__tool">
             <Link
               to="https://developer.mozilla.org/ru/docs/Web/JavaScript"
-              className="techs__tool link"
               target="_blank"
               rel="noreferrer"
+              className="link"
             >
               JS
             </Link>
@@ -52,9 +52,9 @@ function Techs() {
           <li className="techs__tool">
             <Link
               to="https://react.dev"
-              className="techs__tool link"
               target="_blank"
               rel="noreferrer"
+              className="link"
             >
               React
             </Link>
@@ -62,9 +62,9 @@ function Techs() {
           <li className="techs__tool">
             <Link
               to="https://git-scm.com"
-              className="techs__tool link"
               target="_blank"
               rel="noreferrer"
+              className="link"
             >
               Git
             </Link>
@@ -72,9 +72,9 @@ function Techs() {
           <li className="techs__tool">
             <Link
               to="https://expressjs.com"
-              className="techs__tool link"
               target="_blank"
               rel="noreferrer"
+              className="link"
             >
               Express.js
             </Link>
@@ -82,9 +82,9 @@ function Techs() {
           <li className="techs__tool">
             <Link
               to="https://www.mongodb.com"
-              className="techs__tool link"
               target="_blank"
               rel="noreferrer"
+              className="link"
             >
               mongoDB
             </Link>

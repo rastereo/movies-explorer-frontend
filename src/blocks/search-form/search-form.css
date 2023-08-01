@@ -1,5 +1,5 @@
 .search-form {
-  padding: 98px var(--side-padding) 0;
+  padding: 80px var(--side-padding) 0;
 
   grid-area: search-form;
 }

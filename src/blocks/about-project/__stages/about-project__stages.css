@@ -1,5 +1,12 @@
 .about-project__stages {
   display: flex;
-  gap: 40px;
+  gap: 53px;
   padding: 70px 0 110px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project__stages {
+    gap: 37px;
+    padding: 70px 0 93px;
+  }
 }

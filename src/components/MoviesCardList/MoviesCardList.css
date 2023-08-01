@@ -4,3 +4,8 @@
 @import url(../../blocks/movies-card-list/__list/movies-card-list__list.css);
 @import url(../../blocks/movies-card-list/__more/movies-card-list__more.css);
 @import url(../../blocks/movies-card-list/__more-film-button/movies-card-list__more-film-button.css);
+
+.movies-card-list__more-film-button_visible {
+  opacity: 1;
+  cursor: pointer;
+}

@@ -7,3 +7,9 @@
   box-shadow: var(--box-shadow);
   padding: 3px 3px 3px 11px;
 }
+
+@media screen and (max-width: 768px) {
+  .navigation__account {
+    font-size: 13px;
+  }
+}

@@ -1,9 +1,20 @@
 .promo {
+  box-sizing: border-box;
   background-color: var(--medium-grey);
   background-image: url(../../images/promo-figure.svg);
   background-repeat: no-repeat;
+  background-size: 56.4%;
   background-position: right 70px bottom 60px;
-  padding: 50px var(--side-padding) 406px;
+  padding: 51px var(--side-padding) 405px;
 
   grid-area: promo;
+}
+
+@media screen and (max-width: 768px) {
+  .promo {
+    padding: 301px var(--side-padding) 439px;
+    background-position: center bottom 70px;
+    /* background-size: 680px 230px; */
+    background-size: 89%;
+  }
 }

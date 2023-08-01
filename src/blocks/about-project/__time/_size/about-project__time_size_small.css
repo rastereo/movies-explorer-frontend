@@ -1,3 +1,9 @@
 .about-project__time_size_small {
   flex-basis: 20%;
 }
+
+@media screen and (max-width: 768px) {
+  .about-project__time_size_small {
+    flex-basis: 21.3%;
+  }
+}
