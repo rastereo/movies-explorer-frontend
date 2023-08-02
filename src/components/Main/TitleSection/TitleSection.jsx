@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-import './NavTab.css';
+import './TitleSection.css';
 
 /**
- * Компонент с навигацией по странице «О проекте».
+ * Компонент с заголовком с полосой.
  *
  * @param {Object} props
  * @param {String} props.title Текст в заголовке
@@ -11,21 +11,21 @@ import './NavTab.css';
  * класс заголовку, делая его меньше, серого цвета и без бордера.
  * @returns {React.ReactElement} NavTab
  */
-function NavTab({ title, isSmall }) {
+function TitleSection({ title, isSmall }) {
   return (
-    <h2 className={`nav-tab ${isSmall && 'nav-tab_size_small'}`}>
+    <h2 className={`title-section ${isSmall && 'title-section_size_small'}`}>
       {title}
     </h2>
   );
 }
 
-NavTab.propTypes = {
+TitleSection.propTypes = {
   title: PropTypes.string.isRequired,
   isSmall: PropTypes.bool,
 };
 
-NavTab.defaultProps = {
+TitleSection.defaultProps = {
   isSmall: false,
 };
 
-export default NavTab;
+export default TitleSection;

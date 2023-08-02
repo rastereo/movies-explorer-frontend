@@ -1,5 +1,5 @@
 import './AboutProject.css';
-import NavTab from '../NavTab/NavTab';
+import TitleSection from '../TitleSection/TitleSection';
 
 /**
  * Компонент с описанием дипломного проекта.
@@ -9,7 +9,7 @@ import NavTab from '../NavTab/NavTab';
 function AboutProject() {
   return (
     <section className="about-project">
-      <NavTab title="О проекте" />
+      <TitleSection title="О проекте" />
       <ul className="about-project__stages list">
         <li>
           <h3 className="about-project__title">

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import './AboutMe.css';
-import NavTab from '../NavTab/NavTab';
+import TitleSection from '../TitleSection/TitleSection';
 import studentPhoto from '../../../images/student-photo.jpg';
 
 /**
@@ -12,7 +12,7 @@ import studentPhoto from '../../../images/student-photo.jpg';
 function AboutMe() {
   return (
     <section className="about-me">
-      <NavTab title="Студент" />
+      <TitleSection title="Студент" />
       <article className="about-me__profile">
         <div className="about-me__container">
           <h3 className="about-me__name">

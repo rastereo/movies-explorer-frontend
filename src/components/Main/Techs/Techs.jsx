@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import './Techs.css';
-import NavTab from '../NavTab/NavTab';
+import TitleSection from '../TitleSection/TitleSection';
 
 /**
  * Компонент с использованными технологиями.
@@ -11,7 +11,7 @@ import NavTab from '../NavTab/NavTab';
 function Techs() {
   return (
     <section className="techs">
-      <NavTab title="Технологии" />
+      <TitleSection title="Технологии" />
       <div className="techs__container">
         <h3 className="techs__title">7 технологий</h3>
         <p className="techs__description">

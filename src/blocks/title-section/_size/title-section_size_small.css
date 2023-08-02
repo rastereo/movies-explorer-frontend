@@ -1,4 +1,4 @@
-.nav-tab_size_small {
+.title-section_size_small {
   color: var(--dark-grey);
   font-size: 18px;
   font-weight: 400;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 320px) {
-  .nav-tab_size_small {
+  .title-section_size_small {
     font-size: 14px;
     font-style: normal;
     line-height: 1.43;

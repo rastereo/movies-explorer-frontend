@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import './Portfolio.css';
-import NavTab from '../NavTab/NavTab';
+import TitleSection from '../TitleSection/TitleSection';
 
 /**
  * Компонент со ссылками на другие проекты.
@@ -11,7 +11,7 @@ import NavTab from '../NavTab/NavTab';
 function Portfolio() {
   return (
     <section className="portfolio">
-      <NavTab title="Портфолио" isSmall />
+      <TitleSection title="Портфолио" isSmall />
       <ul className="portfolio__links list">
         <li>
           <Link
