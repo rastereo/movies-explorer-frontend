@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../images/logo.svg';
 import MainForm from '../MainForm/MainForm';
-import useFormAndValidation from '../../hooks/useFormAndValidation';
+import UseFormAndValidation from '../../hooks/UseFormAndValidation';
 
 /**
  * Компонент страницы регистрации.
@@ -24,7 +24,7 @@ function Register() {
     errors,
     isValid,
     resetForm,
-  } = useFormAndValidation();
+  } = UseFormAndValidation();
 
   /**
    * Функция добавляет контент из инпута в выбранный стейт.

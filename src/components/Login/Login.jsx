@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../images/logo.svg';
 import MainForm from '../MainForm/MainForm';
-import useFormAndValidation from '../../hooks/useFormAndValidation';
+import UseFormAndValidation from '../../hooks/UseFormAndValidation';
 
 /**
  * Компонент страницы авторизации.
@@ -21,7 +21,7 @@ function Login() {
     errors,
     isValid,
     resetForm,
-  } = useFormAndValidation();
+  } = UseFormAndValidation();
 
   function handleChangeValue(setState, evt) {
     setState(evt.target.value);

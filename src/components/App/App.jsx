@@ -21,7 +21,7 @@ import moviesData from '../../utils/data/moviesData';
 function App() {
   // Меняет контент, когда пользователь зашел в аккаунт
   // eslint-disable-next-line no-unused-vars
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
 
   const location = useLocation();
 

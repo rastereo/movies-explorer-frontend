@@ -9,6 +9,9 @@ import './Navigation.css';
  * @returns {React.ReactElement} Navigation
  */
 function Navigation() {
+  // Ширина мобильного экрана.
+  const mobileWindowWidth = 768;
+
   // Состояние, если экран по ширине меньше 768px.
   const [isSizeSmall, setIsSizeSmall] = useState(false);
 
@@ -39,14 +42,14 @@ function Navigation() {
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= mobileWindowWidth) {
         setIsSizeSmall(true);
       } else {
         setIsSizeSmall(false);
       }
     });
 
-    if (window.innerWidth <= 768) setIsSizeSmall(true);
+    if (window.innerWidth <= mobileWindowWidth) setIsSizeSmall(true);
   }, []);
 
   return (

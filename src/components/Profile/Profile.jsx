@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import MainForm from '../MainForm/MainForm';
-import useFormAndValidation from '../../hooks/useFormAndValidation';
+import UseFormAndValidation from '../../hooks/UseFormAndValidation';
 
 /**
  * Компонент страницы изменения профиля.
@@ -20,7 +20,7 @@ function Profile() {
     handleChangeValidation,
     errors,
     isValid,
-  } = useFormAndValidation();
+  } = UseFormAndValidation();
 
   function handleChangeValue(setState, evt) {
     setState(evt.target.value);
