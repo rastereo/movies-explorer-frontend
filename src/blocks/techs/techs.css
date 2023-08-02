@@ -10,3 +10,10 @@
     padding: 90px var(--side-padding);
   }
 }
+
+@media screen and (max-width: 320px) {
+  .techs {
+    background-color: inherit;
+    padding: 70px 18px;
+  }
+}

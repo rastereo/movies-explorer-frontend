@@ -33,3 +33,18 @@
     top: 20px;
   }
 }
+
+@media screen and (max-width: 355px) {
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 1.55;
+    letter-spacing: -0.72px;
+  }
+
+  .portfolio__link::after {
+    font-size: 18px;
+    font-style: normal;
+    line-height: 1.55;
+    letter-spacing: -0.72px;
+  }
+}

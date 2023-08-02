@@ -11,3 +11,16 @@
   margin: 205px auto 18px;
   padding: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .main-form__submit_type_profile {
+    margin-top: 195px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .main-form__submit_type_profile {
+    font-size: 12px;
+    margin: 362px auto 20px;
+  }
+}

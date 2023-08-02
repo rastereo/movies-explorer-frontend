@@ -3,3 +3,9 @@
   align-items: center;
   gap: 0 30px;
 }
+
+@media screen and (max-width: 320px) {
+  .navigation__menu {
+    gap: 0 14px;
+  }
+}

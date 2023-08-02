@@ -10,3 +10,11 @@
     padding: 70px 0 93px;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .about-project__stages {
+    flex-direction: column;
+    gap: 55px;
+    padding: 60px 0 59px;
+  }
+}

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 import './MainForm.css';
+import UseChangeBodyBackground from '../../hooks/UseChangeBodyBackground';
 
 /**
  * Компонент главной формы.
@@ -12,7 +13,7 @@ import './MainForm.css';
  * @param {Boolean} props.isLogin Состояние, при котором
  * меняется отступ сверху у кнопки submit.
  * @param {Boolean} props.isProfile Состояние, при котором
- * меняется отступ сверху у кнопки submit.
+ * меняется дизайн кнопки submit.
  * @param {Boolean} props.isValid Валидация формы.
  * @param {Function} props.onSubmit Действие при отправки формы.
  * @returns {React.ReactElement} MainForm.
@@ -37,10 +38,15 @@ function MainForm({
       <button
         type="submit"
         disabled={!isValid}
-        className={`main-form__submit link ${!isValid && 'main-form__submit_disabled'} ${isLogin && 'main-form__submit_size_big'} ${isProfile && 'main-form__submit_type_profile'}`}
+        className={'main-form__submit link '
+          + `${!isValid && 'main-form__submit_disabled'} `
+          + `${isLogin && 'main-form__submit_size_big'} `
+          + `${isProfile && 'main-form__submit_type_profile'} `
+          + `${isProfile && !isValid && 'main-form__submit_background_none'}`}
       >
         {buttonTitle || 'Сохранить'}
       </button>
+      <UseChangeBodyBackground />
     </form>
   );
 }

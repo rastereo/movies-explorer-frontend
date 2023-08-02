@@ -11,3 +11,11 @@
   cursor: pointer;
   transition: .7s;
 }
+
+@media screen and (max-width: 320px) {
+  .main-form__submit {
+    font-size: 12px;
+    line-height: normal;
+    margin-top: 157px;
+  }
+}

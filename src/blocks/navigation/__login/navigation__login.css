@@ -9,3 +9,9 @@
 .navigation__login:hover {
   opacity: .8;
 }
+
+@media screen and (max-width: 320px) {
+  .navigation__login {
+    padding: 7px 12px;
+  }
+}

@@ -16,3 +16,14 @@
     padding-bottom: 83px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .techs__description {
+    width: 100%;
+    font-size: 11px;
+    font-style: normal;
+    line-height: 1.45;
+    letter-spacing: -0.44px;
+    padding-bottom: 49px;
+  }
+}

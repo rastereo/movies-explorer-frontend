@@ -1,5 +1,18 @@
 .movies-card-list {
-  padding: 80px var(--side-padding);
+  padding-top: 80px;
+  padding-bottom: 80px;
 
   grid-area: movies-card-list;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card-list {
+    padding-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .movies-card-list {
+    padding-top: 50px
+  }
 }

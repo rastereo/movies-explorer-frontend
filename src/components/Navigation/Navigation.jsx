@@ -11,7 +11,8 @@ import './Navigation.css';
 function Navigation() {
   // Состояние, если экран по ширине меньше 768px.
   const [isSizeSmall, setIsSizeSmall] = useState(false);
-  // Элемент навигация
+
+  // Элемент навигации.
   const menu = useRef();
 
   /**

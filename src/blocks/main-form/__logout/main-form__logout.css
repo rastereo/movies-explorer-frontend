@@ -8,3 +8,9 @@
   margin: 0 auto;
   cursor: pointer;
 }
+
+@media screen and (max-width: 320px) {
+  .main-form__logout {
+    font-size: 12px;
+  }
+}

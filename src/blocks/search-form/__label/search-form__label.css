@@ -5,3 +5,21 @@
   align-items: flex-end;
   gap: 15px;
 }
+
+@media screen and (max-width: 768px) {
+  .search-form__label {
+    font-size: 13px;
+    line-height: 1.38;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .search-form__label {
+    font-size: 11px;
+    line-height: 1.63;
+    gap: 16px;
+  }
+}

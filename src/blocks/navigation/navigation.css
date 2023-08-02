@@ -4,3 +4,11 @@
   font-weight: 500;
   line-height: 1.33;
 }
+
+@media screen and (max-width: 320px) {
+  .navigation {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+}

@@ -10,3 +10,9 @@
     padding-top: 80px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .techs__container {
+    padding-top: 61px;
+  }
+}

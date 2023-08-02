@@ -7,3 +7,9 @@
     max-width: 54%;
   }
 }
+
+@media screen and (max-width: 560px) {
+  .about-me__container {
+    max-width: 100%;
+  }
+}

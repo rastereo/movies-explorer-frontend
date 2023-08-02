@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import MainForm from '../MainForm/MainForm';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
-import useChangeBodyBackground from '../../hooks/useChangeBodyBackground';
 
 /**
  * Компонент страницы регистрации.
@@ -12,11 +11,11 @@ import useChangeBodyBackground from '../../hooks/useChangeBodyBackground';
  * @returns {React.ReactElement} Register
  */
 function Register() {
-  // Имя пользователя при регистрации
+  // Имя пользователя при регистрации.
   const [name, setName] = useState('');
-  // Электронная почта пользователя при регистрации
+  // Электронная почта пользователя при регистрации.
   const [email, setEmail] = useState('');
-  // Пароль пользователя при регистрации
+  // Пароль пользователя при регистрации.
   const [password, setPassword] = useState('');
 
   // Хук валидации формы.
@@ -58,11 +57,12 @@ function Register() {
     resetForm();
   }
 
-  useChangeBodyBackground();
-
   return (
     <main className="main-form">
-      <Link to="/">
+      <Link
+        to="/"
+        className="main-form__logo"
+      >
         <img
           src={logo}
           alt="Логотип Movies Explorer"

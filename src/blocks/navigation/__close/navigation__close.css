@@ -14,3 +14,12 @@
   cursor: pointer;
   z-index: 2;
 }
+
+@media screen and (max-width: 450px) {
+  .navigation__close {
+    width: 30px;
+    height: 30px;
+    top: 14px;
+    right: 14px;
+  }
+}

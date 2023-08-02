@@ -6,3 +6,14 @@
   margin: 0;
   padding-bottom: 23px;
 }
+
+@media screen and (max-width: 320px) {
+  .nav-tab {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    padding-bottom: 28px;
+  }
+}

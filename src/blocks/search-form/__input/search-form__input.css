@@ -12,3 +12,20 @@
   color: var(--dark-grey);
   line-height: 1.28;
 }
+
+@media screen and (max-width: 768px) {
+  .search-form__input {
+    padding-left: 19px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .search-form__input {
+    padding-left: 15px;
+  }
+
+  .search-form__input::placeholder {
+    font-size: 11px;
+    line-height: 1.63;
+  }
+}

@@ -1,5 +1,5 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -19,9 +19,9 @@ import moviesData from '../../utils/data/moviesData';
  * @returns {React.ReactElement} App
  */
 function App() {
-  /** Меняет контент, когда пользователь зашел в аккаунт */
+  // Меняет контент, когда пользователь зашел в аккаунт
   // eslint-disable-next-line no-unused-vars
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   const location = useLocation();
 
@@ -33,7 +33,7 @@ function App() {
           <>
             <Header
               isLoggedIn={isLoggedIn}
-              isMain={location.pathname}
+              isMain={location.pathname === '/'}
             />
             <Main />
             <Footer />
@@ -88,9 +88,7 @@ function App() {
       />
       <Route
         path="*"
-        element={
-          <NotFound />
-        }
+        element={<NotFound />}
       />
     </Routes>
   );

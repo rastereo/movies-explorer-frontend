@@ -4,3 +4,15 @@
   align-items: center;
   padding: 245px 0 60px;
 }
+
+@media screen and (max-width: 768px) {
+  .not-found {
+    padding-top: 407px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .not-found {
+    padding: 329px 0 30px;
+  }
+}

@@ -63,7 +63,7 @@ function MoviesCard({
       </div>
       <img
         src={image}
-        alt={`Обложка фильма "${name}"`}
+        alt={`Кадр из фильма «${name}»`}
         className="movies-card__image"
       />
     </article>

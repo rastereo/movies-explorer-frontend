@@ -4,3 +4,15 @@
   display: block;
   object-fit: cover;
 }
+
+@media screen and (max-width: 768px) {
+  .movies-card__image {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .movies-card__image {
+    height: 168px;
+  }
+}

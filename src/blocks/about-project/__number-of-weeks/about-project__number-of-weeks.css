@@ -1,6 +1,14 @@
 .about-project__number-of-weeks {
   background-color: var(--regular-grey-two);
   margin: 0;
-  padding: 9px 0 10px;
   margin-bottom: 15px;
+  padding: 9px 0 10px;
+}
+
+@media screen and (max-width: 420px) {
+  .about-project__number-of-weeks {
+    font-size: 11px;
+    margin-bottom: 9px;
+    padding: 9px 0 12px;
+  }
 }

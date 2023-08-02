@@ -29,7 +29,7 @@ function MoviesCardList({ moviesData, isDeleteButton }) {
         ))}
       </ul>
       <div className="movies-card-list__more">
-        {moviesData.length >= 12
+        {moviesData.length >= 5
           && (
             <button
               type="button"

@@ -4,3 +4,11 @@
   justify-content: center;
   gap: 10px;
 }
+
+@media screen and (max-width: 320px) {
+  .techs__tools {
+    width: 63%;
+    justify-content: flex-start;
+  }
+}
+

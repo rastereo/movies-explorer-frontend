@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 /**
  * Хук меняет цвет фона страницы с серого на белый.
  */
-function useChangeBodyBackground() {
+function UseChangeBodyBackground() {
   useEffect(() => {
     const body = document.querySelector('.root');
 
@@ -15,4 +15,4 @@ function useChangeBodyBackground() {
   });
 }
 
-export default useChangeBodyBackground;
+export default UseChangeBodyBackground;

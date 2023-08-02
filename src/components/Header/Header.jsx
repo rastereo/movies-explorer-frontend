@@ -10,15 +10,15 @@ import Navigation from '../Navigation/Navigation';
  *
  * @param {Object} props
  * @param {Boolean} props.isLoggedIn Состояние, если пользователь авторизован(true)
- * или не авторизован(false), передается дальше в компонент Navigation.
- * @param {String} props.isMain Возвращает строку location.pathname, представляющий
+ * или не авторизован(false).
+ * @param {Boolean} props.isMain Возвращает boolean значение, представляющий
  * текущий роут. Если пользователь находится в index, шапка серого цвета, во всех
  * других роутах шапка белая.
  * @returns {React.ReactElement} Header
  */
 function Header({ isLoggedIn, isMain }) {
   return (
-    <header className={`header ${isMain === '/' && 'header_color_grey'}`}>
+    <header className={`header ${isMain && 'header_color_grey'}`}>
       <Link to="/">
         <img
           src={logo}
@@ -58,11 +58,11 @@ function Header({ isLoggedIn, isMain }) {
 
 Header.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
-  isMain: PropTypes.string,
+  isMain: PropTypes.bool,
 };
 
 Header.defaultProps = {
-  isMain: '',
+  isMain: false,
 };
 
 export default Header;

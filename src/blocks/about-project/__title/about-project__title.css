@@ -11,3 +11,14 @@
     padding-bottom: 22px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .about-project__title {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    padding-bottom: 19px;
+  }
+}

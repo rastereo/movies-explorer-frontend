@@ -8,3 +8,10 @@
   padding: 0;
 }
 
+@media screen and (max-width: 320px) {
+  .nav-tab_size_small {
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1.43;
+  }
+}

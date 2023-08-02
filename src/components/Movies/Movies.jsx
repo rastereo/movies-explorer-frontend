@@ -16,10 +16,9 @@ function Movies({ moviesData }) {
   return (
     <main className="movies">
       <h1 className="visually-hidden">Фильмы</h1>
-      <SearchForm name="movies" />
+      <SearchForm name="movie" />
       <MoviesCardList
         moviesData={moviesData}
-        isMoreFilms
       />
     </main>
   );

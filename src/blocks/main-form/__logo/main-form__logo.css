@@ -1,0 +1,9 @@
+.main-form__logo {
+  align-self: flex-start;
+}
+
+@media screen and (max-width: 420px) {
+  .main-form__logo {
+    align-self: center;
+  }
+}
