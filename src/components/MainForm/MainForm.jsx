@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import './MainForm.css';
-import UseChangeBodyBackground from '../../hooks/UseChangeBodyBackground';
+import UseChangeBodyBackground from '../../hooks/useChangeBodyBackground';
 
 /**
  * Компонент главной формы.

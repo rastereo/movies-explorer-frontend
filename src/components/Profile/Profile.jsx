@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import MainForm from '../MainForm/MainForm';
-import UseFormAndValidation from '../../hooks/UseFormAndValidation';
+import UseFormAndValidation from '../../hooks/useFormAndValidation';
 
 /**
  * Компонент страницы изменения профиля.

@@ -5,7 +5,7 @@ import { useState, useCallback } from 'react';
  *
  * @returns {Object}
  */
-function UseFormAndValidation() {
+function useFormAndValidation() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -36,4 +36,4 @@ function UseFormAndValidation() {
   };
 }
 
-export default UseFormAndValidation;
+export default useFormAndValidation;

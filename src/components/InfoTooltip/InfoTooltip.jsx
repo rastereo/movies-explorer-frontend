@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import UseClosePopupOnKeydown from '../../hooks/UseClosePopupOnKeydown';
+import UseCloseOnKeydown from '../../hooks/useCloseOnKeydown';
 
 import './InfoTooltip.css';
 
@@ -43,7 +43,7 @@ function InfoTooltip({
         >
         </button>
       </div>
-      {isOpen && <UseClosePopupOnKeydown action={onClose} />}
+      {isOpen && <UseCloseOnKeydown action={onClose} />}
     </div>
   );
 }
