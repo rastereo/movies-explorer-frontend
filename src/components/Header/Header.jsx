@@ -13,7 +13,7 @@ import Navigation from '../Navigation/Navigation';
  * или не авторизован(false).
  * @param {Boolean} props.isMain Возвращает boolean значение, представляющий
  * текущий роут. Если пользователь находится в index, шапка серого цвета, во всех
- * других роутах шапка белая.
+ * других роутах шапка без цвета.
  * @returns {React.ReactElement} Header
  */
 function Header({ isLoggedIn, isMain }) {
