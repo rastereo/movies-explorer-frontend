@@ -9,7 +9,7 @@ import SearchForm from '../SearchForm/SearchForm';
  *
  * @param {Object} props
  * @param {Array} props.moviesData Массив фильмов.
- * @param {string} props.isMovies Имя роута /movies.
+ * @param {String} props.isMovies Имя роута /movies.
  * @returns {React.ReactElement} <Movies />
  */
 function Movies({ moviesData }) {

@@ -13,7 +13,7 @@
     font-size: 18px;
     font-weight: 500;
     line-height: normal;
-    background-color: var(--navigation-background-color);
+    background-color: var(--overlay-background-color);
     position: fixed;
     top: 0;
     left: 0;

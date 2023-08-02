@@ -1,5 +1,10 @@
 import { useState, useCallback } from 'react';
 
+/**
+ * Хук валидации формы.
+ *
+ * @returns {Object}
+ */
 function UseFormAndValidation() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});

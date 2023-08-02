@@ -1,0 +1,10 @@
+/** Popup **/
+
+@import url(../../blocks/popup/popup.css);
+@import url(../../blocks/popup/_opened/popup_opened.css);
+@import url(../../blocks/popup/__container/popup__container.css);
+@import url(../../blocks/popup/__icon/popup__icon.css);
+@import url(../../blocks/popup/__icon/_type/popup__icon_type_unsuccessful.css);
+@import url(../../blocks/popup/__title/popup__title.css);
+@import url(../../blocks/popup/__title/_position/popup__title_position_center.css);
+@import url(../../blocks/popup/__close-button/popup__close-button.css);
