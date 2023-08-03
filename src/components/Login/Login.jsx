@@ -69,6 +69,7 @@ function Login() {
             name="email"
             required
             value={email}
+            placeholder="pochta@yandex.ru"
             onChange={(evt) => handleChangeValue(setEmail, evt)}
             id="login-email"
             className={`main-form__input ${errors.email && 'main-form__input_type_error'}`}

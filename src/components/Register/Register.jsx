@@ -100,6 +100,7 @@ function Register({ onRegister, isLoading }) {
                   maxLength="30"
                   required
                   value={name}
+                  placeholder="Виталий"
                   onChange={(evt) => handleChangeValue(setName, evt)}
                   id="register-name"
                   className={`main-form__input ${errors.name && 'main-form__input_type_error'}`}
@@ -118,6 +119,7 @@ function Register({ onRegister, isLoading }) {
                   name="email"
                   required
                   value={email}
+                  placeholder="pochta@yandex.ru"
                   onChange={(evt) => handleChangeValue(setEmail, evt)}
                   id="register-email"
                   className={`main-form__input ${errors.email && 'main-form__input_type_error'}`}
