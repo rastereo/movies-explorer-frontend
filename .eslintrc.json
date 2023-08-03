@@ -20,15 +20,9 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": 0,
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
-      }
-    ],
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "react/jsx-no-bind": "off",
     "react/self-closing-comp": [
       "error",
       {

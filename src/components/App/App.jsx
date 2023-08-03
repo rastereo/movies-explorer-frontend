@@ -1,6 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import {
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -12,6 +17,8 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+
+import mainApi from '../../utils/MainApi';
 
 import moviesData from '../../utils/data/moviesData';
 
@@ -29,15 +36,56 @@ function App() {
   const [isSubmitError, setIsSubmitError] = useState(false);
   // Текущее значение состояния сообщения в подсказке.
   const [tooltip, setTooltip] = useState('');
+  // Текущее значение состояния отображения прелоудера.
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Показывает, на каком route приложение.
+  // Хук показывает, на каком route приложение.
   const location = useLocation();
+  // Хук возвращает функцию, которую можно использовать для программной навигации.
+  const navigate = useNavigate();
+
+  /**
+   * Функция обработки поп-ап подсказки.
+   *
+   * @param {String} message Сообщение подсказки
+   * @param {Boolean} isError Это сообщение говорит об ошибке
+   */
+  function handleInfoTooltip(message, isError) {
+    setIsInfoTooltip(true);
+    setTooltip(message);
+    setIsSubmitError(isError);
+  }
 
   /**
    * Функция закрывает поп-ап подсказку.
    */
   function closeInfoTooltip() {
     setIsInfoTooltip(false);
+  }
+
+  /**
+   * Функция обработки регистрации пользователя.
+   *
+   * @param {String} name Имя пользователя
+   * @param {String} email Почта пользователя
+   * @param {String} password Пароль пользователя
+   * @returns {void}
+   */
+  function handleRegister(name, email, password) {
+    setIsLoading(true);
+
+    mainApi.signUp(name, email, password)
+      .then(() => {
+        navigate('/movies', { replace: true });
+
+        setLoggedIn(true);
+
+        handleInfoTooltip('Вы успешно зарегистрировались!');
+      })
+      .catch((err) => {
+        handleInfoTooltip(err.message, true);
+      })
+      .finally(() => setIsLoading(false));
   }
 
   return (
@@ -94,7 +142,12 @@ function App() {
         />
         <Route
           path="/signup"
-          element={<Register />}
+          element={(
+            <Register
+              onRegister={handleRegister}
+              isLoading={isLoading}
+            />
+          )}
         />
         <Route
           path="*"
@@ -105,7 +158,7 @@ function App() {
         isOpen={isInfoTooltip}
         isError={isSubmitError}
         tooltip={tooltip}
-        onClose={() => closeInfoTooltip()}
+        onClose={closeInfoTooltip}
       />
     </>
   );
