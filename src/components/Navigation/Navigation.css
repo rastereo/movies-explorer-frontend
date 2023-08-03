@@ -9,6 +9,9 @@
 @import url(../../blocks/navigation/__item/_position/navigation__item_position_right.css);
 @import url(../../blocks/navigation/__account/navigation__account.css);
 @import url(../../blocks/navigation/__figure/navigation__figure.css);
-@import url(../../blocks/navigation/__hamburger/navigation__hamburger.css);
 @import url(../../blocks/navigation/__close/navigation__close.css);
 @import url(../../blocks/navigation/_hide/navigation_hide.css);
+
+/** Hamburger **/
+
+@import url(../../blocks/hamburger/hamburger.css);

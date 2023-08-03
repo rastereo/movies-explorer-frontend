@@ -59,7 +59,7 @@ function Navigation() {
           <button
             type="button"
             onClick={handleToggleNavigation}
-            className="navigation__hamburger link"
+            className="hamburger link"
           >
           </button>
         )}
