@@ -1,0 +1,15 @@
+.navigation__account {
+  display: flex;
+  gap: 0 7px;
+  align-items: center;
+  border-radius: 40px;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  padding: 3px 3px 3px 11px;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__account {
+    font-size: 13px;
+  }
+}

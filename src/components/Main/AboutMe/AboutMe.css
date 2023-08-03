@@ -1,0 +1,10 @@
+/** About-me **/
+
+@import url(../../../blocks/about-me/about-me.css);
+@import url(../../../blocks/about-me/__profile/about-me__profile.css);
+@import url(../../../blocks/about-me/__container/about-me__container.css);
+@import url(../../../blocks/about-me/__name/about-me__name.css);
+@import url(../../../blocks/about-me/__job/about-me__job.css);
+@import url(../../../blocks/about-me/__presentation/about-me__presentation.css);
+@import url(../../../blocks/about-me/__github/about-me__github.css);
+@import url(../../../blocks/about-me/__photo/about-me__photo.css);

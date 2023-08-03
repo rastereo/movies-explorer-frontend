@@ -1,0 +1,22 @@
+.main-form {
+  width: 396px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 70px 0 70px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-form {
+    padding-top: 232px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .main-form {
+    width: 82%;
+    align-items: center;
+    padding: 56px 0 30px;
+  }
+}
+

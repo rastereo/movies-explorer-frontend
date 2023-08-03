@@ -1,0 +1,9 @@
+.main-form__submit_size_big {
+  margin-top: 158px;
+}
+
+@media screen and (max-width: 320px) {
+  .main-form__submit_size_big {
+    margin-top: 245px;
+  }
+}

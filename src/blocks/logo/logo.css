@@ -1,0 +1,10 @@
+.logo {
+  display: block;
+  width: 38px;
+  height: 38px;
+  transition: opacity linear var(--time-transition);
+}
+
+.logo:hover {
+  opacity: .8;
+}

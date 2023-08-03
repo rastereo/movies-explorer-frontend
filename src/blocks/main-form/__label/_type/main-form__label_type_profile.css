@@ -1,0 +1,12 @@
+.main-form__label_type_profile {
+  width: 100%;
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0;
+  padding: 17px 0 5px;
+}

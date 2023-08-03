@@ -1,0 +1,24 @@
+.navigation__menu_state_logged {
+  gap: 29px 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__menu_state_logged {
+    width: 67.7%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--body-background-color);
+    position: absolute;
+    right: 0;
+    padding: 131px 0 90px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .navigation__menu_state_logged {
+    width: 100%;
+    gap: 25px 16px;
+    padding-top: 120px;
+  }
+}

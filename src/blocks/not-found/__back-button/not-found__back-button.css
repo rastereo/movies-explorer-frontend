@@ -1,0 +1,12 @@
+.not-found__back-button {
+  color: var(--blue);
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {
+  .not-found__back-button {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,22 @@
+.navigation_state_logged {
+  width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.38;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation_state_logged {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    background-color: var(--overlay-background-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,28 @@
+.about-me__presentation {
+  line-height: 1.57;
+  margin: 0;
+  padding-bottom: 99px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__presentation {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding-bottom: 87px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .about-me__presentation {
+    padding-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-me__presentation {
+    font-size: 11px;
+    font-style: normal;
+    line-height: 1.45;
+  }
+}

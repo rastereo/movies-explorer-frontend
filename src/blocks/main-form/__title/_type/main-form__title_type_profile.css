@@ -1,0 +1,16 @@
+.main-form__title_type_profile {
+    text-align: center;
+    padding: 2px 0 104px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-form__title_type_profile {
+    padding-bottom: 78px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .main-form__title_type_profile {
+    padding-bottom: 62px;
+  }
+}

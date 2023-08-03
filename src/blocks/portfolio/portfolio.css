@@ -1,0 +1,17 @@
+.portfolio {
+  padding: 0 var(--side-padding) 105px;
+
+  grid-area: portfolio;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    padding-bottom: 90px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .portfolio {
+    padding: 0 14px 70px;
+  }
+}

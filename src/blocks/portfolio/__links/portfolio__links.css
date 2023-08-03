@@ -1,0 +1,9 @@
+.portfolio__links {
+  padding-top: 30px;
+}
+
+@media screen and (max-width: 320px) {
+  .portfolio__links {
+    padding-top: 21px;
+  }
+}

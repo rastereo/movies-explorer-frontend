@@ -1,0 +1,22 @@
+.link {
+  text-decoration: none;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  transition: var(--time-transition);
+}
+
+.link_active {
+  font-weight: 500;
+}
+
+.link:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 768px) {
+  .link_active {
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--black);
+  }
+}

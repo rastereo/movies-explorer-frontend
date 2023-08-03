@@ -1,0 +1,17 @@
+.about-project {
+  padding: 111px var(--side-padding) 110px;
+
+  grid-area: about-project;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project {
+    padding: 91px var(--side-padding) 90px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project {
+    padding: 71px 18px 70px;
+  }
+}

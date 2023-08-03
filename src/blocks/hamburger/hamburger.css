@@ -1,0 +1,19 @@
+.hamburger {
+  width: 28px;
+  height: 23px;
+  border: none;
+  background-color: inherit;
+  background-image: url(../../images/hamburger-icon.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {
+  .hamburger {
+    width: 23px;
+    height: 21px;
+  }
+}

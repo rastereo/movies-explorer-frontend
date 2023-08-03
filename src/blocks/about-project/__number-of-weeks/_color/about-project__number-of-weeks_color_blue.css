@@ -1,0 +1,4 @@
+.about-project__number-of-weeks_color_blue {
+  color: var(--white);
+  background-color: var(--blue);
+}

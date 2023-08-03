@@ -1,0 +1,17 @@
+.title-section_size_small {
+  color: var(--dark-grey);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.11;
+  letter-spacing: .1px;
+  border: none;
+  padding: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .title-section_size_small {
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1.43;
+  }
+}

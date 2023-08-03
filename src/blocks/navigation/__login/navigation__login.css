@@ -1,0 +1,17 @@
+.navigation__login {
+  color: var(--white);
+  background-color: var(--blue);
+  padding: 8px 20px 9px;
+  border-radius: 3px;
+  transition: opacity linear var(--time-transition);
+}
+
+.navigation__login:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 320px) {
+  .navigation__login {
+    padding: 7px 12px;
+  }
+}

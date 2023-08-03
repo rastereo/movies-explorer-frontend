@@ -1,0 +1,11 @@
+.movies-card__button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--light-grey);
+  background-image: url(../../../images/save-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}

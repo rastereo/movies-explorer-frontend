@@ -1,0 +1,12 @@
+.footer__copyright {
+  font-size: 13px;
+  margin: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .footer__copyright {
+    color: var(--dark-grey);
+    font-size: 12px;
+    line-height: normal;
+  }
+}

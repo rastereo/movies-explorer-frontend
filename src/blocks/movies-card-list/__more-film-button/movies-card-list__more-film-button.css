@@ -1,0 +1,16 @@
+.movies-card-list__more-film-button {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--light-grey);
+  padding: 11px 148px 9px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 420px) {
+  .movies-card-list__more-film-button {
+    padding: 11px 107px 9px;
+  }
+}

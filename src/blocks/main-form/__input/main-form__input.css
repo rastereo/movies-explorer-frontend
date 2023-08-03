@@ -1,0 +1,11 @@
+.main-form__input {
+  font-size: 13px;
+  background-color: var(--light-grey);
+  border: none;
+  border-radius: 8px;
+  padding: 16px 15px 14px;
+}
+
+.main-form__input::placeholder {
+  color: var(--dark-grey);
+}

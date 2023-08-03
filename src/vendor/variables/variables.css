@@ -1,0 +1,44 @@
+:root {
+  --text-color: #000;
+
+  --body-background-color: #fafafa;
+  --techs-background-color: #f5f5f5;
+  --footer-background-color: #f8f8f8;
+
+  --white: #fff;
+  --black: #000;
+  --blue: #3456f3;
+  --green: #2be080;
+  --red: #ee3465;
+  --light-grey: #f4f4f4;
+  --light-grey-two: #f5f5f5;
+  --light-grey-three: #F8F8F8;
+  --regular-grey: #e8e8e8;
+  --regular-grey-two: #f2f2f2;
+  --regular-grey-three: #ebebeb;
+  --medium-grey: #dddee3;
+  --dark-grey: #a0a0a0;
+  --dark-grey-two: #c2c2c2;
+
+  --overlay-background-color: rgba(0, 0, 0, .3);
+
+  --search-form-border-color: rgba(170, 170, 170, .2);
+
+  --box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, .08);
+
+  --time-transition: .5s;
+
+  --side-padding: 70px;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --side-padding: 50px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  :root {
+    --side-padding: 30px;
+  }
+}

@@ -1,0 +1,16 @@
+.navigation__item_margin-left_auto {
+  margin-left: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__item_margin-left_auto {
+    position: absolute;
+    bottom: 312px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .navigation__item_margin-left_auto {
+    bottom: 256px;
+  }
+}

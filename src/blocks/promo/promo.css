@@ -1,0 +1,32 @@
+.promo {
+  box-sizing: border-box;
+  background-color: var(--medium-grey);
+  background-image: url(../../images/promo-figure.svg);
+  background-repeat: no-repeat;
+  background-size: 56.4%;
+  background-position: right 70px bottom 60px;
+  padding: 51px var(--side-padding) 405px;
+
+  grid-area: promo;
+}
+
+@media screen and (max-width: 768px) {
+  .promo {
+    background-position: center bottom 70px;
+    background-size: 88.5%;
+    padding: 301px var(--side-padding) 439px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .promo {
+    padding: 183px 10px 330px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .promo {
+    background-position: center bottom 40px;
+    background-size: 212%;
+  }
+}
