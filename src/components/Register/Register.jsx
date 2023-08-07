@@ -12,7 +12,7 @@ import UseFormAndValidation from '../../hooks/useFormAndValidation';
  * Компонент страницы регистрации.
  *
  * @param {Object} props
- * @param {Function} props.onRegister Отправить запрос авторизации на сервер
+ * @param {Function} props.onRegister Отправить запрос регистрации на сервер
  * @param {Boolean} props.isLoading Отображать прелоудер
  * @returns {React.ReactElement} Register
  */

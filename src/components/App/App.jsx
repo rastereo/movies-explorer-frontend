@@ -18,8 +18,9 @@ import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
-import mainApi from '../../utils/MainApi';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
+import mainApi from '../../utils/MainApi';
 import moviesData from '../../utils/data/moviesData';
 
 /**
@@ -29,7 +30,13 @@ import moviesData from '../../utils/data/moviesData';
  */
 function App() {
   // Текущее значение состояния авторизации пользователя на сайте.
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Текущее значение состояния зарегистрированного имени на сайте.
+  const [isRegisteredName, setIsRegisteredName] = useState('');
+  // Текущее значение состояния зарегистрированной почты на сайте.
+  const [isRegisteredEmail, setIsRegisteredEmail] = useState('');
+  // Текущее значение состояния информации о зарегистрированном пользователе.
+  const [currentUser, setCurrentUser] = useState(null);
   // Текущее значение состояния видимости подсказки с информацией.
   const [isInfoTooltip, setIsInfoTooltip] = useState(false);
   // Текущее значение состояния ошибки при отправки формы.
@@ -64,21 +71,33 @@ function App() {
   }
 
   /**
+   * Функция открывает доступ в аккаунт на сайте.
+   *
+   * @param {Object} data Объект из БД с информацией
+   * о пользователе
+   * @returns {void}
+   */
+  function signInAccount(data) {
+    setIsLoggedIn(true);
+
+    setCurrentUser(data);
+
+    navigate('/movies', { replace: true });
+  }
+
+  /**
    * Функция обработки регистрации пользователя.
    *
    * @param {String} name Имя пользователя
    * @param {String} email Почта пользователя
    * @param {String} password Пароль пользователя
-   * @returns {void}
    */
   function handleRegister(name, email, password) {
     setIsLoading(true);
 
     mainApi.signUp(name, email, password)
-      .then(() => {
-        navigate('/movies', { replace: true });
-
-        setLoggedIn(true);
+      .then((user) => {
+        signInAccount(user.data);
 
         handleInfoTooltip('Вы успешно зарегистрировались!');
       })
@@ -88,8 +107,72 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
+  /**
+   * Функция обработки авторизации пользователя.
+   *
+   * @param {String} email Почта
+   * @param {String} password Пароль
+   */
+  function handleLogin(email, password) {
+    setIsLoading(true);
+
+    mainApi.signIn(email, password)
+      .then((user) => {
+        signInAccount(user.data);
+      })
+      .catch((err) => {
+        handleInfoTooltip(err.message, true);
+      })
+      .finally(() => setIsLoading(false));
+  }
+
+  /**
+   * Функция проверяет валидность JWT токена.
+   *
+   * @returns {void}
+   */
+  function checkToken() {
+    mainApi.validateToken()
+      .then((user) => {
+        isLoggedIn(true);
+
+        setCurrentUser(user.data);
+      })
+      .catch((err) => {
+        handleInfoTooltip(err.message, true);
+      });
+  }
+
+  function handleUpdateProfile(name, email) {
+    mainApi.patchProfile(name, email)
+      .then((user) => {
+        setCurrentUser(user.data);
+      })
+      .catch((err) => {
+        handleInfoTooltip(err.message, true);
+      });
+  }
+
+  useEffect(() => {
+    if (isLoggedIn) {
+
+      // Promise.all([
+      //   api.getUserInfo(),
+      //   api.getInitialCards()
+      // ])
+      //   .then(([userInfo, cards]) => {
+      //     setCurrentUser(userInfo.data);
+      //     setCards(cards.data.reverse());
+      //   })
+      //   .catch(err => console.log(err));
+    } else {
+      checkToken();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <Routes>
         <Route
           index
@@ -132,13 +215,18 @@ function App() {
           element={(
             <>
               <Header isLoggedIn={isLoggedIn} />
-              <Profile />
+              <Profile onUpdate={handleUpdateProfile} />
             </>
           )}
         />
         <Route
           path="/signin"
-          element={<Login />}
+          element={(
+            <Login
+              onLogin={handleLogin}
+              isLoading={isLoading}
+            />
+          )}
         />
         <Route
           path="/signup"
@@ -160,7 +248,7 @@ function App() {
         tooltip={tooltip}
         onClose={closeInfoTooltip}
       />
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 

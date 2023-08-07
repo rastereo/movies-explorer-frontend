@@ -1,20 +1,26 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import MainForm from '../MainForm/MainForm';
 import UseFormAndValidation from '../../hooks/useFormAndValidation';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 /**
  * Компонент страницы изменения профиля.
  *
+ * @param {Function} props.onLogin Отправить запрос на изменения
+ * информации о пользователе на сервер
  * @returns {React.ReactElement} Profile
  */
-function Profile() {
+function Profile({ onUpdate }) {
   // Имя пользователя в профиле.
-  const [name, setName] = useState('Виталий');
+  const [name, setName] = useState('');
   // Электронная почта в профиле.
-  const [email, setEmail] = useState('pochta@yandex.ru');
+  const [email, setEmail] = useState('');
   // Заголовок профиля с именем пользователя.
-  const [title, setTitle] = useState(`Привет, ${name}!`);
+  const [title, setTitle] = useState('');
+
+  const currentUser = useContext(CurrentUserContext);
 
   const {
     handleChangeValidation,
@@ -32,10 +38,16 @@ function Profile() {
     evt.preventDefault();
 
     // eslint-disable-next-line no-console
-    console.log({ name, email });
+    onUpdate(name, email);
+  }
+
+  useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
 
     setTitle(`Привет, ${name}!`);
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
 
   return (
     <main className="main-form main-form_type_profile">
@@ -97,5 +109,9 @@ function Profile() {
     </main>
   );
 }
+
+Profile.propTypes = {
+  onUpdate: PropTypes.func.isRequired,
+};
 
 export default Profile;
