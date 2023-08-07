@@ -33,7 +33,7 @@ function Register({ onRegister, isLoading }) {
   } = UseFormAndValidation();
 
   /**
-   * Функция добавляет контент из инпута в выбранный стейт.
+   * Функция добавляет контент из инпута в выбранный стейт
    *
    * @param {ReferenceState} setState Название сэтера состояния.
    * @param {Event} evt Событие из которого нужно извлечь текст.
@@ -54,7 +54,6 @@ function Register({ onRegister, isLoading }) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    // eslint-disable-next-line no-console
     onRegister(name, email, password);
 
     setName('');

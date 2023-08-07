@@ -8,18 +8,20 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 /**
  * Компонент страницы изменения профиля.
  *
- * @param {Function} props.onLogin Отправить запрос на изменения
+ * @param {Function} props.onUpdate Отправить запрос на изменения
  * информации о пользователе на сервер
+ * @param {Function} props.oLogout Выйти из аккаунта
  * @returns {React.ReactElement} Profile
  */
-function Profile({ onUpdate }) {
+function Profile({ onUpdate, onLogout }) {
   // Имя пользователя в профиле.
   const [name, setName] = useState('');
   // Электронная почта в профиле.
   const [email, setEmail] = useState('');
   // Заголовок профиля с именем пользователя.
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(`Привет, ${name}!`);
 
+  // eslint-disable-next-line no-unused-vars
   const currentUser = useContext(CurrentUserContext);
 
   const {
@@ -34,19 +36,23 @@ function Profile({ onUpdate }) {
     handleChangeValidation(evt);
   }
 
+  /**
+   * Функция обработка submit.
+   *
+   * @param {Event} evt Событие submit формы
+   */
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    // eslint-disable-next-line no-console
     onUpdate(name, email);
   }
 
   useEffect(() => {
-    setName(currentUser.name);
-    setEmail(currentUser.email);
-
-    setTitle(`Привет, ${name}!`);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (currentUser) {
+      setName(currentUser.name);
+      setEmail(currentUser.email);
+      setTitle(`Привет, ${currentUser.name}!`);
+    }
   }, [currentUser]);
 
   return (
@@ -102,6 +108,7 @@ function Profile({ onUpdate }) {
       </MainForm>
       <button
         type="button"
+        onClick={onLogout}
         className="main-form__logout link"
       >
         Выйти из аккаунта
@@ -112,6 +119,7 @@ function Profile({ onUpdate }) {
 
 Profile.propTypes = {
   onUpdate: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
 };
 
 export default Profile;

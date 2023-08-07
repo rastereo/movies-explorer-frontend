@@ -43,7 +43,7 @@ class MainApi {
   /**
    * Метод отправляет запрос на сервер для
    * регистрации пользователя на сайте.
-  *
+   *
    * @param {String} name Имя
    * @param {String} email Почта
    * @param {String} password Пароль
@@ -60,11 +60,11 @@ class MainApi {
   /**
    * Метод отправляет запрос на сервер для
    * авторизации пользователя на сайте.
-  *
-  * @param {String} email Почта
-  * @param {String} password Пароль
-  * @returns {Request} Запрос на авторизацию
-  */
+   *
+   * @param {String} email Почта
+   * @param {String} password Пароль
+   * @returns {Request} Запрос на авторизацию
+   */
   signIn(email, password) {
     return fetch(
       `${this._baseUrl}/signin`,
@@ -74,13 +74,28 @@ class MainApi {
   }
 
   /**
+   * Метод выход из аккаунта.
+   *
+   * @returns {Request} Запрос на удаления токена
+   */
+  signOut() {
+    return fetch(
+      `${this._baseUrl}/signout`,
+      {
+        credentials: 'include',
+      },
+    )
+      .then(this._getResponseData);
+  }
+
+  /**
    * Метод проверяет JWT токен.
    *
-   * @returns {void}
+   * @returns {Request} Запрос на валидацию токена
    */
   validateToken() {
     return fetch(
-      `${this._baseUrl}/user/me`,
+      `${this._baseUrl}/users/me`,
       {
         credentials: 'include',
       },
@@ -99,7 +114,7 @@ class MainApi {
    */
   patchProfile(name, email) {
     return fetch(
-      `${this._baseUrl}/user/me`,
+      `${this._baseUrl}/users/me`,
       {
         method: 'PATCH',
         credentials: 'include',
@@ -114,6 +129,6 @@ class MainApi {
   }
 }
 
-const mainApi = new MainApi('https://api.rastereo.diplom.nomoredomains.xyz');
+const mainApi = new MainApi('http://localhost:3000');
 
 export default mainApi;

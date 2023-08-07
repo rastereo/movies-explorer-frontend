@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import {
   Routes,
@@ -31,10 +30,6 @@ import moviesData from '../../utils/data/moviesData';
 function App() {
   // Текущее значение состояния авторизации пользователя на сайте.
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // Текущее значение состояния зарегистрированного имени на сайте.
-  const [isRegisteredName, setIsRegisteredName] = useState('');
-  // Текущее значение состояния зарегистрированной почты на сайте.
-  const [isRegisteredEmail, setIsRegisteredEmail] = useState('');
   // Текущее значение состояния информации о зарегистрированном пользователе.
   const [currentUser, setCurrentUser] = useState(null);
   // Текущее значение состояния видимости подсказки с информацией.
@@ -86,6 +81,21 @@ function App() {
   }
 
   /**
+   * Функция выход из аккаунта.
+   *
+   */
+  function signOutAccount() {
+    mainApi.signOut()
+      .then(() => {
+        setIsLoggedIn(false);
+        setCurrentUser(null);
+
+        navigate('/', { replace: true });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  /**
    * Функция обработки регистрации пользователя.
    *
    * @param {String} name Имя пользователя
@@ -134,13 +144,10 @@ function App() {
   function checkToken() {
     mainApi.validateToken()
       .then((user) => {
-        isLoggedIn(true);
-
+        setIsLoggedIn(true);
         setCurrentUser(user.data);
       })
-      .catch((err) => {
-        handleInfoTooltip(err.message, true);
-      });
+      .catch((err) => console.log(err));
   }
 
   function handleUpdateProfile(name, email) {
@@ -155,7 +162,6 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-
       // Promise.all([
       //   api.getUserInfo(),
       //   api.getInitialCards()
@@ -215,7 +221,10 @@ function App() {
           element={(
             <>
               <Header isLoggedIn={isLoggedIn} />
-              <Profile onUpdate={handleUpdateProfile} />
+              <Profile
+                onUpdate={handleUpdateProfile}
+                onLogout={signOutAccount}
+              />
             </>
           )}
         />

@@ -23,11 +23,21 @@
     "no-underscore-dangle": "off",
     "class-methods-use-this": "off",
     "react/jsx-no-bind": "off",
+    "no-useless-escape": "off",
     "react/self-closing-comp": [
       "error",
       {
         "component": true,
         "html": false
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
       }
     ]
   }

@@ -1,9 +1,11 @@
 import { useState, useCallback } from 'react';
 
+import regexName from '../utils/regexConstants';
+
 /**
  * Хук валидации формы.
  *
- * @returns {Object}
+ * @returns {Object} Конфиг валидации
  */
 function useFormAndValidation() {
   const [values, setValues] = useState({});
@@ -12,9 +14,20 @@ function useFormAndValidation() {
 
   const handleChangeValidation = (e) => {
     const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-    setErrors({ ...errors, [name]: e.target.validationMessage });
-    setIsValid(e.target.closest('form').checkValidity());
+
+    if (
+      name === 'name'
+      && value !== ''
+      && !regexName.test(value)
+    ) {
+      setValues({ ...values, [name]: value });
+      setErrors({ ...errors, [name]: 'Только латиница, кириллица, пробел или дефис.' });
+      setIsValid(false);
+    } else {
+      setValues({ ...values, [name]: value });
+      setErrors({ ...errors, [name]: e.target.validationMessage });
+      setIsValid(e.target.closest('form').checkValidity());
+    }
   };
 
   const resetForm = useCallback((
