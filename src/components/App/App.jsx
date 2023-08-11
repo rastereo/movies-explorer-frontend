@@ -16,10 +16,12 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 import mainApi from '../../utils/MainApi';
+import moviesApi from '../../utils/MoviesApi';
 import moviesData from '../../utils/data/moviesData';
 
 /**
@@ -32,6 +34,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Текущее значение состояния информации о зарегистрированном пользователе.
   const [currentUser, setCurrentUser] = useState(null);
+  // Текущее значение состояния списка фильмов с BeatFilm.
+  const [movies, setMovies] = useState(null);
   // Текущее значение состояния видимости подсказки с информацией.
   const [isInfoTooltip, setIsInfoTooltip] = useState(false);
   // Текущее значение состояния ошибки при отправки формы.
@@ -90,7 +94,7 @@ function App() {
         setIsLoggedIn(false);
         setCurrentUser(null);
 
-        navigate('/', { replace: true });
+        navigate('/');
       })
       .catch((err) => console.log(err));
   }
@@ -162,20 +166,15 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      // Promise.all([
-      //   api.getUserInfo(),
-      //   api.getInitialCards()
-      // ])
-      //   .then(([userInfo, cards]) => {
-      //     setCurrentUser(userInfo.data);
-      //     setCards(cards.data.reverse());
-      //   })
-      //   .catch(err => console.log(err));
+      moviesApi.getMovies()
+        .then((data) => {
+          setMovies(data);
+        })
+        .catch((err) => handleInfoTooltip(err.message, true));
     } else {
       checkToken();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -198,8 +197,10 @@ function App() {
           element={(
             <>
               <Header isLoggedIn={isLoggedIn} />
-              <Movies
-                moviesData={moviesData}
+              <ProtectedRouteElement
+                element={Movies}
+                isLoggedIn={isLoggedIn}
+                moviesData={movies}
                 isMovies={location.pathname}
               />
               <Footer />
@@ -211,7 +212,11 @@ function App() {
           element={(
             <>
               <Header isLoggedIn={isLoggedIn} />
-              <SavedMovies moviesData={moviesData.slice(0, 3)} />
+              <ProtectedRouteElement
+                element={SavedMovies}
+                isLoggedIn={isLoggedIn}
+                moviesData={moviesData.slice(0, 3)}
+              />
               <Footer />
             </>
           )}
@@ -221,7 +226,9 @@ function App() {
           element={(
             <>
               <Header isLoggedIn={isLoggedIn} />
-              <Profile
+              <ProtectedRouteElement
+                element={Profile}
+                isLoggedIn={isLoggedIn}
                 onUpdate={handleUpdateProfile}
                 onLogout={signOutAccount}
               />
@@ -232,8 +239,8 @@ function App() {
           path="/signin"
           element={(
             <Login
-              onLogin={handleLogin}
               isLoading={isLoading}
+              onLogin={handleLogin}
             />
           )}
         />
@@ -241,8 +248,8 @@ function App() {
           path="/signup"
           element={(
             <Register
-              onRegister={handleRegister}
               isLoading={isLoading}
+              onRegister={handleRegister}
             />
           )}
         />
