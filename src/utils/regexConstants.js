@@ -1,3 +1,5 @@
-const regexName = /^[a-zа-яё\s\-]+$/i;
+const regexName = /^[a-zа-яА-ЯёЁ\s\-]+$/i;
 
-export default regexName;
+const regexEnglishLanguage = /[a-z]/;
+
+export { regexName, regexEnglishLanguage };

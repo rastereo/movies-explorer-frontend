@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-import regexName from '../utils/regexConstants';
+import { regexName } from '../utils/regexConstants';
 
 /**
  * Хук валидации формы.
@@ -15,16 +15,16 @@ function useFormAndValidation() {
   const handleChangeValidation = (e) => {
     const { name, value } = e.target;
 
+    setValues({ ...values, [name]: value });
+
     if (
       name === 'name'
       && value !== ''
       && !regexName.test(value)
     ) {
-      setValues({ ...values, [name]: value });
       setErrors({ ...errors, [name]: 'Только латиница, кириллица, пробел или дефис.' });
       setIsValid(false);
     } else {
-      setValues({ ...values, [name]: value });
       setErrors({ ...errors, [name]: e.target.validationMessage });
       setIsValid(e.target.closest('form').checkValidity());
     }

@@ -7,14 +7,14 @@ import './SearchForm.css';
 /**
  * Компонент страницы с поиском по фильмам.
  *
- * @param {Object} props
- * @param {String} props.name Имя формы.
- * @returns {React.ReactElement} SearchForm
+ * @param {String} props.name Имя формы
+ * @param {Function} props.onSearch Функция обработки поиска фильмов
+ * @returns {React.ReactElement} <SearchForm />
  */
-function SearchForm({ name }) {
+function SearchForm({ name, onSearch }) {
   // Название фильма из поисковой строки.
   const [movie, setMovie] = useState('');
-  // Поиск короткометражек.
+  // Искать короткометражки.
   const [short, setShort] = useState(false);
 
   /**
@@ -26,11 +26,9 @@ function SearchForm({ name }) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    // eslint-disable-next-line no-console
-    console.log({ movie, short });
+    onSearch(movie, short);
 
     setMovie('');
-    setShort(false);
   }
 
   return (
@@ -64,7 +62,7 @@ function SearchForm({ name }) {
             <input
               type="checkbox"
               name="short"
-              checked={short}
+              value={short}
               onChange={(evt) => setShort(evt.target.checked)}
               className="search-form__checkbox visually-hidden"
             />
@@ -78,6 +76,7 @@ function SearchForm({ name }) {
 
 SearchForm.propTypes = {
   name: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default SearchForm;

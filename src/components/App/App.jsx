@@ -22,7 +22,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 import mainApi from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
-import moviesData from '../../utils/data/moviesData';
+import { regexEnglishLanguage } from '../../utils/regexConstants';
 
 /**
  * Корневой компонент приложения.
@@ -35,7 +35,11 @@ function App() {
   // Текущее значение состояния информации о зарегистрированном пользователе.
   const [currentUser, setCurrentUser] = useState(null);
   // Текущее значение состояния списка фильмов с BeatFilm.
-  const [movies, setMovies] = useState(null);
+  const [savedMovies, setSavedMovies] = useState(null);
+  // Текущее значение состояния найденных фильмов.
+  const [foundMovies, setFoundMovies] = useState(null);
+  // Текущее значение состояния подсказки при поиске фильма.
+  const [searchHint, setSearchHint] = useState('');
   // Текущее значение состояния видимости подсказки с информацией.
   const [isInfoTooltip, setIsInfoTooltip] = useState(false);
   // Текущее значение состояния ошибки при отправки формы.
@@ -154,6 +158,13 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  /**
+   * Функция обработки запроса на изменение профиля.
+   *
+   * @param {Sting} name Имя
+   * @param {String} email Почта
+   * @returns {Response}
+   */
   function handleUpdateProfile(name, email) {
     mainApi.patchProfile(name, email)
       .then((user) => {
@@ -164,13 +175,55 @@ function App() {
       });
   }
 
+  /**
+   * Функция поиска фильмов.
+   *
+   * @param {String} nameMovie Фильм, который ищем
+   */
+  function searchMovies(nameMovie, short) {
+    const lowerCaseName = nameMovie.toLowerCase();
+
+    let languageName = 'nameRU';
+
+    if (regexEnglishLanguage.test(lowerCaseName)) {
+      languageName = 'nameEN';
+    }
+
+    setIsLoading(true);
+    setFoundMovies(null);
+
+    moviesApi.getMovies()
+      .then((data) => {
+        // eslint-disable-next-line arrow-body-style
+        let result = data.filter((movie) => {
+          return movie[languageName].toLowerCase().includes(lowerCaseName);
+        });
+
+        if (short) {
+          result = result.filter((item) => item.duration < 40);
+        }
+
+        if (result.length !== 0) {
+          setFoundMovies(result);
+        } else {
+          setSearchHint('Ничего не найдено');
+        }
+      })
+      .catch((err) => {
+        setSearchHint('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+
+        console.log(err.message);
+      })
+      .finally(() => setIsLoading(false));
+  }
+
   useEffect(() => {
     if (isLoggedIn) {
       moviesApi.getMovies()
         .then((data) => {
-          setMovies(data);
+          setSavedMovies(data);
         })
-        .catch((err) => handleInfoTooltip(err.message, true));
+        .catch((err) => console.log(err.message));
     } else {
       checkToken();
     }
@@ -200,8 +253,11 @@ function App() {
               <ProtectedRouteElement
                 element={Movies}
                 isLoggedIn={isLoggedIn}
-                moviesData={movies}
-                isMovies={location.pathname}
+                moviesData={foundMovies}
+                onSearch={searchMovies}
+                searchHint={searchHint}
+                setSearchHint={setSearchHint}
+                isLoading={isLoading}
               />
               <Footer />
             </>
@@ -215,7 +271,7 @@ function App() {
               <ProtectedRouteElement
                 element={SavedMovies}
                 isLoggedIn={isLoggedIn}
-                moviesData={moviesData.slice(0, 3)}
+                moviesData={savedMovies}
               />
               <Footer />
             </>

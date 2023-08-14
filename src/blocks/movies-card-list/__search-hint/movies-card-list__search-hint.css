@@ -1,0 +1,12 @@
+.movies-card-list__search-hint {
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card-list__search-hint {
+    font-size: 14px;
+  }
+}
+
