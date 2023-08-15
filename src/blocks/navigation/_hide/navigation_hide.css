@@ -1,3 +1,14 @@
+@keyframes hide-navigation {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
 .navigation_hide {
-  display: none;
+  animation: hide-navigation .4s forwards;
 }

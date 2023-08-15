@@ -1,3 +1,13 @@
+@keyframes show-navigation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
 .navigation_state_logged {
   width: 100%;
   font-size: 13px;
@@ -18,5 +28,6 @@
     top: 0;
     left: 0;
     z-index: 1;
+    animation: show-navigation .4s forwards;
   }
 }

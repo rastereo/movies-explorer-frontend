@@ -14,6 +14,8 @@ function Navigation() {
   const [isSizeSmall, setIsSizeSmall] = useState(false);
 
   // Элемент навигации.
+  const navigation = useRef();
+  // Элемент меню навигации
   const menu = useRef();
 
   /**
@@ -23,7 +25,8 @@ function Navigation() {
    */
   function handleToggleNavigation() {
     if (isSizeSmall) {
-      menu.current.classList.toggle('navigation_hide');
+      navigation.current.classList.toggle('navigation_hide');
+      menu.current.classList.toggle('navigation__menu_hide');
     }
   }
 
@@ -62,7 +65,7 @@ function Navigation() {
           </button>
         )}
       <nav
-        ref={menu}
+        ref={navigation}
         className={`navigation navigation_state_logged ${isSizeSmall && 'navigation_hide'}`}
       >
         {isSizeSmall
@@ -74,7 +77,10 @@ function Navigation() {
             >
             </button>
           )}
-        <ul className="navigation__menu list navigation__menu_state_logged">
+        <ul
+          ref={menu}
+          className={`navigation__menu list navigation__menu_state_logged ${isSizeSmall && 'navigation__menu_position_right'} ${isSizeSmall && 'navigation__menu_hide'}`}
+        >
           {isSizeSmall
             && (
               <>
