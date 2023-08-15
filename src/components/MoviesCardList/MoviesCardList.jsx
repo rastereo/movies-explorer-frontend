@@ -5,8 +5,6 @@ import './MoviesCardList.css';
 import MoviesCard from './MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
-import UseFilterShortMovies from '../../hooks/useFilterShortMovies';
-
 import { tabletWidth, mobileWidth } from '../../utils/screenWidthConstants';
 
 /**
@@ -18,8 +16,6 @@ import { tabletWidth, mobileWidth } from '../../utils/screenWidthConstants';
  * @param {Boolean} props.isDeleteButton Состояние, меняет кнопку "Сохранить фильм"
  * на "Удалить фильм", передается дальше в MoviesCard
  * @param {Boolean} props.isLoading Отображать прелоудер
- * @param {String} props.searchHint Подсказка при поиске
- * @param {Function} props.setSearchHint Вставить текст в подсказку
  * @returns {React.ReactElement} <MoviesCardList />
  */
 function MoviesCardList({
@@ -27,7 +23,8 @@ function MoviesCardList({
   isDeleteButton,
   isLoading,
   searchHint,
-  setSearchHint,
+  onActionMovie,
+  savedMovies,
 }) {
   // eslint-disable-next-line no-unused-vars
   const [movies, setMovies] = useState(null);
@@ -55,27 +52,13 @@ function MoviesCardList({
     }
   }
 
-  /**
-   * Функция преобразовывает минуты в строку продолжительность фильма.
-   *
-   * @param {Number} minutes Минуты из БД
-   * @returns {String}
-   */
-  function getTime(minutes) {
-    if (minutes < 60) {
-      return `${minutes % 60}м`;
-    }
-
-    return `${Math.floor(minutes / 60)}ч${minutes % 60}м`;
-  }
-
   useEffect(() => {
     setMovies(moviesData);
+
+    renderGridFilms();
   }, [moviesData]);
 
   useEffect(() => {
-    renderGridFilms();
-
     window.addEventListener('resize', renderGridFilms);
 
     return () => window.removeEventListener('resize', renderGridFilms);
@@ -100,11 +83,10 @@ function MoviesCardList({
                 && (
                   <li key={movie.id}>
                     <MoviesCard
-                      name={movie.nameRU}
-                      duration={getTime(movie.duration)}
-                      image={`https://api.nomoreparties.co${movie.image.url}`}
-                      trailerLink={movie.trailerLink}
                       isDeleteButton={isDeleteButton}
+                      movie={movie}
+                      onActionMovie={onActionMovie}
+                      savedMovies={savedMovies}
                     />
                   </li>
                 )
@@ -125,19 +107,16 @@ function MoviesCardList({
           </>
         )}
       {isLoading && <Preloader />}
-      <UseFilterShortMovies
-        moviesData={moviesData}
-        movies={movies}
-        setMovies={setMovies}
-        setSearchHint={setSearchHint}
-      />
     </section>
   );
 }
 
 MoviesCardList.propTypes = {
   searchHint: PropTypes.string.isRequired,
-  setSearchHint: PropTypes.func.isRequired,
+  // setSearchHint: PropTypes.func.isRequired,
+  onActionMovie: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  savedMovies: PropTypes.array.isRequired,
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     country: PropTypes.string,
     created_at: PropTypes.string,

@@ -14,17 +14,18 @@ function useFilterShortMovies({
 
     function filterShortMovie() {
       if (shortMoviesCheckbox.checked && movies !== null) {
-        const filterMovies = movies.filter((movie) => movie.duration <= 40);
-        if (filterMovies.length === 0) {
+        const filteredMovies = movies.filter((movie) => movie.duration <= 40);
+        if (filteredMovies.length === 0) {
           setMovies(null);
           setSearchHint('Ничего не найдено');
         } else {
-          setMovies(filterMovies);
+          setMovies(filteredMovies);
         }
       } else {
         setMovies(moviesData);
       }
     }
+
     shortMoviesCheckbox.addEventListener('change', filterShortMovie);
 
     return () => {

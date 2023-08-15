@@ -12,8 +12,8 @@ function useFormAndValidation() {
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
-  const handleChangeValidation = (e) => {
-    const { name, value } = e.target;
+  const handleChangeValidation = (evt) => {
+    const { name, value } = evt.target;
 
     setValues({ ...values, [name]: value });
 
@@ -25,8 +25,8 @@ function useFormAndValidation() {
       setErrors({ ...errors, [name]: 'Только латиница, кириллица, пробел или дефис.' });
       setIsValid(false);
     } else {
-      setErrors({ ...errors, [name]: e.target.validationMessage });
-      setIsValid(e.target.closest('form').checkValidity());
+      setErrors({ ...errors, [name]: evt.target.validationMessage });
+      setIsValid(evt.target.closest('form').checkValidity());
     }
   };
 

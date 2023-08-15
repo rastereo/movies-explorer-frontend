@@ -13,7 +13,6 @@ import SearchForm from '../SearchForm/SearchForm';
  * @param {Boolean} props.isLoading Отображать прелоудер
  * @param {String} props.searchHint Подсказка при поиске
  * @param {Function} props.setSearchHint Вставить текст в подсказку
- * @param {Boolean} props.onShort Функция отфильтровывает фильмы длиннее 40 минут.
  * @returns {React.ReactElement} <Movies />
  */
 function Movies({
@@ -22,6 +21,9 @@ function Movies({
   searchHint,
   setSearchHint,
   onSearch,
+  onActionMovie,
+  savedMovies,
+  onShort,
 }) {
   return (
     <main className="movies">
@@ -29,22 +31,29 @@ function Movies({
       <SearchForm
         name="movie"
         onSearch={onSearch}
+        onShort={onShort}
       />
       <MoviesCardList
         moviesData={moviesData}
+        savedMovies={savedMovies}
         isLoading={isLoading}
         searchHint={searchHint}
         setSearchHint={setSearchHint}
+        onActionMovie={onActionMovie}
       />
     </main>
   );
 }
 
 Movies.propTypes = {
-  onSearch: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
   searchHint: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   setSearchHint: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
+  onActionMovie: PropTypes.func.isRequired,
+  onShort: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  savedMovies: PropTypes.array.isRequired,
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     nameRU: PropTypes.string,
     duration: PropTypes.number,

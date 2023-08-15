@@ -34,10 +34,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Текущее значение состояния информации о зарегистрированном пользователе.
   const [currentUser, setCurrentUser] = useState(null);
-  // Текущее значение состояния списка фильмов с BeatFilm.
-  const [savedMovies, setSavedMovies] = useState(null);
-  // Текущее значение состояния найденных фильмов.
+  // Текущее значение состояния найденных фильмов с BeatFilm.
   const [foundMovies, setFoundMovies] = useState(null);
+  // Текущее значение состояния подсказки при поиске фильма.
+  const [savedMovies, setSavedMovies] = useState(null);
   // Текущее значение состояния подсказки при поиске фильма.
   const [searchHint, setSearchHint] = useState('');
   // Текущее значение состояния видимости подсказки с информацией.
@@ -97,6 +97,8 @@ function App() {
       .then(() => {
         setIsLoggedIn(false);
         setCurrentUser(null);
+
+        localStorage.clear();
 
         navigate('/');
       })
@@ -169,6 +171,7 @@ function App() {
     mainApi.patchProfile(name, email)
       .then((user) => {
         setCurrentUser(user.data);
+        handleInfoTooltip('Данные в профиле изменены!', false);
       })
       .catch((err) => {
         handleInfoTooltip(err.message, true);
@@ -176,9 +179,30 @@ function App() {
   }
 
   /**
-   * Функция поиска фильмов.
+   * Функция добавляет/удаляет сохраненный фильм.
+   *
+   * @param {String} movie Информация о фильме
+   * @param {Boolean} isSave Сохранить фильм
+   * @param {void}
+   */
+  function handleActionMovies(movie, isSave) {
+    if (isSave) {
+      if (savedMovies !== null) {
+        setSavedMovies((movies) => [...movies, movie]);
+      } else {
+        setSavedMovies(movie);
+      }
+    } else {
+      // eslint-disable-next-line max-len
+      setSavedMovies((movies) => movies.filter((savedMovie) => savedMovie.movieId !== movie.movieId));
+    }
+  }
+
+  /**
+   * Функция поиска фильмов на сервер BeatFilm.
    *
    * @param {String} nameMovie Фильм, который ищем
+   * @param {Boolean} short Искать короткометражку
    */
   function searchMovies(nameMovie, short) {
     const lowerCaseName = nameMovie.toLowerCase();
@@ -205,8 +229,12 @@ function App() {
 
         if (result.length !== 0) {
           setFoundMovies(result);
+
+          localStorage.setItem('saved-search-history', JSON.stringify({ nameMovie, short }));
         } else {
           setSearchHint('Ничего не найдено');
+
+          localStorage.clear();
         }
       })
       .catch((err) => {
@@ -217,11 +245,21 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
+  /**
+   * Функция обработки кнопки checkbox короткометражных фильмов.
+   *
+   * @param {String} name Название фильма
+   * @param {Boolean} isChecked состояние чекбокса
+   */
+  function handleCheckboxShortMovies(name, isChecked) {
+    if (name !== '') searchMovies(name, isChecked);
+  }
+
   useEffect(() => {
     if (isLoggedIn) {
-      moviesApi.getMovies()
-        .then((data) => {
-          setSavedMovies(data);
+      mainApi.getMovies()
+        .then((movies) => {
+          setSavedMovies(movies.data);
         })
         .catch((err) => console.log(err.message));
     } else {
@@ -252,12 +290,15 @@ function App() {
               <Header isLoggedIn={isLoggedIn} />
               <ProtectedRouteElement
                 element={Movies}
-                isLoggedIn={isLoggedIn}
                 moviesData={foundMovies}
-                onSearch={searchMovies}
+                savedMovies={savedMovies}
                 searchHint={searchHint}
+                onSearch={searchMovies}
+                onActionMovie={handleActionMovies}
                 setSearchHint={setSearchHint}
                 isLoading={isLoading}
+                isLoggedIn={isLoggedIn}
+                onShort={handleCheckboxShortMovies}
               />
               <Footer />
             </>
@@ -271,7 +312,7 @@ function App() {
               <ProtectedRouteElement
                 element={SavedMovies}
                 isLoggedIn={isLoggedIn}
-                moviesData={savedMovies}
+                moviesData={SavedMovies}
               />
               <Footer />
             </>

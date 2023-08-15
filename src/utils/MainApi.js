@@ -127,6 +127,60 @@ class MainApi {
     )
       .then(this._getResponseData);
   }
+
+  /**
+   * Метод отправляет запрос на сохраненные фильмы пользователя.
+   *
+   * @returns {Request} запрос на сохраненные фильмы пользователя.
+   */
+  getMovies() {
+    return fetch(
+      `${this._baseUrl}/movies`,
+      {
+        credentials: 'include',
+      },
+    )
+      .then(this._getResponseData);
+  }
+
+  /**
+   * Метод отправляет запрос на сохранение фильма.
+   *
+   * @param {String} name Объект информации о фильме
+   * @returns {Request} Запрос на сервер для удаления фильма
+   */
+  saveMovie(movie) {
+    return fetch(
+      `${this._baseUrl}/movies`,
+      {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          // eslint-disable-next-line quotes
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(movie),
+      },
+    )
+      .then(this._getResponseData);
+  }
+
+  /**
+   * Метод отправляет запрос на сервер для удаление фильма.
+   *
+   * @param {String} name Объект информации о фильме
+   * @returns {Request} Запрос на сервер для удаления фильма
+   */
+  deleteMovie(movieId) {
+    return fetch(
+      `${this._baseUrl}/movies/${movieId}`,
+      {
+        method: 'DELETE',
+        credentials: 'include',
+      },
+    )
+      .then(this._getResponseData);
+  }
 }
 
 const mainApi = new MainApi('http://localhost:3000');

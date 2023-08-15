@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * Хук закрывает поп-ап по нажатию клавиши ESC.
+ * Хук закрывает поп-ап по нажатию на клавишу ESC.
  *
  * @param {Object} props
  * @param {Function} props.action Действие при нажатии на кнопку.
