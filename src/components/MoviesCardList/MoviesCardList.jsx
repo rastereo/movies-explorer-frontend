@@ -13,16 +13,17 @@ import { tabletWidth, mobileWidth } from '../../utils/screenWidthConstants';
  *
  * @param {Object} props
  * @param {Array} props.moviesData Массив фильмов.
- * @param {Boolean} props.isDeleteButton Состояние, меняет кнопку "Сохранить фильм"
- * на "Удалить фильм", передается дальше в MoviesCard
+ * @param {Boolean} props.isSavedMovies Состояние меняет компонент
+ * с поиска фильмов на сохраненные фильмы
  * @param {Boolean} props.isLoading Отображать прелоудер
  * @returns {React.ReactElement} <MoviesCardList />
  */
 function MoviesCardList({
   moviesData,
-  isDeleteButton,
+  isSavedMovies,
   isLoading,
   searchHint,
+  // setSearchHint,
   onActionMovie,
   savedMovies,
 }) {
@@ -40,15 +41,21 @@ function MoviesCardList({
    * @returns {void}
    */
   function renderGridFilms() {
-    if (window.innerWidth <= mobileWidth) {
-      setNumberOfFilms(5);
-      setMoreFilms(2);
-    } else if (window.innerWidth <= tabletWidth) {
-      setNumberOfFilms(8);
-      setMoreFilms(2);
+    if (!isSavedMovies) {
+      if (window.innerWidth <= mobileWidth) {
+        setNumberOfFilms(5);
+        setMoreFilms(2);
+      } else if (window.innerWidth <= tabletWidth) {
+        setNumberOfFilms(8);
+        setMoreFilms(2);
+      } else {
+        setNumberOfFilms(12);
+        setMoreFilms(3);
+      }
+    } else if (moviesData !== null) {
+      setNumberOfFilms(moviesData.length);
     } else {
-      setNumberOfFilms(12);
-      setMoreFilms(3);
+      setNumberOfFilms(0);
     }
   }
 
@@ -59,7 +66,7 @@ function MoviesCardList({
   }, [moviesData]);
 
   useEffect(() => {
-    window.addEventListener('resize', renderGridFilms);
+    if (!isSavedMovies) window.addEventListener('resize', renderGridFilms);
 
     return () => window.removeEventListener('resize', renderGridFilms);
   }, []);
@@ -69,9 +76,7 @@ function MoviesCardList({
       {movies === null && !isLoading
         && (
           <h2 className="movies-card-list__search-hint">
-            {searchHint === ''
-              ? 'Чтобы найти фильм, введите ключевое слово в поисковую строку'
-              : `${searchHint}`}
+            {searchHint}
           </h2>
         )}
       {movies !== null
@@ -81,9 +86,9 @@ function MoviesCardList({
               {movies.map((movie, index) => (
                 index < numberOfFilms
                 && (
-                  <li key={movie.id}>
+                  <li key={movie.id || movie.movieId}>
                     <MoviesCard
-                      isDeleteButton={isDeleteButton}
+                      isSavedMovies={isSavedMovies}
                       movie={movie}
                       onActionMovie={onActionMovie}
                       savedMovies={savedMovies}
@@ -92,18 +97,21 @@ function MoviesCardList({
                 )
               ))}
             </ul>
-            <div className="movies-card-list__more">
-              {numberOfFilms < movies.length
-                && (
-                  <button
-                    type="button"
-                    className="movies-card-list__more-film-button link"
-                    onClick={() => setNumberOfFilms(numberOfFilms + moreFilms)}
-                  >
-                    Ещё
-                  </button>
-                )}
-            </div>
+            {!isSavedMovies
+              && (
+                <div className="movies-card-list__more">
+                  {numberOfFilms < movies.length && !isSavedMovies
+                    && (
+                      <button
+                        type="button"
+                        className="movies-card-list__more-film-button link"
+                        onClick={() => setNumberOfFilms(numberOfFilms + moreFilms)}
+                      >
+                        Ещё
+                      </button>
+                    )}
+                </div>
+              )}
           </>
         )}
       {isLoading && <Preloader />}
@@ -115,8 +123,6 @@ MoviesCardList.propTypes = {
   searchHint: PropTypes.string.isRequired,
   // setSearchHint: PropTypes.func.isRequired,
   onActionMovie: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  savedMovies: PropTypes.array.isRequired,
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     country: PropTypes.string,
     created_at: PropTypes.string,
@@ -124,21 +130,26 @@ MoviesCardList.propTypes = {
     director: PropTypes.string,
     duration: PropTypes.number,
     id: PropTypes.number,
-    // eslint-disable-next-line react/forbid-prop-types
-    image: PropTypes.object,
+    image: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+    ]),
     nameEN: PropTypes.string,
     nameRU: PropTypes.string,
     trailerLink: PropTypes.string,
     updated_at: PropTypes.string,
     year: PropTypes.string,
   })),
-  isDeleteButton: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  savedMovies: PropTypes.array,
+  isSavedMovies: PropTypes.bool,
   isLoading: PropTypes.bool,
 };
 
 MoviesCardList.defaultProps = {
   moviesData: null,
-  isDeleteButton: false,
+  savedMovies: null,
+  isSavedMovies: false,
   isLoading: false,
 };
 

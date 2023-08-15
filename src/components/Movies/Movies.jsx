@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './Movies.css';
@@ -25,6 +26,12 @@ function Movies({
   savedMovies,
   onShort,
 }) {
+  useEffect(() => {
+    if (moviesData === null) {
+      setSearchHint('Чтобы найти фильм, введите ключевое слово в поисковую строку');
+    }
+  }, [moviesData]);
+
   return (
     <main className="movies">
       <h1 className="visually-hidden">Фильмы</h1>
@@ -32,6 +39,7 @@ function Movies({
         name="movie"
         onSearch={onSearch}
         onShort={onShort}
+        isDisabled={isLoading}
       />
       <MoviesCardList
         moviesData={moviesData}
@@ -52,8 +60,6 @@ Movies.propTypes = {
   onSearch: PropTypes.func.isRequired,
   onActionMovie: PropTypes.func.isRequired,
   onShort: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  savedMovies: PropTypes.array.isRequired,
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     nameRU: PropTypes.string,
     duration: PropTypes.number,
@@ -61,10 +67,13 @@ Movies.propTypes = {
     image: PropTypes.object,
     movieId: PropTypes.number,
   })),
+  // eslint-disable-next-line react/forbid-prop-types
+  savedMovies: PropTypes.array,
 };
 
 Movies.defaultProps = {
   moviesData: null,
+  savedMovies: null,
 };
 
 export default Movies;

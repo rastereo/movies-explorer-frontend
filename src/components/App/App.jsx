@@ -36,7 +36,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   // Текущее значение состояния найденных фильмов с BeatFilm.
   const [foundMovies, setFoundMovies] = useState(null);
-  // Текущее значение состояния подсказки при поиске фильма.
+  // Текущее значение состояния сохраненных фильмов.
   const [savedMovies, setSavedMovies] = useState(null);
   // Текущее значение состояния подсказки при поиске фильма.
   const [searchHint, setSearchHint] = useState('');
@@ -90,13 +90,15 @@ function App() {
 
   /**
    * Функция выход из аккаунта.
-   *
    */
   function signOutAccount() {
     mainApi.signOut()
       .then(() => {
         setIsLoggedIn(false);
+
         setCurrentUser(null);
+        setFoundMovies(null);
+        setSavedMovies(null);
 
         localStorage.clear();
 
@@ -152,10 +154,16 @@ function App() {
    * @returns {void}
    */
   function checkToken() {
+    const path = location.pathname;
+
     mainApi.validateToken()
       .then((user) => {
         setIsLoggedIn(true);
         setCurrentUser(user.data);
+
+        if (path !== '/signin' && path !== '/signup') {
+          navigate(path);
+        }
       })
       .catch((err) => console.log(err));
   }
@@ -171,7 +179,7 @@ function App() {
     mainApi.patchProfile(name, email)
       .then((user) => {
         setCurrentUser(user.data);
-        handleInfoTooltip('Данные в профиле изменены!', false);
+        handleInfoTooltip('Данные в профиле изменены!');
       })
       .catch((err) => {
         handleInfoTooltip(err.message, true);
@@ -190,16 +198,21 @@ function App() {
       if (savedMovies !== null) {
         setSavedMovies((movies) => [...movies, movie]);
       } else {
-        setSavedMovies(movie);
+        setSavedMovies([movie]);
       }
     } else {
-      // eslint-disable-next-line max-len
-      setSavedMovies((movies) => movies.filter((savedMovie) => savedMovie.movieId !== movie.movieId));
+      setSavedMovies((movies) => {
+        const filterMovies = movies.filter((savedMovie) => savedMovie.movieId !== movie.movieId);
+
+        if (filterMovies.length === 0) return null;
+
+        return filterMovies;
+      });
     }
   }
 
   /**
-   * Функция поиска фильмов на сервер BeatFilm.
+   * Функция поиска фильмов на сервере BeatFilm.
    *
    * @param {String} nameMovie Фильм, который ищем
    * @param {Boolean} short Искать короткометражку
@@ -293,9 +306,9 @@ function App() {
                 moviesData={foundMovies}
                 savedMovies={savedMovies}
                 searchHint={searchHint}
+                setSearchHint={setSearchHint}
                 onSearch={searchMovies}
                 onActionMovie={handleActionMovies}
-                setSearchHint={setSearchHint}
                 isLoading={isLoading}
                 isLoggedIn={isLoggedIn}
                 onShort={handleCheckboxShortMovies}
@@ -312,7 +325,11 @@ function App() {
               <ProtectedRouteElement
                 element={SavedMovies}
                 isLoggedIn={isLoggedIn}
-                moviesData={SavedMovies}
+                moviesData={savedMovies}
+                isLoading={isLoading}
+                onActionMovie={handleActionMovies}
+                searchHint={searchHint}
+                setSearchHint={setSearchHint}
               />
               <Footer />
             </>

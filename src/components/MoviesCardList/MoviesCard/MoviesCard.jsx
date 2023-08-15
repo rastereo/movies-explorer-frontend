@@ -11,16 +11,18 @@ import mainApi from '../../../utils/MainApi';
  *
  * @param {Object} props
  * @param {Object} props.movie Информация о фильме
- * @param {Boolean} props.isDeleteButton Состояние, меняет кнопку
- * "Сохранить фильм" на "Удалить фильм".
+ * @param {Boolean} props.isSavedMovies Состояние меняет компонент
+ * с поиска фильмов на сохраненные фильмы
  * @returns {React.ReactElement} MoviesCardList
  */
 function MoviesCard({
   movie,
-  isDeleteButton,
+  isSavedMovies,
   onActionMovie,
   savedMovies,
 }) {
+  // const [movieData, setMovieData] = useState(null);
+
   const {
     country,
     director,
@@ -32,9 +34,10 @@ function MoviesCard({
     id,
     nameRU,
     nameEN,
-    // saved,
+    // thumbnail,
   } = movie;
 
+  // Состояние добавление фильма в профиль.
   const [isSave, setIsSave] = useState(false);
 
   /**
@@ -51,20 +54,6 @@ function MoviesCard({
 
     return url;
   }
-
-  const movieData = {
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image: createAbsoluteImageUrl(image.url),
-    trailerLink,
-    thumbnail: createAbsoluteImageUrl(image.formats.thumbnail.url),
-    movieId: id,
-    nameRU,
-    nameEN,
-  };
 
   /**
  * Функция преобразовывает минуты в строку продолжительность фильма.
@@ -86,32 +75,44 @@ function MoviesCard({
    * @returns {void}
    */
   function handleSaveMovie() {
-    if (!isSave) {
-      mainApi.saveMovie(movieData)
+    if (!isSave && !isSavedMovies) {
+      mainApi.saveMovie({
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image: createAbsoluteImageUrl(image.url),
+        trailerLink,
+        thumbnail: createAbsoluteImageUrl(image.formats.thumbnail.url),
+        movieId: id,
+        nameRU,
+        nameEN,
+      })
         .then((savedMovie) => {
           setIsSave(true);
           onActionMovie(savedMovie.data, true);
         })
         .catch((err) => console.log(err.message));
     } else {
-      mainApi.deleteMovie(id)
+      mainApi.deleteMovie(isSavedMovies ? movie.movieId : id)
         .then((deleteMovie) => {
           setIsSave(false);
-          onActionMovie(deleteMovie.data, false);
+          onActionMovie(deleteMovie.data);
         })
         .catch((err) => console.log(err.message));
     }
   }
 
   useEffect(() => {
-    if (savedMovies) {
+    if (savedMovies !== null) {
       savedMovies.forEach((saveMovie) => {
         if (saveMovie.movieId === movie.id) {
           setIsSave(true);
         }
       });
     }
-  }, [movie.id, savedMovies]);
+  }, [savedMovies]);
 
   return (
     <article className="movies-card">
@@ -132,16 +133,17 @@ function MoviesCard({
           </div>
         </div>
         <img
-          src={createAbsoluteImageUrl(image.url)}
+          src={isSavedMovies ? image : createAbsoluteImageUrl(image.url)}
           alt={`Кадр из фильма «${nameRU}»`}
           className="movies-card__image"
         />
       </Link>
-      {isDeleteButton
+      {isSavedMovies
         ? (
           <button
             type="button"
             aria-label="Удалить фильм"
+            onClick={handleSaveMovie}
             className="movies-card__button movies-card__button_icon_delete link"
           >
           </button>
@@ -164,12 +166,13 @@ MoviesCard.propTypes = {
   movie: PropTypes.object.isRequired,
   onActionMovie: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  savedMovies: PropTypes.array.isRequired,
-  isDeleteButton: PropTypes.bool,
+  savedMovies: PropTypes.array,
+  isSavedMovies: PropTypes.bool,
 };
 
 MoviesCard.defaultProps = {
-  isDeleteButton: false,
+  isSavedMovies: false,
+  savedMovies: null,
 };
 
 export default MoviesCard;

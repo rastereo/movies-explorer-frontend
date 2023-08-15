@@ -13,7 +13,12 @@ import UseSearchHistory from '../../hooks/useSearchHistory';
  * @param {Function} props.onSearch Функция обработки поиска фильмов
  * @returns {React.ReactElement} <SearchForm />
  */
-function SearchForm({ name, onSearch, onShort }) {
+function SearchForm({
+  name,
+  onSearch,
+  onShort,
+  isDisabled,
+}) {
   // Название фильма из поисковой строки.
   const [movie, setMovie] = useState('');
   // Искать короткометражки.
@@ -31,6 +36,11 @@ function SearchForm({ name, onSearch, onShort }) {
     onSearch(movie, short);
   }
 
+  /**
+   * Функция обработки чекбокса
+   *
+   * @param {Event} evt Состояние чекбокса
+   */
   function handleCheckbox(evt) {
     setShort(evt.target.checked);
 
@@ -52,13 +62,15 @@ function SearchForm({ name, onSearch, onShort }) {
             value={movie}
             required
             onChange={(evt) => setMovie(evt.target.value)}
+            disabled={isDisabled}
             placeholder="Фильм"
             className="search-form__input"
           />
           <button
             type="submit"
             aria-label="Подтвердить поиск фильма"
-            className="search-form__submit link"
+            disabled={isDisabled}
+            className={`search-form__submit link ${isDisabled && 'search-form__submit_disabled'}`}
           >
           </button>
         </div>
@@ -74,10 +86,11 @@ function SearchForm({ name, onSearch, onShort }) {
               onChange={(evt) => handleCheckbox(evt)}
               value={short}
               checked={short}
+              disabled={isDisabled}
               id="shortMovie"
               className="search-form__checkbox visually-hidden"
             />
-            <span className="search-form__slider"></span>
+            <span className={`search-form__slider ${isDisabled && 'search-form__slider_disabled'}`}></span>
           </div>
         </label>
       </form>
@@ -97,6 +110,11 @@ SearchForm.propTypes = {
   name: PropTypes.string.isRequired,
   onSearch: PropTypes.func.isRequired,
   onShort: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool,
+};
+
+SearchForm.defaultProps = {
+  isDisabled: false,
 };
 
 export default SearchForm;
