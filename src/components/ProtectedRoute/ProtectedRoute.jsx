@@ -2,6 +2,11 @@ import { Navigate } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
+/**
+ * HOC компонент для защиты роутов.
+ *
+ * @returns {React.ReactElement}
+ */
 function ProtectedRouteElement({ element: Component, isLoggedIn, ...props }) {
   return (
     isLoggedIn

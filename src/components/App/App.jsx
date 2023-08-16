@@ -27,15 +27,17 @@ import { regexEnglishLanguage } from '../../utils/regexConstants';
 /**
  * Корневой компонент приложения.
  *
- * @returns {React.ReactElement} App
+ * @returns {React.ReactElement}
  */
 function App() {
   // Текущее значение состояния авторизации пользователя на сайте.
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Текущее значение состояния информации о зарегистрированном пользователе.
   const [currentUser, setCurrentUser] = useState(null);
-  // Текущее значение состояния найденных фильмов с BeatFilm.
-  const [foundMovies, setFoundMovies] = useState(null);
+  // Текущее значение состояния фильмов с BeatFilm.
+  const [movies, setMovies] = useState(null);
+  // Текущее значение состояния найденных фильмов.
+  const [foundedMovies, setFoundedMovies] = useState(null);
   // Текущее значение состояния сохраненных фильмов.
   const [savedMovies, setSavedMovies] = useState(null);
   // Текущее значение состояния подсказки при поиске фильма.
@@ -97,14 +99,14 @@ function App() {
         setIsLoggedIn(false);
 
         setCurrentUser(null);
-        setFoundMovies(null);
+        setFoundedMovies(null);
         setSavedMovies(null);
 
         localStorage.clear();
 
-        navigate('/');
+        navigate('/', { replace: true });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => handleInfoTooltip(err.message, true));
   }
 
   /**
@@ -123,9 +125,7 @@ function App() {
 
         handleInfoTooltip('Вы успешно зарегистрировались!');
       })
-      .catch((err) => {
-        handleInfoTooltip(err.message, true);
-      })
+      .catch((err) => handleInfoTooltip(err.message, true))
       .finally(() => setIsLoading(false));
   }
 
@@ -142,38 +142,15 @@ function App() {
       .then((user) => {
         signInAccount(user.data);
       })
-      .catch((err) => {
-        handleInfoTooltip(err.message, true);
-      })
+      .catch((err) => handleInfoTooltip(err.message, true))
       .finally(() => setIsLoading(false));
   }
 
   /**
-   * Функция проверяет валидность JWT токена.
-   *
-   * @returns {void}
-   */
-  function checkToken() {
-    const path = location.pathname;
-
-    mainApi.validateToken()
-      .then((user) => {
-        setIsLoggedIn(true);
-        setCurrentUser(user.data);
-
-        if (path !== '/signin' && path !== '/signup') {
-          navigate(path);
-        }
-      })
-      .catch((err) => console.log(err));
-  }
-
-  /**
-   * Функция обработки запроса на изменение профиля.
+   * Функция обработки запроса на изменение профиля пользователя.
    *
    * @param {Sting} name Имя
    * @param {String} email Почта
-   * @returns {Response}
    */
   function handleUpdateProfile(name, email) {
     mainApi.patchProfile(name, email)
@@ -191,23 +168,61 @@ function App() {
    *
    * @param {String} movie Информация о фильме
    * @param {Boolean} isSave Сохранить фильм
-   * @param {void}
    */
   function handleActionMovies(movie, isSave) {
     if (isSave) {
       if (savedMovies !== null) {
-        setSavedMovies((movies) => [...movies, movie]);
+        setSavedMovies((movieList) => [...movieList, movie]);
       } else {
         setSavedMovies([movie]);
       }
     } else {
-      setSavedMovies((movies) => {
-        const filterMovies = movies.filter((savedMovie) => savedMovie.movieId !== movie.movieId);
+      setSavedMovies((movieList) => {
+        const filterMovieList = movieList.filter((
+          (savedMovie) => savedMovie.movieId !== movie.movieId
+        ));
 
-        if (filterMovies.length === 0) return null;
+        if (filterMovieList.length === 0) return null;
 
-        return filterMovies;
+        return filterMovieList;
       });
+    }
+  }
+
+  /**
+   * Функция фильтрации фильмов.
+   *
+   * @param {String} movieList Список Фильмов
+   * @param {String} nameMovie Название фильма
+   * @param {Boolean} short Искать короткометражки
+   */
+  function filterMovies(movieList, nameMovie, short) {
+    const lowerCaseName = nameMovie.toLowerCase();
+
+    let result = [];
+
+    let languageName = 'nameRU';
+
+    if (regexEnglishLanguage.test(lowerCaseName)) {
+      languageName = 'nameEN';
+    }
+
+    result = movieList.filter((movie) => (
+      movie[languageName].toLowerCase().includes(lowerCaseName)
+    ));
+
+    if (short) {
+      result = result.filter((item) => item.duration < 40);
+    }
+
+    if (result.length !== 0) {
+      setFoundedMovies(result);
+
+      localStorage.setItem('saved-search-history', JSON.stringify({ nameMovie, short }));
+    } else {
+      setSearchHint('Ничего не найдено');
+
+      localStorage.clear();
     }
   }
 
@@ -218,62 +233,66 @@ function App() {
    * @param {Boolean} short Искать короткометражку
    */
   function searchMovies(nameMovie, short) {
-    const lowerCaseName = nameMovie.toLowerCase();
-
-    let languageName = 'nameRU';
-
-    if (regexEnglishLanguage.test(lowerCaseName)) {
-      languageName = 'nameEN';
-    }
-
     setIsLoading(true);
-    setFoundMovies(null);
+    setFoundedMovies(null);
 
-    moviesApi.getMovies()
-      .then((data) => {
-        // eslint-disable-next-line arrow-body-style
-        let result = data.filter((movie) => {
-          return movie[languageName].toLowerCase().includes(lowerCaseName);
-        });
+    if (movies === null) {
+      moviesApi.getMovies()
+        .then((data) => {
+          setMovies(data);
 
-        if (short) {
-          result = result.filter((item) => item.duration < 40);
-        }
+          filterMovies(data, nameMovie, short);
+        })
+        .catch((err) => {
+          setSearchHint('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
 
-        if (result.length !== 0) {
-          setFoundMovies(result);
+          // eslint-disable-next-line no-console
+          console.log(err.message);
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      filterMovies(movies, nameMovie, short);
 
-          localStorage.setItem('saved-search-history', JSON.stringify({ nameMovie, short }));
-        } else {
-          setSearchHint('Ничего не найдено');
-
-          localStorage.clear();
-        }
-      })
-      .catch((err) => {
-        setSearchHint('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
-
-        console.log(err.message);
-      })
-      .finally(() => setIsLoading(false));
+      setIsLoading(false);
+    }
   }
 
   /**
    * Функция обработки кнопки checkbox короткометражных фильмов.
    *
    * @param {String} name Название фильма
-   * @param {Boolean} isChecked состояние чекбокса
+   * @param {Boolean} isChecked Состояние чекбокса
    */
   function handleCheckboxShortMovies(name, isChecked) {
     if (name !== '') searchMovies(name, isChecked);
   }
 
   useEffect(() => {
+    /**
+     * Функция проверяет валидность JWT токена.
+     */
+    function checkToken() {
+      const path = location.pathname;
+
+      mainApi.validateToken()
+        .then((user) => {
+          setIsLoggedIn(true);
+          setCurrentUser(user.data);
+
+          if (path !== '/signin' && path !== '/signup') {
+            navigate(path, { replace: true });
+          } else {
+            navigate('/movies', { replace: true });
+          }
+        })
+        // eslint-disable-next-line no-console
+        .catch((err) => console.log(err));
+    }
+
     if (isLoggedIn) {
       mainApi.getMovies()
-        .then((movies) => {
-          setSavedMovies(movies.data);
-        })
+        .then((movieList) => setSavedMovies(movieList.data))
+        // eslint-disable-next-line no-console
         .catch((err) => console.log(err.message));
     } else {
       checkToken();
@@ -303,15 +322,15 @@ function App() {
               <Header isLoggedIn={isLoggedIn} />
               <ProtectedRouteElement
                 element={Movies}
-                moviesData={foundMovies}
+                isLoggedIn={isLoggedIn}
+                moviesData={foundedMovies}
                 savedMovies={savedMovies}
                 searchHint={searchHint}
                 setSearchHint={setSearchHint}
                 onSearch={searchMovies}
+                onShort={handleCheckboxShortMovies}
                 onActionMovie={handleActionMovies}
                 isLoading={isLoading}
-                isLoggedIn={isLoggedIn}
-                onShort={handleCheckboxShortMovies}
               />
               <Footer />
             </>
@@ -353,8 +372,8 @@ function App() {
           path="/signin"
           element={(
             <Login
-              isLoading={isLoading}
               onLogin={handleLogin}
+              isLoading={isLoading}
             />
           )}
         />
@@ -362,8 +381,8 @@ function App() {
           path="/signup"
           element={(
             <Register
-              isLoading={isLoading}
               onRegister={handleRegister}
+              isLoading={isLoading}
             />
           )}
         />

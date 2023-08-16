@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import logo from '../../images/logo.svg';
 import MainForm from '../MainForm/MainForm';
 import Preloader from '../Preloader/Preloader';
 
 import UseFormAndValidation from '../../hooks/useFormAndValidation';
+
+import logo from '../../images/logo.svg';
 
 /**
  * Компонент страницы регистрации.
@@ -14,7 +15,7 @@ import UseFormAndValidation from '../../hooks/useFormAndValidation';
  * @param {Object} props
  * @param {Function} props.onRegister Отправить запрос регистрации на сервер
  * @param {Boolean} props.isLoading Отображать прелоудер
- * @returns {React.ReactElement} Register
+ * @returns {React.ReactElement}
  */
 function Register({ onRegister, isLoading }) {
   // Имя пользователя при регистрации.
@@ -33,11 +34,10 @@ function Register({ onRegister, isLoading }) {
   } = UseFormAndValidation();
 
   /**
-   * Функция добавляет контент из инпута в выбранный стейт
+   * Функция добавляет контент из инпута в выбранный стейт.
    *
    * @param {ReferenceState} setState Название сэтера состояния.
    * @param {Event} evt Событие из которого нужно извлечь текст.
-   * @returns {void}
    */
   function handleChangeValue(setState, evt) {
     setState(evt.target.value);
@@ -49,7 +49,6 @@ function Register({ onRegister, isLoading }) {
    * Функция обработчик отправки формы.
    *
    * @param {Event} evt Событие submit.
-   * @returns {void}
    */
   function handleSubmit(evt) {
     evt.preventDefault();

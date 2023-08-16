@@ -11,7 +11,9 @@ import UseSearchHistory from '../../hooks/useSearchHistory';
  * @param {Object} props
  * @param {String} props.name Имя формы
  * @param {Function} props.onSearch Функция обработки поиска фильмов
- * @returns {React.ReactElement} <SearchForm />
+ * @param {Function} props.onShort Функция обработки поиска короткометражек
+ * @param {Boolean} props.isDisabled Заблокировать форму поиска
+ * @returns {React.ReactElement}
  */
 function SearchForm({
   name,
@@ -21,7 +23,7 @@ function SearchForm({
 }) {
   // Название фильма из поисковой строки.
   const [movie, setMovie] = useState('');
-  // Искать короткометражки.
+  // Состояние чекбокса короткометражек.
   const [short, setShort] = useState(false);
 
   /**

@@ -8,10 +8,11 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 /**
  * Компонент страницы изменения профиля.
  *
+ * @param {Object} props
  * @param {Function} props.onUpdate Отправить запрос на изменения
  * информации о пользователе на сервер
- * @param {Function} props.oLogout Выйти из аккаунта
- * @returns {React.ReactElement} Profile
+ * @param {Function} props.onLogout Выйти из аккаунта
+ * @returns {React.ReactElement}
  */
 function Profile({ onUpdate, onLogout }) {
   // Имя пользователя в профиле.
@@ -21,7 +22,6 @@ function Profile({ onUpdate, onLogout }) {
   // Заголовок профиля с именем пользователя.
   const [title, setTitle] = useState(`Привет, ${name}!`);
 
-  // eslint-disable-next-line no-unused-vars
   const currentUser = useContext(CurrentUserContext);
 
   const {
@@ -30,6 +30,12 @@ function Profile({ onUpdate, onLogout }) {
     isValid,
   } = UseFormAndValidation();
 
+  /**
+   * Функция добавляет в выбранный state информацию.
+   *
+   * @param {Function} setState В какой state добавить информацию
+   * @param {Event} evt Ввод информации пользователя
+   */
   function handleChangeValue(setState, evt) {
     setState(evt.target.value);
 
@@ -37,7 +43,7 @@ function Profile({ onUpdate, onLogout }) {
   }
 
   /**
-   * Функция обработка submit.
+   * Функция обработки submit.
    *
    * @param {Event} evt Событие submit формы
    */

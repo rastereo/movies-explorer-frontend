@@ -2,17 +2,20 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import logo from '../../images/logo.svg';
 import MainForm from '../MainForm/MainForm';
-import UseFormAndValidation from '../../hooks/useFormAndValidation';
 import Preloader from '../Preloader/Preloader';
+
+import UseFormAndValidation from '../../hooks/useFormAndValidation';
+
+import logo from '../../images/logo.svg';
 
 /**
  * Компонент страницы авторизации.
  *
+ * @param {Object} props
  * @param {Function} props.onLogin Отправить запрос авторизации на сервер
  * @param {Boolean} props.isLoading Отображать прелоудер
- * @returns {React.ReactElement} Login
+ * @returns {React.ReactElement}
  */
 function Login({ onLogin, isLoading }) {
   // Электронная почта пользователя при авторизации.
@@ -27,12 +30,23 @@ function Login({ onLogin, isLoading }) {
     resetForm,
   } = UseFormAndValidation();
 
+  /**
+   * Функция добавляет контент из инпута в выбранный стейт
+   *
+   * @param {ReferenceState} setState Название сэтера состояния.
+   * @param {Event} evt Событие из которого нужно извлечь текст.
+   */
   function handleChangeValue(setState, evt) {
     setState(evt.target.value);
 
     handleChangeValidation(evt);
   }
 
+  /**
+   * Функция обработчик отправки формы.
+   *
+   * @param {Event} evt Событие submit.
+   */
   function handleSubmit(evt) {
     evt.preventDefault();
 

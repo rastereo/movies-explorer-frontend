@@ -2,12 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './Navigation.css';
+
 import { tabletWidth } from '../../utils/screenWidthConstants';
 
 /**
  * Компонент, который отвечает за меню навигации на сайте.
  *
- * @returns {React.ReactElement} Navigation
+ * @returns {React.ReactElement}
  */
 function Navigation() {
   // Состояние, если экран по ширине меньше 768px.

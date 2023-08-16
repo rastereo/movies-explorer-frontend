@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './MoviesCardList.css';
+
 import MoviesCard from './MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
@@ -12,22 +13,24 @@ import { tabletWidth, mobileWidth } from '../../utils/screenWidthConstants';
  * фильмов на страницу и их количеством.
  *
  * @param {Object} props
- * @param {Array} props.moviesData Массив фильмов.
+ * @param {Array} props.moviesData Массив фильмов
+ * @param {Array} props.savedMovies Массив сохраненных фильмов пользователем
+ * @param {String} props.searchHint Текст для подсказки
+ * @param {Function} props.onActionMovie Сохранить/удалить фильм
  * @param {Boolean} props.isSavedMovies Состояние меняет компонент
  * с поиска фильмов на сохраненные фильмы
  * @param {Boolean} props.isLoading Отображать прелоудер
- * @returns {React.ReactElement} <MoviesCardList />
+ * @returns {React.ReactElement}
  */
 function MoviesCardList({
   moviesData,
+  savedMovies,
+  searchHint,
+  onActionMovie,
   isSavedMovies,
   isLoading,
-  searchHint,
-  // setSearchHint,
-  onActionMovie,
-  savedMovies,
 }) {
-  // eslint-disable-next-line no-unused-vars
+  // Список фильмов для отрисовки в на странице
   const [movies, setMovies] = useState(null);
   // Количество фильмов на странице
   const [numberOfFilms, setNumberOfFilms] = useState(0);
@@ -37,8 +40,6 @@ function MoviesCardList({
   /**
    * Функция меняет конфигурацию отображения карточек на странице,
    * в зависимости от размера экрана.
-   *
-   * @returns {void}
    */
   function renderGridFilms() {
     if (!isSavedMovies) {
@@ -121,7 +122,6 @@ function MoviesCardList({
 
 MoviesCardList.propTypes = {
   searchHint: PropTypes.string.isRequired,
-  // setSearchHint: PropTypes.func.isRequired,
   onActionMovie: PropTypes.func.isRequired,
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     country: PropTypes.string,
@@ -140,8 +140,7 @@ MoviesCardList.propTypes = {
     updated_at: PropTypes.string,
     year: PropTypes.string,
   })),
-  // eslint-disable-next-line react/forbid-prop-types
-  savedMovies: PropTypes.array,
+  savedMovies: PropTypes.arrayOf(PropTypes.object),
   isSavedMovies: PropTypes.bool,
   isLoading: PropTypes.bool,
 };

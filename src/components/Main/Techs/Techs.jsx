@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 
 import './Techs.css';
+
 import TitleSection from '../TitleSection/TitleSection';
 
 /**
  * Компонент с использованными технологиями.
  *
- * @returns {React.ReactElement} Techs
+ * @returns {React.ReactElement}
  */
 function Techs() {
   return (
@@ -24,7 +25,7 @@ function Techs() {
               to="https://html.spec.whatwg.org"
               target="_blank"
               rel="noreferrer"
-              className="link"
+              className="techs__link link"
             >
               HTML
             </Link>
@@ -34,7 +35,7 @@ function Techs() {
               to="https://www.w3.org/Style/CSS"
               target="_blank"
               rel="noreferrer"
-              className="link"
+              className="techs__link link"
             >
               CSS
             </Link>
@@ -44,7 +45,7 @@ function Techs() {
               to="https://developer.mozilla.org/ru/docs/Web/JavaScript"
               target="_blank"
               rel="noreferrer"
-              className="link"
+              className="techs__link link"
             >
               JS
             </Link>
@@ -54,7 +55,7 @@ function Techs() {
               to="https://react.dev"
               target="_blank"
               rel="noreferrer"
-              className="link"
+              className="techs__link link"
             >
               React
             </Link>
@@ -64,7 +65,7 @@ function Techs() {
               to="https://git-scm.com"
               target="_blank"
               rel="noreferrer"
-              className="link"
+              className="techs__link link"
             >
               Git
             </Link>
@@ -74,7 +75,7 @@ function Techs() {
               to="https://expressjs.com"
               target="_blank"
               rel="noreferrer"
-              className="link"
+              className="techs__link link"
             >
               Express.js
             </Link>
@@ -84,7 +85,7 @@ function Techs() {
               to="https://www.mongodb.com"
               target="_blank"
               rel="noreferrer"
-              className="link"
+              className="techs__link link"
             >
               mongoDB
             </Link>

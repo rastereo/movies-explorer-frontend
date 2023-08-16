@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import './NotFound.css';
 
 /**
- * Компонент страницы не найдено.
+ * Компонент страницы "Not Found".
  *
- * @returns {React.ReactElement} NotFound
+ * @returns {React.ReactElement}
  */
 function NotFound() {
-  const navigation = useNavigate();
+  // Хук возвращает функцию, которую можно использовать для программной навигации.
+  const navigate = useNavigate();
 
   return (
     <main className="not-found">
@@ -16,7 +17,7 @@ function NotFound() {
       <p className="not-found__description">Страница не найдена</p>
       <button
         type="button"
-        onClick={() => navigation(-1)}
+        onClick={() => navigate(-1, { replace: true })}
         className="not-found__back-button link"
       >
         Назад

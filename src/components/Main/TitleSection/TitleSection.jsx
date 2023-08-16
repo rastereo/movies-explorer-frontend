@@ -9,7 +9,7 @@ import './TitleSection.css';
  * @param {String} props.title Текст в заголовке
  * @param {Boolean} props.isSmall Необязательный пропс который добавляет
  * класс заголовку, делая его меньше, серого цвета и без бордера.
- * @returns {React.ReactElement} NavTab
+ * @returns {React.ReactElement}
  */
 function TitleSection({ title, isSmall }) {
   return (

@@ -1,5 +1,9 @@
+/**
+ * Класс запроса на фильмы сервиса beatfilm
+ */
 class MoviesApi {
   constructor(baseUrl) {
+    // Url на который осуществляется запрос
     this._baseUrl = baseUrl;
   }
 
@@ -7,7 +11,7 @@ class MoviesApi {
  * Метод проверяет ответ с сервера.
  *
  * @param {Response} res Ответ от сервера
- * @returns {Response}
+ * @returns {Object} Тело ответа или ошибка
  */
   _getResponseData(res) {
     if (res.ok) {
@@ -19,9 +23,9 @@ class MoviesApi {
   }
 
   /**
-   * Метод отправляет запрос на получения списка фильмов.
+   * Метод отправляет запрос на получение списка фильмов.
    *
-   * @returns {Request} Запрос на фильмы
+   * @returns {Request} Запрос на список фильмов
    */
   getMovies() {
     return fetch(this._baseUrl)

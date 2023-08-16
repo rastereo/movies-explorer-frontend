@@ -6,7 +6,7 @@ import TitleSection from '../TitleSection/TitleSection';
 /**
  * Компонент со ссылками на другие проекты.
  *
- * @returns {React.ReactElement} Portfolio
+ * @returns {React.ReactElement}
  */
 function Portfolio() {
   return (

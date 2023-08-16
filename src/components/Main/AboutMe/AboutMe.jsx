@@ -7,7 +7,7 @@ import studentPhoto from '../../../images/student-photo.jpg';
 /**
  * Компонент с информацией о студенте.
  *
- * @returns {React.ReactElement} Promo
+ * @returns {React.ReactElement}
  */
 function AboutMe() {
   return (

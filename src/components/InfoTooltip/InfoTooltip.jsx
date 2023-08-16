@@ -15,7 +15,7 @@ import './InfoTooltip.css';
  * @param {String} props.tooltip Текущее значение состояния сообщения
  * в подсказке.
  * @param {Function} props.onClose Функция закрывает поп-ап подсказку.
- * @returns {React.ReactElement} <Movies />
+ * @returns {React.ReactElement}
  */
 function InfoTooltip({
   isOpen,

@@ -8,7 +8,6 @@ import UseChangeBodyBackground from '../../hooks/useChangeBodyBackground';
  *
  * @param {Object} props
  * @param {String} props.name Имя Формы.
- * @param {React.ReactNode} props.children Инпуты формы.
  * @param {String} props.buttonTitle Текст кнопки submit.
  * @param {Boolean} props.isLogin Состояние, при котором
  * меняется отступ сверху у кнопки submit.
@@ -16,16 +15,17 @@ import UseChangeBodyBackground from '../../hooks/useChangeBodyBackground';
  * меняется дизайн кнопки submit.
  * @param {Boolean} props.isValid Валидация формы.
  * @param {Function} props.onSubmit Действие при отправки формы.
- * @returns {React.ReactElement} MainForm.
+ * @param {React.ReactNode} props.children Инпуты формы.
+ * @returns {React.ReactElement}
  */
 function MainForm({
   name,
-  children,
   buttonTitle,
   isLogin,
   isProfile,
   isValid,
   onSubmit,
+  children,
 }) {
   return (
     <form

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './Movies.css';
+
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
@@ -10,27 +11,30 @@ import SearchForm from '../SearchForm/SearchForm';
  *
  * @param {Object} props
  * @param {Array} props.moviesData Массив фильмов
- * @param {Function} props.onSearch Функция обработки поиска фильмов
- * @param {Boolean} props.isLoading Отображать прелоудер
+ * @param {Array} props.savedMovies Массив сохраненных фильмов
  * @param {String} props.searchHint Подсказка при поиске
  * @param {Function} props.setSearchHint Вставить текст в подсказку
- * @returns {React.ReactElement} <Movies />
+ * @param {Function} props.onSearch Обработка поиска фильмов
+ * @param {Function} props.onShort Обработка поиска короткометражек
+ * @param {Function} props.onActionMovie Сохранить/удалить фильм
+ * @param {Boolean} props.isLoading Отображать прелоудер
+ * @returns {React.ReactElement}
  */
 function Movies({
   moviesData,
-  isLoading,
+  savedMovies,
   searchHint,
   setSearchHint,
   onSearch,
-  onActionMovie,
-  savedMovies,
   onShort,
+  onActionMovie,
+  isLoading,
 }) {
   useEffect(() => {
     if (moviesData === null) {
       setSearchHint('Чтобы найти фильм, введите ключевое слово в поисковую строку');
     }
-  }, [moviesData]);
+  }, []);
 
   return (
     <main className="movies">
@@ -63,12 +67,10 @@ Movies.propTypes = {
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     nameRU: PropTypes.string,
     duration: PropTypes.number,
-    // eslint-disable-next-line react/forbid-prop-types
     image: PropTypes.object,
     movieId: PropTypes.number,
   })),
-  // eslint-disable-next-line react/forbid-prop-types
-  savedMovies: PropTypes.array,
+  savedMovies: PropTypes.arrayOf(PropTypes.object),
 };
 
 Movies.defaultProps = {

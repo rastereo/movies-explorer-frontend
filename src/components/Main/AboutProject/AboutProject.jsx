@@ -4,7 +4,7 @@ import TitleSection from '../TitleSection/TitleSection';
 /**
  * Компонент с описанием дипломного проекта.
  *
- * @returns {React.ReactElement} AboutProject
+ * @returns {React.ReactElement}
  */
 function AboutProject() {
   return (

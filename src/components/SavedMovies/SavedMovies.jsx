@@ -12,10 +12,9 @@ import { regexEnglishLanguage } from '../../utils/regexConstants';
  *
  * @param {Object} props
  * @param {Array} props.moviesData Массив фильмов
- * @param {Function} props.onDelete Функция действие над фильмом
  * @param {String} props.searchHint Подсказка при поиске
- * @param {Function} props.setSearchHint Вставить текст в подсказку
- * @returns {React.ReactElement} <SavedMovies />
+ * @param {Function} props.onDelete Функция действие над фильмом
+ * @returns {React.ReactElement}
  */
 function SavedMovies({
   moviesData,
@@ -26,14 +25,13 @@ function SavedMovies({
   // Список отфильтрованных поиском фильмов
   const [filterMovies, setFilterMovies] = useState(null);
   // Заблокировать форму, когда нет сохраненных фильмов
-  // eslint-disable-next-line no-unused-vars
   const [isDisabledForm, setIsDisabledForm] = useState(false);
 
   /**
-   * Функция поиска сохраненных фильмов.
+   * Функция поиска по сохраненным фильмам.
    *
    * @param {String} nameSavedMovie Название фильма
-   * @param {Boolean} short Короткометражка
+   * @param {Boolean} short Искать короткометражку
    */
   function searchSavedMovies(nameSavedMovie, short) {
     const lowerCaseName = nameSavedMovie.toLowerCase();
@@ -45,10 +43,10 @@ function SavedMovies({
     if (regexEnglishLanguage.test(lowerCaseName)) {
       languageName = 'nameEN';
     }
-    // eslint-disable-next-line arrow-body-style
-    let result = moviesData.filter((movie) => {
-      return movie[languageName].toLowerCase().includes(lowerCaseName);
-    });
+
+    let result = moviesData.filter((movie) => (
+      movie[languageName].toLowerCase().includes(lowerCaseName)
+    ));
 
     if (short) {
       result = result.filter((item) => item.duration < 40);
@@ -68,7 +66,7 @@ function SavedMovies({
       setIsDisabledForm(true);
       setSearchHint('Нет сохраненных фильмов');
     }
-  }, [moviesData, isDisabledForm]);
+  }, [moviesData, isDisabledForm, setSearchHint]);
 
   return (
     <main className="movies movies_padding_bottom">

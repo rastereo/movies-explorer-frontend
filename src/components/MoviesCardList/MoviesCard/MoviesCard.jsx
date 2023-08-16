@@ -11,17 +11,20 @@ import mainApi from '../../../utils/MainApi';
  *
  * @param {Object} props
  * @param {Object} props.movie Информация о фильме
+ * @param {Array} props.savedMovies Список сохраненных фильмов
+ * @param {Function} props.onActionMovie Сохранить/удалить фильм
  * @param {Boolean} props.isSavedMovies Состояние меняет компонент
  * с поиска фильмов на сохраненные фильмы
- * @returns {React.ReactElement} MoviesCardList
+ * @returns {React.ReactElement}
  */
 function MoviesCard({
   movie,
-  isSavedMovies,
-  onActionMovie,
   savedMovies,
+  onActionMovie,
+  isSavedMovies,
 }) {
-  // const [movieData, setMovieData] = useState(null);
+  // Состояние добавление фильма в профиль.
+  const [isSave, setIsSave] = useState(false);
 
   const {
     country,
@@ -34,11 +37,7 @@ function MoviesCard({
     id,
     nameRU,
     nameEN,
-    // thumbnail,
   } = movie;
-
-  // Состояние добавление фильма в профиль.
-  const [isSave, setIsSave] = useState(false);
 
   /**
    * Функция преобразовывает путь до фотографии из относительного
@@ -48,25 +47,21 @@ function MoviesCard({
    * @returns {String}
    */
   function createAbsoluteImageUrl(url) {
-    if (!url.includes('https://')) {
-      return `https://api.nomoreparties.co${url}`;
-    }
-
-    return url;
+    return !url.includes('https://')
+      ? `https://api.nomoreparties.co${url}`
+      : url;
   }
 
   /**
- * Функция преобразовывает минуты в строку продолжительность фильма.
- *
- * @param {Number} minutes Минуты из БД
- * @returns {String}
- */
+   * Функция преобразовывает минуты в строку продолжительность фильма.
+   *
+   * @param {Number} minutes Минуты из БД
+   * @returns {String}
+   */
   function getTime(minutes) {
-    if (minutes < 60) {
-      return `${minutes % 60}м`;
-    }
-
-    return `${Math.floor(minutes / 60)}ч${minutes % 60}м`;
+    return minutes < 60
+      ? `${minutes % 60}м`
+      : `${Math.floor(minutes / 60)}ч${minutes % 60}м`;
   }
 
   /**
@@ -93,6 +88,7 @@ function MoviesCard({
           setIsSave(true);
           onActionMovie(savedMovie.data, true);
         })
+        // eslint-disable-next-line no-console
         .catch((err) => console.log(err.message));
     } else {
       mainApi.deleteMovie(isSavedMovies ? movie.movieId : id)
@@ -100,6 +96,7 @@ function MoviesCard({
           setIsSave(false);
           onActionMovie(deleteMovie.data);
         })
+        // eslint-disable-next-line no-console
         .catch((err) => console.log(err.message));
     }
   }
@@ -112,7 +109,7 @@ function MoviesCard({
         }
       });
     }
-  }, [savedMovies]);
+  }, [movie.id, savedMovies]);
 
   return (
     <article className="movies-card">
@@ -162,11 +159,9 @@ function MoviesCard({
 }
 
 MoviesCard.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   movie: PropTypes.object.isRequired,
   onActionMovie: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  savedMovies: PropTypes.array,
+  savedMovies: PropTypes.arrayOf(PropTypes.object),
   isSavedMovies: PropTypes.bool,
 };
 
