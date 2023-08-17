@@ -23,6 +23,13 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
 import { regexEnglishLanguage } from '../../utils/regexConstants';
+import {
+  lengthShortFilms,
+  messageNothingFound,
+  messageProfileChanged,
+  messageServerError,
+  messageSuccessfullyRegistered,
+} from '../../utils/constants';
 
 /**
  * Корневой компонент приложения.
@@ -123,7 +130,7 @@ function App() {
       .then((user) => {
         signInAccount(user.data);
 
-        handleInfoTooltip('Вы успешно зарегистрировались!');
+        handleInfoTooltip(messageSuccessfullyRegistered);
       })
       .catch((err) => handleInfoTooltip(err.message, true))
       .finally(() => setIsLoading(false));
@@ -156,7 +163,7 @@ function App() {
     mainApi.patchProfile(name, email)
       .then((user) => {
         setCurrentUser(user.data);
-        handleInfoTooltip('Данные в профиле изменены!');
+        handleInfoTooltip(messageProfileChanged);
       })
       .catch((err) => {
         handleInfoTooltip(err.message, true);
@@ -212,7 +219,7 @@ function App() {
     ));
 
     if (short) {
-      result = result.filter((item) => item.duration < 40);
+      result = result.filter((item) => item.duration < lengthShortFilms);
     }
 
     if (result.length !== 0) {
@@ -220,7 +227,7 @@ function App() {
 
       localStorage.setItem('saved-search-history', JSON.stringify({ nameMovie, short }));
     } else {
-      setSearchHint('Ничего не найдено');
+      setSearchHint(messageNothingFound);
 
       localStorage.clear();
     }
@@ -244,7 +251,7 @@ function App() {
           filterMovies(data, nameMovie, short);
         })
         .catch((err) => {
-          setSearchHint('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+          setSearchHint(messageServerError);
 
           // eslint-disable-next-line no-console
           console.log(err.message);
@@ -282,7 +289,7 @@ function App() {
           if (path !== '/signin' && path !== '/signup') {
             navigate(path, { replace: true });
           } else {
-            navigate('/movies', { replace: true });
+            navigate('/', { replace: true });
           }
         })
         // eslint-disable-next-line no-console
@@ -329,6 +336,7 @@ function App() {
                 setSearchHint={setSearchHint}
                 onSearch={searchMovies}
                 onShort={handleCheckboxShortMovies}
+                onError={handleInfoTooltip}
                 onActionMovie={handleActionMovies}
                 isLoading={isLoading}
               />
@@ -345,8 +353,8 @@ function App() {
                 element={SavedMovies}
                 isLoggedIn={isLoggedIn}
                 moviesData={savedMovies}
-                isLoading={isLoading}
                 onActionMovie={handleActionMovies}
+                onError={handleInfoTooltip}
                 searchHint={searchHint}
                 setSearchHint={setSearchHint}
               />

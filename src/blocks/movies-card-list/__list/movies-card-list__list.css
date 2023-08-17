@@ -4,14 +4,14 @@
   gap: 30px 24px;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 768px) {
   .movies-card-list__list {
     grid-template-columns: repeat(2, 1fr);
     gap: 36px 30px;
   }
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 480px) {
   .movies-card-list__list {
     grid-template-columns: repeat(1, 100%);
     gap: 16px;

@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 
 import { regexName, regexEmail } from '../utils/regexConstants';
+import { messageErrorValidEmail, messageErrorValidName } from '../utils/constants';
 
 /**
  * Хук валидации формы.
@@ -22,14 +23,14 @@ function useFormAndValidation() {
       && value !== ''
       && !regexName.test(value)
     ) {
-      setErrors({ ...errors, [name]: 'Только латиница, кириллица, пробел или дефис.' });
+      setErrors({ ...errors, [name]: messageErrorValidName });
       setIsValid(false);
     } else if (
       name === 'email'
       && value !== ''
       && !regexEmail.test(value)
     ) {
-      setErrors({ ...errors, [name]: 'Неверный формат эл. почты' });
+      setErrors({ ...errors, [name]: messageErrorValidEmail });
       setIsValid(false);
     } else {
       setErrors({ ...errors, [name]: evt.target.validationMessage });

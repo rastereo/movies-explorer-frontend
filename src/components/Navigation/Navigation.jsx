@@ -54,6 +54,8 @@ function Navigation() {
       }
     }
 
+    changeIsSize();
+
     window.addEventListener('resize', changeIsSize);
 
     return () => window.removeEventListener('resize', changeIsSize);

@@ -7,6 +7,13 @@ import MoviesCard from './MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
 import { tabletWidth, mobileWidth } from '../../utils/screenWidthConstants';
+import {
+  desktopMoreFilms,
+  desktopNumberOfFilms,
+  mobileMoreFilms,
+  mobileNumberOfFilms,
+  tabletNumberOfFilms,
+} from '../../utils/constants';
 
 /**
  * Компонент, который управляет отрисовкой карточек
@@ -17,6 +24,7 @@ import { tabletWidth, mobileWidth } from '../../utils/screenWidthConstants';
  * @param {Array} props.savedMovies Массив сохраненных фильмов пользователем
  * @param {String} props.searchHint Текст для подсказки
  * @param {Function} props.onActionMovie Сохранить/удалить фильм
+ * @param {Function} props.onDelete Удалить карточку в сохраненных фильмах
  * @param {Boolean} props.isSavedMovies Состояние меняет компонент
  * с поиска фильмов на сохраненные фильмы
  * @param {Boolean} props.isLoading Отображать прелоудер
@@ -27,6 +35,7 @@ function MoviesCardList({
   savedMovies,
   searchHint,
   onActionMovie,
+  onDelete,
   isSavedMovies,
   isLoading,
 }) {
@@ -44,14 +53,14 @@ function MoviesCardList({
   function renderGridFilms() {
     if (!isSavedMovies) {
       if (window.innerWidth <= mobileWidth) {
-        setNumberOfFilms(5);
-        setMoreFilms(2);
+        setNumberOfFilms(mobileNumberOfFilms);
+        setMoreFilms(mobileMoreFilms);
       } else if (window.innerWidth <= tabletWidth) {
-        setNumberOfFilms(8);
-        setMoreFilms(2);
+        setNumberOfFilms(tabletNumberOfFilms);
+        setMoreFilms(mobileMoreFilms);
       } else {
-        setNumberOfFilms(12);
-        setMoreFilms(3);
+        setNumberOfFilms(desktopNumberOfFilms);
+        setMoreFilms(desktopMoreFilms);
       }
     } else if (moviesData !== null) {
       setNumberOfFilms(moviesData.length);
@@ -92,6 +101,7 @@ function MoviesCardList({
                       isSavedMovies={isSavedMovies}
                       movie={movie}
                       onActionMovie={onActionMovie}
+                      onDelete={onDelete}
                       savedMovies={savedMovies}
                     />
                   </li>
@@ -143,6 +153,7 @@ MoviesCardList.propTypes = {
   savedMovies: PropTypes.arrayOf(PropTypes.object),
   isSavedMovies: PropTypes.bool,
   isLoading: PropTypes.bool,
+  onDelete: PropTypes.func,
 };
 
 MoviesCardList.defaultProps = {
@@ -150,6 +161,7 @@ MoviesCardList.defaultProps = {
   savedMovies: null,
   isSavedMovies: false,
   isLoading: false,
+  onDelete: () => {},
 };
 
 export default MoviesCardList;

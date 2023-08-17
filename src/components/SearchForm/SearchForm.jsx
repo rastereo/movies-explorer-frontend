@@ -5,6 +5,8 @@ import './SearchForm.css';
 
 import UseSearchHistory from '../../hooks/useSearchHistory';
 
+import { messageEnterKeyword } from '../../utils/constants';
+
 /**
  * Компонент страницы с поиском по фильмам.
  *
@@ -12,6 +14,7 @@ import UseSearchHistory from '../../hooks/useSearchHistory';
  * @param {String} props.name Имя формы
  * @param {Function} props.onSearch Функция обработки поиска фильмов
  * @param {Function} props.onShort Функция обработки поиска короткометражек
+ * @param {Function} props.onError Обработка ошибки валидации формы
  * @param {Boolean} props.isDisabled Заблокировать форму поиска
  * @returns {React.ReactElement}
  */
@@ -19,6 +22,7 @@ function SearchForm({
   name,
   onSearch,
   onShort,
+  onError,
   isDisabled,
 }) {
   // Название фильма из поисковой строки.
@@ -35,11 +39,15 @@ function SearchForm({
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    onSearch(movie, short);
+    if (movie === '') {
+      onError(messageEnterKeyword, true);
+    } else {
+      onSearch(movie, short);
+    }
   }
 
   /**
-   * Функция обработки чекбокса
+   * Функция обработчик чекбокса
    *
    * @param {Event} evt Состояние чекбокса
    */
@@ -62,7 +70,6 @@ function SearchForm({
             type="text"
             name="movie"
             value={movie}
-            required
             onChange={(evt) => setMovie(evt.target.value)}
             disabled={isDisabled}
             placeholder="Фильм"
@@ -112,6 +119,7 @@ SearchForm.propTypes = {
   name: PropTypes.string.isRequired,
   onSearch: PropTypes.func.isRequired,
   onShort: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
   isDisabled: PropTypes.bool,
 };
 

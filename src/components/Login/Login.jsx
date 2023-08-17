@@ -52,8 +52,6 @@ function Login({ onLogin, isLoading }) {
 
     onLogin(email, password);
 
-    setEmail('');
-    setPassword('');
     resetForm();
   }
 

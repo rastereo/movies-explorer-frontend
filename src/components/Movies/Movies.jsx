@@ -6,6 +6,8 @@ import './Movies.css';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
+import { messageSearchFilm } from '../../utils/constants';
+
 /**
  * Компонент страницы с поиском по фильмам.
  *
@@ -16,6 +18,7 @@ import SearchForm from '../SearchForm/SearchForm';
  * @param {Function} props.setSearchHint Вставить текст в подсказку
  * @param {Function} props.onSearch Обработка поиска фильмов
  * @param {Function} props.onShort Обработка поиска короткометражек
+ * @param {Function} props.onError Обработка ошибки валидации формы
  * @param {Function} props.onActionMovie Сохранить/удалить фильм
  * @param {Boolean} props.isLoading Отображать прелоудер
  * @returns {React.ReactElement}
@@ -27,12 +30,13 @@ function Movies({
   setSearchHint,
   onSearch,
   onShort,
+  onError,
   onActionMovie,
   isLoading,
 }) {
   useEffect(() => {
     if (moviesData === null) {
-      setSearchHint('Чтобы найти фильм, введите ключевое слово в поисковую строку');
+      setSearchHint(messageSearchFilm);
     }
   }, []);
 
@@ -43,6 +47,7 @@ function Movies({
         name="movie"
         onSearch={onSearch}
         onShort={onShort}
+        onError={onError}
         isDisabled={isLoading}
       />
       <MoviesCardList
@@ -64,6 +69,7 @@ Movies.propTypes = {
   onSearch: PropTypes.func.isRequired,
   onActionMovie: PropTypes.func.isRequired,
   onShort: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     nameRU: PropTypes.string,
     duration: PropTypes.number,

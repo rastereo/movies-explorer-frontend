@@ -13,6 +13,7 @@ import mainApi from '../../../utils/MainApi';
  * @param {Object} props.movie Информация о фильме
  * @param {Array} props.savedMovies Список сохраненных фильмов
  * @param {Function} props.onActionMovie Сохранить/удалить фильм
+ * @param {Function} props.onDelete Удалить карточку в сохраненных фильмах
  * @param {Boolean} props.isSavedMovies Состояние меняет компонент
  * с поиска фильмов на сохраненные фильмы
  * @returns {React.ReactElement}
@@ -21,6 +22,7 @@ function MoviesCard({
   movie,
   savedMovies,
   onActionMovie,
+  onDelete,
   isSavedMovies,
 }) {
   // Состояние добавление фильма в профиль.
@@ -94,7 +96,10 @@ function MoviesCard({
       mainApi.deleteMovie(isSavedMovies ? movie.movieId : id)
         .then((deleteMovie) => {
           setIsSave(false);
+
           onActionMovie(deleteMovie.data);
+
+          if (onDelete) onDelete(deleteMovie.data.movieId);
         })
         // eslint-disable-next-line no-console
         .catch((err) => console.log(err.message));
@@ -163,11 +168,13 @@ MoviesCard.propTypes = {
   onActionMovie: PropTypes.func.isRequired,
   savedMovies: PropTypes.arrayOf(PropTypes.object),
   isSavedMovies: PropTypes.bool,
+  onDelete: PropTypes.func,
 };
 
 MoviesCard.defaultProps = {
   isSavedMovies: false,
   savedMovies: null,
+  onDelete: () => {},
 };
 
 export default MoviesCard;

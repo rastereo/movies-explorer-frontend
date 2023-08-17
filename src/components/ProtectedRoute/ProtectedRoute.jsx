@@ -12,7 +12,7 @@ function ProtectedRouteElement({ element: Component, isLoggedIn, ...props }) {
     isLoggedIn
       // eslint-disable-next-line react/jsx-props-no-spreading
       ? <Component {...props} />
-      : <Navigate to="/signin" replace />
+      : <Navigate to="/" replace />
   );
 }
 

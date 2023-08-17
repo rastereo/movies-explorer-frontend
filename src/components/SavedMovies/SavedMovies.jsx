@@ -6,6 +6,11 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
 import { regexEnglishLanguage } from '../../utils/regexConstants';
+import {
+  lengthShortFilms,
+  messageNoSavedMovies,
+  messageNothingFound,
+} from '../../utils/constants';
 
 /**
  * Компонент страницы с сохранёнными карточками фильмов.
@@ -20,8 +25,11 @@ function SavedMovies({
   moviesData,
   searchHint,
   setSearchHint,
+  onError,
   onActionMovie,
 }) {
+  // Список сохраненных фильмов
+  const [movies, setMovies] = useState(null);
   // Список отфильтрованных поиском фильмов
   const [filterMovies, setFilterMovies] = useState(null);
   // Заблокировать форму, когда нет сохраненных фильмов
@@ -36,7 +44,7 @@ function SavedMovies({
   function searchSavedMovies(nameSavedMovie, short) {
     const lowerCaseName = nameSavedMovie.toLowerCase();
 
-    setFilterMovies(null);
+    let result = null;
 
     let languageName = 'nameRU';
 
@@ -44,29 +52,56 @@ function SavedMovies({
       languageName = 'nameEN';
     }
 
-    let result = moviesData.filter((movie) => (
+    result = movies.filter((movie) => (
       movie[languageName].toLowerCase().includes(lowerCaseName)
     ));
 
     if (short) {
-      result = result.filter((item) => item.duration < 40);
+      result = result.filter((item) => item.duration < lengthShortFilms);
     }
 
     if (result.length !== 0) {
       setFilterMovies(result);
     } else {
-      setSearchHint('Ничего не найдено');
+      setFilterMovies(null);
+      setSearchHint(messageNothingFound);
     }
   }
 
-  useEffect(() => {
-    setFilterMovies(moviesData);
+  /**
+   * Функция удаляет карточку из результата поиска сохраненных фильмов.
+   *
+   * @param {Number} id Id фильма, который нужно удалить
+   */
+  function deleteMovie(id) {
+    setFilterMovies((movieList) => {
+      const filterMovieList = movieList.filter((
+        (savedMovie) => savedMovie.movieId !== id
+      ));
 
-    if (moviesData === null) {
+      if (filterMovieList.length === 0) {
+        setSearchHint(messageNothingFound);
+
+        return null;
+      }
+
+      return filterMovieList;
+    });
+  }
+
+  useEffect(() => {
+    if (movies === null && moviesData !== null) {
+      setMovies(moviesData);
+      setFilterMovies(moviesData);
+    } else if (moviesData === null) {
+      setMovies(null);
       setIsDisabledForm(true);
-      setSearchHint('Нет сохраненных фильмов');
+      setSearchHint(messageNoSavedMovies);
+    } else {
+      setMovies(moviesData);
+      setIsDisabledForm(false);
     }
-  }, [moviesData]);
+  }, [moviesData, movies, filterMovies]);
 
   return (
     <main className="movies movies_padding_bottom">
@@ -75,6 +110,7 @@ function SavedMovies({
         name="save-movie"
         onSearch={searchSavedMovies}
         onShort={searchSavedMovies}
+        onError={onError}
         isDisabled={isDisabledForm}
       />
       <MoviesCardList
@@ -82,6 +118,7 @@ function SavedMovies({
         searchHint={searchHint}
         setSearchHint={setSearchHint}
         onActionMovie={onActionMovie}
+        onDelete={deleteMovie}
         isSavedMovies
       />
     </main>
@@ -91,6 +128,7 @@ function SavedMovies({
 SavedMovies.propTypes = {
   searchHint: PropTypes.string.isRequired,
   setSearchHint: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
   onActionMovie: PropTypes.func.isRequired,
   moviesData: PropTypes.arrayOf(PropTypes.shape({
     nameRU: PropTypes.string,

@@ -55,9 +55,6 @@ function Register({ onRegister, isLoading }) {
 
     onRegister(name, email, password);
 
-    setName('');
-    setEmail('');
-    setPassword('');
     resetForm();
   }
 

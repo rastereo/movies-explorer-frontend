@@ -4,3 +4,39 @@
   margin: 0;
   padding-bottom: 9px;
 }
+
+@media screen and (max-width: 910px) {
+  .movies-card__name {
+    width: 140px;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card__name {
+    width: auto;
+    white-space: normal;
+    text-overflow: inherit;
+    overflow: auto;
+  }
+}
+
+@media screen and (max-width: 585px) {
+  .movies-card__name {
+    width: 140px;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .movies-card__name {
+    width: auto;
+    white-space: normal;
+    text-overflow: inherit;
+    overflow: auto;
+  }
+}
