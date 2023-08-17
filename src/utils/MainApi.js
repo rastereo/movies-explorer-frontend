@@ -183,6 +183,6 @@ class MainApi {
   }
 }
 
-const mainApi = new MainApi('http://localhost:3000');
+const mainApi = new MainApi('https://api.rastereo.diplom.nomoredomains.xyz');
 
 export default mainApi;

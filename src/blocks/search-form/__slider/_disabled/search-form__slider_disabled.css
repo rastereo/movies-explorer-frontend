@@ -1,3 +1,7 @@
 .search-form__slider_disabled {
   cursor: default;
 }
+
+.search-form__slider_disabled:hover {
+  box-shadow: none;
+}
