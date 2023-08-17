@@ -59,4 +59,5 @@ npm run start
 + Публичный IPv4: 158.160.114.107
 + Домен сервера: https://api.rastereo.diplom.nomoredomains.xyz
 + Github репозиторий: https://github.com/rastereo/movies-explorer-frontend
++ Pull requests Level-3: https://github.com/rastereo/movies-explorer-frontend/pull/10
 + Критерии диплома веб-разработчика: https://code.s3.yandex.net/web-developer/static/new-program/web-diploma-criteria-2.0/index.html#jsx
