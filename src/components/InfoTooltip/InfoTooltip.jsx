@@ -50,9 +50,13 @@ function InfoTooltip({
 
 InfoTooltip.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
   tooltip: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
+  isError: PropTypes.bool,
+};
+
+InfoTooltip.defaultProps = {
+  isError: false,
 };
 
 export default InfoTooltip;

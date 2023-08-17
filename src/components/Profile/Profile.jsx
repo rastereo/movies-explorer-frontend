@@ -28,6 +28,7 @@ function Profile({ onUpdate, onLogout }) {
     handleChangeValidation,
     errors,
     isValid,
+    setIsValid,
   } = UseFormAndValidation();
 
   /**
@@ -60,6 +61,12 @@ function Profile({ onUpdate, onLogout }) {
       setTitle(`Привет, ${currentUser.name}!`);
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    if (currentUser.name === name && currentUser.email === email) {
+      setIsValid(false);
+    }
+  }, [name, email]);
 
   return (
     <main className="main-form main-form_type_profile">

@@ -43,15 +43,20 @@ function Navigation() {
   }
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
+    /**
+     * Функция меняет стейт isSizeSmall.
+     */
+    function changeIsSize() {
       if (window.innerWidth <= tabletWidth) {
         setIsSizeSmall(true);
       } else {
         setIsSizeSmall(false);
       }
-    });
+    }
 
-    if (window.innerWidth <= tabletWidth) setIsSizeSmall(true);
+    window.addEventListener('resize', changeIsSize);
+
+    return () => window.removeEventListener('resize', changeIsSize);
   }, []);
 
   return (

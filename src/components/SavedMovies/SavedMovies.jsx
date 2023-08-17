@@ -66,7 +66,7 @@ function SavedMovies({
       setIsDisabledForm(true);
       setSearchHint('Нет сохраненных фильмов');
     }
-  }, [moviesData, isDisabledForm, setSearchHint]);
+  }, [moviesData]);
 
   return (
     <main className="movies movies_padding_bottom">

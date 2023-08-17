@@ -16,9 +16,7 @@ function useCloseOnKeydown({ action }) {
 
     document.addEventListener('keydown', handleEscClose);
 
-    return () => {
-      document.removeEventListener('keydown', handleEscClose);
-    };
+    return () => document.removeEventListener('keydown', handleEscClose);
   });
 }
 
