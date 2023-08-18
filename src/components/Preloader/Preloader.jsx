@@ -3,7 +3,7 @@ import './Preloader.css';
 /**
  *  Прелоадер.
  *
- * @returns {React.ReactElement} Preloader
+ * @returns {React.ReactElement}
  */
 function Preloader() {
   return (

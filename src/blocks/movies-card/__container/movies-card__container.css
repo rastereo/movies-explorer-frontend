@@ -1,0 +1,8 @@
+.movies-card__container {
+  height: 68px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 14px 13px;
+}

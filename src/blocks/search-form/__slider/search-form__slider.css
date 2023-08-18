@@ -25,6 +25,10 @@
   transition: .4s;
 }
 
+.search-form__slider:hover {
+  box-shadow: var(--box-shadow);
+}
+
 .search-form__checkbox:checked + .search-form__slider {
   background-color: var(--green);
 }

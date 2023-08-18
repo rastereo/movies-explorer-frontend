@@ -20,6 +20,17 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": 0,
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "react/jsx-no-bind": "off",
+    "no-useless-escape": "off",
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": false
+      }
+    ],
     "react/jsx-filename-extension": [
       1,
       {
@@ -29,11 +40,10 @@
         ]
       }
     ],
-    "react/self-closing-comp": [
+    "react/forbid-prop-types": [
       "error",
       {
-        "component": true,
-        "html": false
+        "forbid": ["any"]
       }
     ]
   }

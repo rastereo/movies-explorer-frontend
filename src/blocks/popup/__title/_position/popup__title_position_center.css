@@ -5,7 +5,6 @@
 
 @media screen and (max-width: 450px) {
   .popup__title_position_center {
-    font-size: 20px;
     padding-top: 40px;
   }
 }

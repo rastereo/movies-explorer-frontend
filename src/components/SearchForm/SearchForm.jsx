@@ -1,20 +1,33 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './SearchForm.css';
 
+import UseSearchHistory from '../../hooks/useSearchHistory';
+
+import { messageEnterKeyword } from '../../utils/constants';
+
 /**
  * Компонент страницы с поиском по фильмам.
  *
  * @param {Object} props
- * @param {String} props.name Имя формы.
- * @returns {React.ReactElement} SearchForm
+ * @param {String} props.name Имя формы
+ * @param {Function} props.onSearch Функция обработки поиска фильмов
+ * @param {Function} props.onShort Функция обработки поиска короткометражек
+ * @param {Function} props.onError Обработка ошибки валидации формы
+ * @param {Boolean} props.isDisabled Заблокировать форму поиска
+ * @returns {React.ReactElement}
  */
-function SearchForm({ name }) {
+function SearchForm({
+  name,
+  onSearch,
+  onShort,
+  onError,
+  isDisabled,
+}) {
   // Название фильма из поисковой строки.
   const [movie, setMovie] = useState('');
-  // Поиск короткометражек.
+  // Состояние чекбокса короткометражек.
   const [short, setShort] = useState(false);
 
   /**
@@ -26,11 +39,22 @@ function SearchForm({ name }) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    // eslint-disable-next-line no-console
-    console.log({ movie, short });
+    if (movie === '') {
+      onError(messageEnterKeyword, true);
+    } else {
+      onSearch(movie, short);
+    }
+  }
 
-    setMovie('');
-    setShort(false);
+  /**
+   * Функция обработчик чекбокса
+   *
+   * @param {Event} evt Состояние чекбокса
+   */
+  function handleCheckbox(evt) {
+    setShort(evt.target.checked);
+
+    onShort(movie, evt.target.checked);
   }
 
   return (
@@ -46,38 +70,61 @@ function SearchForm({ name }) {
             type="text"
             name="movie"
             value={movie}
-            required
             onChange={(evt) => setMovie(evt.target.value)}
+            disabled={isDisabled}
             placeholder="Фильм"
             className="search-form__input"
           />
           <button
             type="submit"
             aria-label="Подтвердить поиск фильма"
-            className="search-form__submit link"
+            disabled={isDisabled}
+            className={`search-form__submit link ${isDisabled && 'search-form__submit_disabled'}`}
           >
           </button>
         </div>
-        <label className="search-form__label">
+        <label
+          htmlFor="shortMovie"
+          className="search-form__label"
+        >
           Короткометражки
           <div className="search-form__switch">
             <input
               type="checkbox"
               name="short"
+              onChange={(evt) => handleCheckbox(evt)}
+              value={short}
               checked={short}
-              onChange={(evt) => setShort(evt.target.checked)}
+              disabled={isDisabled}
+              id="shortMovie"
               className="search-form__checkbox visually-hidden"
             />
-            <span className="search-form__slider"></span>
+            <span className={`search-form__slider ${isDisabled && 'search-form__slider_disabled'}`}></span>
           </div>
         </label>
       </form>
+      {name === 'movie'
+        && (
+          <UseSearchHistory
+            setMovie={setMovie}
+            setShort={setShort}
+            onSearch={onSearch}
+          />
+        )}
     </section>
   );
 }
 
 SearchForm.propTypes = {
   name: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
+  onShort: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool,
+};
+
+SearchForm.defaultProps = {
+  isDisabled: false,
 };
 
 export default SearchForm;

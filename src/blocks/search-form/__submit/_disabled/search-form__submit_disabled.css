@@ -1,0 +1,8 @@
+.search-form__submit_disabled {
+  background-color: var(--regular-grey-three);
+  cursor: default;
+}
+
+.search-form__submit_disabled:hover {
+  opacity: 1;
+}

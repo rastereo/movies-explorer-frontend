@@ -3,19 +3,20 @@ import { NavLink } from 'react-router-dom';
 
 import './Navigation.css';
 
+import { tabletWidth } from '../../utils/screenWidthConstants';
+
 /**
  * Компонент, который отвечает за меню навигации на сайте.
  *
- * @returns {React.ReactElement} Navigation
+ * @returns {React.ReactElement}
  */
 function Navigation() {
-  // Ширина мобильного экрана.
-  const mobileWindowWidth = 768;
-
   // Состояние, если экран по ширине меньше 768px.
   const [isSizeSmall, setIsSizeSmall] = useState(false);
 
   // Элемент навигации.
+  const navigation = useRef();
+  // Элемент меню навигации
   const menu = useRef();
 
   /**
@@ -25,7 +26,8 @@ function Navigation() {
    */
   function handleToggleNavigation() {
     if (isSizeSmall) {
-      menu.current.classList.toggle('navigation_hide');
+      navigation.current.classList.toggle('navigation_hide');
+      menu.current.classList.toggle('navigation__menu_hide');
     }
   }
 
@@ -41,15 +43,22 @@ function Navigation() {
   }
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= mobileWindowWidth) {
+    /**
+     * Функция меняет стейт isSizeSmall.
+     */
+    function changeIsSize() {
+      if (window.innerWidth <= tabletWidth) {
         setIsSizeSmall(true);
       } else {
         setIsSizeSmall(false);
       }
-    });
+    }
 
-    if (window.innerWidth <= mobileWindowWidth) setIsSizeSmall(true);
+    changeIsSize();
+
+    window.addEventListener('resize', changeIsSize);
+
+    return () => window.removeEventListener('resize', changeIsSize);
   }, []);
 
   return (
@@ -64,7 +73,7 @@ function Navigation() {
           </button>
         )}
       <nav
-        ref={menu}
+        ref={navigation}
         className={`navigation navigation_state_logged ${isSizeSmall && 'navigation_hide'}`}
       >
         {isSizeSmall
@@ -76,7 +85,10 @@ function Navigation() {
             >
             </button>
           )}
-        <ul className="navigation__menu list navigation__menu_state_logged">
+        <ul
+          ref={menu}
+          className={`navigation__menu list navigation__menu_state_logged ${isSizeSmall && 'navigation__menu_position_right'} ${isSizeSmall && 'navigation__menu_hide'}`}
+        >
           {isSizeSmall
             && (
               <>

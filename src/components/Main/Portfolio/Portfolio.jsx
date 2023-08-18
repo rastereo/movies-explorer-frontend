@@ -6,7 +6,7 @@ import TitleSection from '../TitleSection/TitleSection';
 /**
  * Компонент со ссылками на другие проекты.
  *
- * @returns {React.ReactElement} Portfolio
+ * @returns {React.ReactElement}
  */
 function Portfolio() {
   return (
@@ -15,7 +15,7 @@ function Portfolio() {
       <ul className="portfolio__links list">
         <li>
           <Link
-            to="https://github.com/rastereo/how-to-learn"
+            to="https://rastereo.github.io/how-to-learn"
             className="portfolio__link link"
             target="_blank"
             rel="noreferrer"

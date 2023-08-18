@@ -1,41 +1,72 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import MainForm from '../MainForm/MainForm';
 import UseFormAndValidation from '../../hooks/useFormAndValidation';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 /**
  * Компонент страницы изменения профиля.
  *
- * @returns {React.ReactElement} Profile
+ * @param {Object} props
+ * @param {Function} props.onUpdate Отправить запрос на изменения
+ * информации о пользователе на сервер
+ * @param {Function} props.onLogout Выйти из аккаунта
+ * @returns {React.ReactElement}
  */
-function Profile() {
+function Profile({ onUpdate, onLogout }) {
   // Имя пользователя в профиле.
-  const [name, setName] = useState('Виталий');
+  const [name, setName] = useState('');
   // Электронная почта в профиле.
-  const [email, setEmail] = useState('pochta@yandex.ru');
+  const [email, setEmail] = useState('');
   // Заголовок профиля с именем пользователя.
   const [title, setTitle] = useState(`Привет, ${name}!`);
+
+  const currentUser = useContext(CurrentUserContext);
 
   const {
     handleChangeValidation,
     errors,
     isValid,
+    setIsValid,
   } = UseFormAndValidation();
 
+  /**
+   * Функция добавляет в выбранный state информацию.
+   *
+   * @param {Function} setState В какой state добавить информацию
+   * @param {Event} evt Ввод информации пользователя
+   */
   function handleChangeValue(setState, evt) {
     setState(evt.target.value);
 
     handleChangeValidation(evt);
   }
 
+  /**
+   * Функция обработки submit.
+   *
+   * @param {Event} evt Событие submit формы
+   */
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    // eslint-disable-next-line no-console
-    console.log({ name, email });
-
-    setTitle(`Привет, ${name}!`);
+    onUpdate(name, email);
   }
+
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name);
+      setEmail(currentUser.email);
+      setTitle(`Привет, ${currentUser.name}!`);
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (currentUser.name === name && currentUser.email === email) {
+      setIsValid(false);
+    }
+  }, [name, email]);
 
   return (
     <main className="main-form main-form_type_profile">
@@ -90,6 +121,7 @@ function Profile() {
       </MainForm>
       <button
         type="button"
+        onClick={onLogout}
         className="main-form__logout link"
       >
         Выйти из аккаунта
@@ -97,5 +129,10 @@ function Profile() {
     </main>
   );
 }
+
+Profile.propTypes = {
+  onUpdate: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
+};
 
 export default Profile;

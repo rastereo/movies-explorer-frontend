@@ -1,0 +1,12 @@
+@keyframes hide-menu {
+  0% {
+    margin-right: 0;
+  }
+  100% {
+    margin-right: -100%;
+  }
+}
+
+.navigation__menu_hide {
+  animation: hide-menu .3s linear forwards;
+}

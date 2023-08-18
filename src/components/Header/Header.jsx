@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './Header.css';
-import logo from '../../images/logo.svg';
+
 import Navigation from '../Navigation/Navigation';
+
+import logo from '../../images/logo.svg';
 
 /**
  * Компонент, который отрисовывает шапку сайта на страницу.
@@ -14,7 +16,7 @@ import Navigation from '../Navigation/Navigation';
  * @param {Boolean} props.isMain Возвращает boolean значение, представляющий
  * текущий роут. Если пользователь находится в index, шапка серого цвета, во всех
  * других роутах шапка без цвета.
- * @returns {React.ReactElement} Header
+ * @returns {React.ReactElement}
  */
 function Header({ isLoggedIn, isMain }) {
   return (
